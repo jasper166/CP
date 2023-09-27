@@ -1,0 +1,99 @@
+
+
+
+<div id="fb-root"></div>
+<script>(function (d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v2.3";
+    fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+<div class="submission-title">
+    155673 - Coder: <a href="/Coder/Details/YugiHacker">YugiHacker</a> - Bài tập: <a href="/Problem/Details/6995">XORSUM</a> - <span>Accepted</span> - Time: <span>15 ms</span> - Memory: <span>1888 KB </span> 
+        <a href="/Submission/Detail/155673/?fullScreen=1"><span class="red">(full screen)</span></a>
+</div>
+<div>
+    <textarea id="SubmitCode" rows="69" cols="125">#include&lt;bits/stdc++.h&gt;
+
+#define el cout&lt;&lt;&quot;\n&quot;
+#define file &quot;equation&quot;
+#define	f0(i,n) for(int i=0;i&lt;n;i++)
+#define f1(i,n) for(int i=1;i&lt;=n;i++)
+#define maxn 1003
+#define bit(n,i) ((n&gt;&gt;i)&amp;1)
+
+using namespace std;
+int d[2][51];
+long long m, n, a[maxn];
+void solve()
+{
+    long long p=0, s=0;
+    memset(d, 0, sizeof(d));
+    f1 (i, n)
+    {
+        for (int j=50; j&gt;=0; j--)
+        {
+            int k=bit(a[i], j);
+            d[k][j]++;
+        }
+    }
+    for (int i=50; i&gt;=0; i--)
+    {
+        int x=d[0][i], y=d[1][i];
+        if (x&lt;=y)
+        {
+            s+= (1ll&lt;&lt;i)*x;
+            p+= (1ll&lt;&lt;i);
+        }
+        else s+= (1ll&lt;&lt;i)*y;
+    }
+    if (s &gt; m)
+    {
+        cout &lt;&lt; -1; el;
+        return;
+    }
+    for (int i=50; i&gt;=0; i--)
+    {
+        int x=d[0][i], y=d[1][i];
+        if (x==0 &amp;&amp; y==0) continue;
+        if (bit(p, i)==0 &amp;&amp; x&gt;y)
+        {
+            if (s+(1ll&lt;&lt;i)*x-(1ll&lt;&lt;i)*y &lt;= m)
+            {
+                s=s+(1ll&lt;&lt;i)*x-(1ll&lt;&lt;i)*y;
+                p+=(1ll&lt;&lt;i);
+            }
+        }
+    }
+    cout &lt;&lt; p; el;
+}
+int main()
+{
+    ios_base::sync_with_stdio(0);
+    cin.tie(0);
+    cout.tie(0);
+    //freopen(file&quot;.inp&quot;,&quot;r&quot;,stdin);
+    //freopen(file&quot;.out&quot;,&quot;w&quot;,stdout);
+    cin &gt;&gt; n &gt;&gt; m;
+    f1 (i, n) cin &gt;&gt; a[i];
+    solve();
+    return 0;
+}
+    </textarea>
+</div>
+
+   
+<script type="text/javascript">
+        editAreaLoader.init({
+            id: "SubmitCode",
+            syntax_selection_allow: "cpp,java,pas,csharp,python",
+            is_editable: false,
+            allow_toggle: false,
+            allow_resize: "no",
+            syntax: "cpp",
+            display: "onload",
+            start_highlight: true
+        });
+</script>

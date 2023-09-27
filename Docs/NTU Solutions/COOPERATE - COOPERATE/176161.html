@@ -1,0 +1,64 @@
+
+
+
+<div id="fb-root"></div>
+<script>(function (d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v2.3";
+    fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+<div class="submission-title">
+    176161 - Coder: <a href="/Coder/Details/YugiHacker">YugiHacker</a> - Bài tập: <a href="/Problem/Details/8366">COOPERATE</a> - <span>Accepted</span> - Time: <span>15 ms</span> - Memory: <span>1112 KB </span> 
+        <a href="/Submission/Detail/176161/?fullScreen=1"><span class="red">(full screen)</span></a>
+</div>
+<div>
+    <textarea id="SubmitCode" rows="34" cols="125">#include&lt;bits/stdc++.h&gt;
+using namespace std;
+
+#define file &quot;&quot;
+#define el cout&lt;&lt;&quot;\n&quot;
+#define	f0(i,n) for(int i=0;i&lt;n;i++)
+#define f1(i,n) for(int i=1;i&lt;=n;i++)
+#define maxn 102
+int n, a, b, d[maxn];
+bool ans=1;
+main(){
+    ios_base::sync_with_stdio(0);cin.tie(0);cout.tie(0);
+    ///freopen(file&quot;.inp&quot;,&quot;r&quot;,stdin);
+    ///freopen(file&quot;.out&quot;,&quot;w&quot;,stdout);
+    cin &gt;&gt; n;
+    cin &gt;&gt; a;
+    f1 (i, a)
+    {
+        int x; cin &gt;&gt; x;
+        d[x]=1;
+    }
+    cin &gt;&gt; b;
+    f1 (i, b)
+    {
+        int x; cin &gt;&gt; x;
+        d[x]=1;
+    }
+    f1 (i, n) if (d[i]==0) ans=0;
+    if (ans) cout &lt;&lt; &quot;WIN&quot;;
+    else cout &lt;&lt; &quot;LOSE&quot;;
+}
+    </textarea>
+</div>
+
+   
+<script type="text/javascript">
+        editAreaLoader.init({
+            id: "SubmitCode",
+            syntax_selection_allow: "cpp,java,pas,csharp,python",
+            is_editable: false,
+            allow_toggle: false,
+            allow_resize: "no",
+            syntax: "cpp",
+            display: "onload",
+            start_highlight: true
+        });
+</script>

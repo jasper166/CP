@@ -1,0 +1,28 @@
+Tư tưởng sweep line:
+
++ Chia mỗi hcn thành 2 loại:
+cạnh mở (1)
+cạnh đóng (-1)
+
+Bắt đầu sweep line từ x = 0;
+Đoạn chiều cao từ y = 0 -> y max;
+
+Khi gặp mỗi cạnh
++cộng thêm 1 lượng:
+(event(i).x - event(i - 1).x) * Tổng chiều cao (y1, y2) của x hiện tại;
+
+Tính tổng chiều cao:
+Dùng segment tree, các node quản lí đoạn (l, r) gồm
+1.cnt : số hcn bao phủ đoạn (l, r) của tung độ
+2.len : diện tích phần bao phủ của đoạn (l, r)
+
++ cnt > 0: 
+	nếu như vẫn còn hcn bao phủ cả đoạn (l, r) thì len = r - l + 1 (lấy cả đoạn)
++ cnt = 0:
+ 	nếu l != r thì lấy len = tổng len của node trái, phải
+ 	nếu l = r thì len = 0;
+
+*Lưu ý là lấy đoạn trên trục nên (y1, y2) sẽ lấy là (y1, y2 - 1), y1 = y2 thì k làm gì
+hết
+
+

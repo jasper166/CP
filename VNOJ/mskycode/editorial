@@ -1,0 +1,6 @@
+Dùng bao hàm loại trừ
+1. Đếm số bộ 4 ko thoả mãn rồi lấy tổng trừ đi
+Ko thoả mãn tức gcd() > 1;
+thì với mỗi số x của mảng a[], phân tích các ước số có thể tạo ra, đếm lại số lần xuất hiện; 
+
+Duyệt từ 2 -> max(ai) nếu cnt[x] >= 4 -> tính vào kết quả theo bao hàm 

@@ -1,0 +1,96 @@
+
+
+
+<div id="fb-root"></div>
+<script>(function (d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v2.3";
+    fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+<div class="submission-title">
+    292957 - Coder: <a href="/Coder/Details/YugiHacker">YugiHacker</a> - Bài tập: <a href="/Problem/Details/10992">DISTANCEX - Tổng khoảng c&#225;ch</a> - <span>Accepted</span> - Time: <span>171 ms</span> - Memory: <span>4420 KB </span> 
+        <a href="/Submission/Detail/292957/?fullScreen=1"><span class="red">(full screen)</span></a>
+</div>
+<div>
+    <textarea id="SubmitCode" rows="66" cols="125">#include&lt;bits/stdc++.h&gt;
+#define el cout&lt;&lt;&quot;\n&quot;
+#define f0(i,n) for(int i=0;i&lt;n;++i)
+#define f1(i,n) for(int i=1;i&lt;=n;++i)
+#define maxn 1003
+#define int long long
+using namespace std;
+int m, n;
+string a[maxn];
+int cal(char c)
+{
+    vector&lt;int&gt; cntCol(n), dCol(n);
+    vector&lt;int&gt; curL(n), nxtL(n);
+    vector&lt;int&gt; curR(n), nxtR(n);
+    int L, R, res = 0;
+    for (int i = 0; i &lt; m; ++i)
+    {
+        int suf = 0, csuf = 0, upR = 0;
+        for (int j = n - 1; j &gt;= 0; --j)
+        {
+            suf += csuf;
+            if (a[i][j] == c)
+            {
+                ++csuf;
+            }
+            upR += cntCol[j];
+        }
+        int pre = 0, cpre = 0, upL = 0;
+        for (int j = 0; j &lt; n; ++j)
+        {
+            upR -= cntCol[j];
+            L = (i and j ? curL[j-1] + upL : 0);
+            R = (i and j &lt; n - 1 ? curR[j+1] + upR : 0);
+            nxtL[j] = L + dCol[j] + pre;
+            nxtR[j] = R + dCol[j] + suf;
+            upL += cntCol[j];
+            if (a[i][j] == c)
+            {
+                res += L + R + dCol[j] + pre;
+                --csuf;
+                ++cpre;
+                ++cntCol[j];
+            }
+            suf -= csuf;
+            pre += cpre;
+            dCol[j] += cntCol[j];
+        }
+        swap(curL, nxtL);
+        swap(curR, nxtR);
+    }
+    return res;
+}
+
+main()
+{
+    ios_base::sync_with_stdio(0);
+    cin.tie(0);
+    cout.tie(0);
+    cin &gt;&gt; m &gt;&gt; n;
+    for (int i = 0; i &lt; m; ++i)
+        cin &gt;&gt; a[i];
+    cout &lt;&lt; cal(&#39;M&#39;) &lt;&lt; &#39; &#39; &lt;&lt; cal(&#39;S&#39;);
+}
+    </textarea>
+</div>
+
+   
+<script type="text/javascript">
+        editAreaLoader.init({
+            id: "SubmitCode",
+            syntax_selection_allow: "cpp,java,pas,csharp,python",
+            is_editable: false,
+            allow_toggle: false,
+            allow_resize: "no",
+            syntax: "cpp",
+            display: "onload",
+            start_highlight: true
+        });
+</script>

@@ -1,0 +1,112 @@
+
+
+
+<div id="fb-root"></div>
+<script>(function (d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v2.3";
+    fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+<div class="submission-title">
+    202741 - Coder: <a href="/Coder/Details/YugiHacker">YugiHacker</a> - Bài tập: <a href="/Problem/Details/8517">Hạt điện t&#237;ch</a> - <span>Accepted</span> - Time: <span>156 ms</span> - Memory: <span>10536 KB </span> 
+        <a href="/Submission/Detail/202741/?fullScreen=1"><span class="red">(full screen)</span></a>
+</div>
+<div>
+    <textarea id="SubmitCode" rows="82" cols="125">#include&lt;bits/stdc++.h&gt;
+using namespace std;
+
+#define el cout&lt;&lt;&quot;\n&quot;
+#define	f0(i,n) for(int i=0;i&lt;n;i++)
+#define f1(i,n) for(int i=1;i&lt;=n;i++)
+#define maxn 200005
+#define pii pair&lt;int,int&gt;
+#define fi first
+#define se second
+int n, m;
+int dd[maxn], c[maxn], d[maxn], b[maxn], f[maxn], cnt, r[maxn];
+struct query
+{
+    char t;
+    int u, v;
+}q[maxn];
+vector &lt;pii&gt; a[maxn];
+void dfs(int u)
+{
+    d[u]=1; f[u]=cnt;
+    for (auto x:a[u])
+    {
+        int v=x.fi, w=x.se;
+        if (!d[v])
+        {
+            //cout &lt;&lt; u &lt;&lt; &#39; &#39; &lt;&lt; v &lt;&lt; &#39; &#39; &lt;&lt; w; el;
+            if (w) c[v]=3-c[u];
+            else c[v]=c[u];
+            dfs(v);
+        }
+    }
+}
+int get(int u)
+{
+    return (r[u]?r[u]=get(r[u]):u);
+}
+int main(){
+    ios_base::sync_with_stdio(0);cin.tie(0);cout.tie(0);
+    cin &gt;&gt; n &gt;&gt; m;
+    f1 (i, m)
+    {
+        char t;
+        int u, v;
+        cin &gt;&gt; t &gt;&gt; u &gt;&gt; v;
+        q[i]={t,u,v};
+        if (t!=&#39;Q&#39;)
+        {
+            int x=(t==&#39;A&#39;);
+            a[u].push_back({v, x});
+            a[v].push_back({u, x});
+            dd[u]=dd[v]=1;
+        }
+    }
+    f1 (i, n) if (dd[i] &amp;&amp; !d[i]) c[i]=1, cnt++, dfs(i);
+    //f1 (i, n) cout &lt;&lt; c[i] &lt;&lt; &#39; &#39;;
+    f1 (i, m)
+    {
+        //cout &lt;&lt; b[q[i].u] &lt;&lt; &#39; &#39; &lt;&lt; b[q[i].v]; el;
+        int u=q[i].u, v=q[i].v;
+        int x=get(u), y=get(v);
+        if (q[i].t==&#39;Q&#39;)
+        {
+            if (!b[u]||!b[v]||x!=y) cout &lt;&lt; &quot;?\n&quot;;
+            else
+            {
+                if (b[q[i].u]==b[q[i].v]) cout &lt;&lt; &quot;R\n&quot;;
+                else cout &lt;&lt; &quot;A\n&quot;;
+            }
+        }
+        else
+        {
+            b[u]=c[u];
+            b[v]=c[v];
+            if (x!=y) r[x]=y;
+        }
+    }
+    return 0;
+}
+    </textarea>
+</div>
+
+   
+<script type="text/javascript">
+        editAreaLoader.init({
+            id: "SubmitCode",
+            syntax_selection_allow: "cpp,java,pas,csharp,python",
+            is_editable: false,
+            allow_toggle: false,
+            allow_resize: "no",
+            syntax: "cpp",
+            display: "onload",
+            start_highlight: true
+        });
+</script>

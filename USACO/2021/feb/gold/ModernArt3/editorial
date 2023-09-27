@@ -1,0 +1,16 @@
+n <= 300
+
+Xử lí trên đoạn
+DP range
+
+
+Base case:
+ + l = r -> f(l, r) = 1
+ + l = r - 1
+	nếu a(l) = a(r) thì 1
+ 	nếu a(l) != a(r) thì 2
+Xét x trên đoạn [l, r]:
+	nếu a(l) = a(x) khi merge đoạn f(l, x - 1) và f(x, r) rõ ràng sẽ giữ lại được 1 màu
+	-> 
+	f(l, r) = min(f(l, x) + f(x + 1, r) - 1) nếu a(l) = a(x);
+	f(l, r) = min(f(l, x) + f(x + 1, r)) nếu a(l) != a(x);

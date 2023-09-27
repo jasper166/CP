@@ -1,0 +1,17 @@
+
+Dùng Segtree + Euler tour
+
+Nhận xét:
+*Key:
+	với đỉnh u, có nước chỉ khi các đỉnh con có nước và ngược lại
+	với segtree Cha có nước chỉ khi con trái và con phải đều có nước;
+	-> merge 2 con bằng AND;
+1. Thao tác fill là cập nhật đoạn con(tin(u), tout(u));
++ Để ý trước khi fill nếu như 
+ pa(u) có nước và cây con của u đã empty
+  	thì phải empty đi pa(u);
+2. Thao tác empty là update điểm (tin(u), tin(u));
++ Vẫn cần lazy cho các con trái và con phải nếu có để ko bị bỏ sót;
+3. truy vấn? 
+	rõ ràng khi mà con trái và con phải có nước thì bắt buộc cha phải có nước;
+	vậy truy vấn các AND trên đoạn tin(u), tout(u);

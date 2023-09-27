@@ -1,0 +1,77 @@
+
+
+
+<div id="fb-root"></div>
+<script>(function (d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v2.3";
+    fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+<div class="submission-title">
+    247844 - Coder: <a href="/Coder/Details/YugiHacker">YugiHacker</a> - Bài tập: <a href="/Problem/Details/9873">Tr&#242; chơi mới</a> - <span>Accepted</span> - Time: <span>203 ms</span> - Memory: <span>5032 KB </span> 
+        <a href="/Submission/Detail/247844/?fullScreen=1"><span class="red">(full screen)</span></a>
+</div>
+<div>
+    <textarea id="SubmitCode" rows="47" cols="125">#include&lt;bits/stdc++.h&gt;
+using namespace std;
+#define ll long long 
+#define fo(i,a,b) for(ll i=a;i&lt;=b;i++)
+#define ff(i,a,b) for(ll i=a;i&gt;=b;i--)
+#define fi first
+#define se second
+#define endl &#39;\n&#39;
+ll b1[200005],c[200005],b2[200005];
+ll chat(ll l,ll r,ll x){
+	ll ans=r+1;
+	while(l&lt;=r){
+		ll m=(l+r)/2;
+		if(c[m]+x&gt;0){
+			ans=m;
+			r=m-1;
+		}
+		else{
+			l=m+1;
+		}
+	}
+	return ans;
+}
+int main(){
+	ios::sync_with_stdio(0);cin.tie(0);cout.tie(0);
+	ll a;
+	cin&gt;&gt;a;
+	fo(i,1,a){
+		cin&gt;&gt;b1[i];
+	}
+	fo(i,1,a){
+		cin&gt;&gt;b2[i];
+	}
+	fo(i,1,a){
+		c[i]=b1[i]-b2[i];
+	}
+	sort(c+1,c+1+a);
+	ll ans=0;
+	cout&lt;&lt;endl;
+	fo(i,1,a){
+		ans+=a-chat(i+1,a,c[i])+1;
+	}
+	cout&lt;&lt;ans;
+}
+    </textarea>
+</div>
+
+   
+<script type="text/javascript">
+        editAreaLoader.init({
+            id: "SubmitCode",
+            syntax_selection_allow: "cpp,java,pas,csharp,python",
+            is_editable: false,
+            allow_toggle: false,
+            allow_resize: "no",
+            syntax: "cpp",
+            display: "onload",
+            start_highlight: true
+        });
+</script>

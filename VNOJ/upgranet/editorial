@@ -1,0 +1,16 @@
+Ta thấy thông lượng truyền tin từ u đến v là giá trị lớn nhất của cạnh nhỏ nhất trên mọi con đường từ u đến v gọi là x. 
+với điều kiện (x >= w) ??? 
+
+Ban đầu, ta sẽ xây dựng cây khung lớn nhất.
+- Rõ ràng ta cần chọn cạnh x lớn nhất có thể
+Giả sử khi đó nếu như có 1 cạnh y nhỏ nhất thuộc đường nối (u, v), y > x -->
+chưa thuộc cây khung lớn nhất.
+- Các cạnh không thuộc mst luôn có w <= x t/m điều kiện;
+
+Khi đó tính chi phí bằng cách tìm ra cạnh nhỏ nhất thuộc đường nối (u, v):
+với mỗi cạnh (u, v) còn lại;
+ans += (X - w);
+ 
+Tìm nhanh bằng binary lifting + LCA;
+
+

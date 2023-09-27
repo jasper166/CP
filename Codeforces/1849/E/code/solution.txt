@@ -1,0 +1,23 @@
+Using Divide and Conquer
+- Dùng RMQ tìm vị trí max trong đoạn (l, r)
+- Cài stack được :
+    1. Mảng rhs(i) là vị trí min kế tiếp của a(i) (về phía bên phải)
+    2. Mảng lhs(i) là vị trí min trước đó của a(i) (về phía bên trái)
+- Ta tìm được vị trí max của (l, r) là p_max
+
+* Calculating the left: p_max <= (r - l) / 2;
+For each i in range (l, m - 1), p_min is the position of min element of (i, m - 1)
+-> The segment (p_min, rhs(p_min) - 1) always sastifies the condition: max_pos > min_pos
+So for each sub-array started at i, we can have our right border
+in the segment (p_max, min(r, rhs(p_min) - 1))
+-> We add up to our answer : ans += min(r, rhs(p_min) - 1) - p_max + 1
+
+* The same applies to the right
+(m + 1, r);
+for the segment(lhs(p_min), p_min)
+fixed right border at i, left border should be in the segment(l, max(l - 1, lhs(p_min)))
+-> add up to answer: ans += max(l - 1, lhs(p_min)) - l + 1;
+
+O(NlogN)
+
+

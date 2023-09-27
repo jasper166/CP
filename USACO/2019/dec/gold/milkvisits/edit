@@ -1,0 +1,28 @@
+Với mỗi truy vấn 
+ u v c
+
+Tìm đỉnh x gần u hoặc v nhất có màu c
+	1.x >= 1
+	2.color[x] = c
+	3.dep(x) >= dep(lca(u, v))
+
+Hoặc chia đường từ (u, v) thành (u, lca) và (v, lca)
+nếu tổng số bò có màu c trên 2 đường > 0 thì -> 1
+
+Xử lí online
+Dùng euler tour để tính tổng số bò
+trong đoạn (u, v) từ bắt đầu u đến bắt đầu v
+Trừ đi những node xuất hiện 2 lần là sẽ tìm được số bò trên đg từ u tới v
+
+* Tính chất hay:
+	từ (st(u) - > st(v)): Những node nào ko thuộc đường đi sẽ xuất hiện 2 lần nếu như u là cha v
+	với đường đi bất kì thì xử lí theo lca;
+/*
+Solution: O((N + M) logN) (processing queries online)
+The graph is first turned into an array with the first and last appearances of each node.
+In a given range (from the first appearance of node a to the first appearance of node b where node a is an ancestor of node b), subtracting the number of last appearances from the first appearances can give the number of nodes on the path from node a to node b.
+By storing a separate array for each cow type, we can efficiently query the number of a specific type of cow in a range. (can be done in O(logN) with binary search).
+The path from node u to node v can be split into the path from node u to LCA(u, v) and v to LCA(u, v).
+LCA is computed with sparse tables in O(N logN) preprocessing and O(1) queries.
+If the number of cows of the desired type is greater than or equal to 0, print 1. Else, print 0.
+*/

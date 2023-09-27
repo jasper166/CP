@@ -1,0 +1,77 @@
+
+
+
+<div id="fb-root"></div>
+<script>(function (d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v2.3";
+    fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+<div class="submission-title">
+    167436 - Coder: <a href="/Coder/Details/YugiHacker">YugiHacker</a> - Bài tập: <a href="/Problem/Details/7135">Tiền</a> - <span>Accepted</span> - Time: <span>46 ms</span> - Memory: <span>2568 KB </span> 
+        <a href="/Submission/Detail/167436/?fullScreen=1"><span class="red">(full screen)</span></a>
+</div>
+<div>
+    <textarea id="SubmitCode" rows="47" cols="125">#include&lt;bits/stdc++.h&gt;
+
+#define el cout&lt;&lt;&quot;\n&quot;
+#define file &quot;money&quot;
+#define	f0(i,n) for(int i=0;i&lt;n;i++)
+#define f1(i,n) for(int i=1;i&lt;=n;i++)
+#define maxn
+
+using namespace std;
+long long a, b, c, x, y, z, n;
+int main()
+{
+    ios_base::sync_with_stdio(0);
+    cin.tie(0);
+    cout.tie(0);
+    //freopen(file&quot;.inp&quot;,&quot;r&quot;,stdin);
+    //freopen(file&quot;.out&quot;,&quot;w&quot;,stdout);
+    cin &gt;&gt; a &gt;&gt; b &gt;&gt; c;
+    cin &gt;&gt; n;
+    f1 (i, n)
+    {
+        int p,q,r;
+        cin &gt;&gt; p &gt;&gt; q &gt;&gt; r;
+        x += p; y += q, z += r;
+    }
+    if (a*493+b*29+c &lt; x*493+y*29+z) cout &lt;&lt; -1;
+    else
+    {
+        if (c &lt; z)
+        {
+            long long aa = (z-c+28)/29;
+            c+=aa*29;
+            b-=aa;
+        }
+        if (b &lt; y)
+        {
+            long long aa = (y-b+16)/17;
+            b+=aa*17;
+            a-=aa;
+        }
+        cout &lt;&lt; a-x &lt;&lt; &#39; &#39; &lt;&lt; b-y &lt;&lt; &#39; &#39; &lt;&lt; c-z;
+    }
+    return 0;
+}
+    </textarea>
+</div>
+
+   
+<script type="text/javascript">
+        editAreaLoader.init({
+            id: "SubmitCode",
+            syntax_selection_allow: "cpp,java,pas,csharp,python",
+            is_editable: false,
+            allow_toggle: false,
+            allow_resize: "no",
+            syntax: "cpp",
+            display: "onload",
+            start_highlight: true
+        });
+</script>

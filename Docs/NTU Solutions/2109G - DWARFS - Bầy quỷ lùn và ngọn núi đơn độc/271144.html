@@ -1,0 +1,83 @@
+
+
+
+<div id="fb-root"></div>
+<script>(function (d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v2.3";
+    fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+<div class="submission-title">
+    271144 - Coder: <a href="/Coder/Details/YugiHacker">YugiHacker</a> - Bài tập: <a href="/Problem/Details/9955">DWARFS - Bầy quỷ l&#249;n v&#224; ngọn n&#250;i đơn độc</a> - <span>Accepted</span> - Time: <span>546 ms</span> - Memory: <span>32140 KB </span> 
+        <a href="/Submission/Detail/271144/?fullScreen=1"><span class="red">(full screen)</span></a>
+</div>
+<div>
+    <textarea id="SubmitCode" rows="53" cols="125">#include&lt;bits/stdc++.h&gt;
+using namespace std;
+
+#define el cout&lt;&lt;&quot;\n&quot;
+#define	f0(i,n) for(int i=0;i&lt;n;i++)
+#define f1(i,n) for(int i=1;i&lt;=n;i++)
+#define maxn 200005
+int n, r1, r2, p[maxn], dd[maxn], d[maxn], f[maxn], g[maxn];
+vector &lt;int&gt; a[maxn];
+void dfs(int u)
+{
+    if (u==r2) dd[u] = 1;
+    d[u] = 1;
+    for (auto v:a[u])
+    {
+        if (v == p[u]) continue;
+        p[v] = u;
+        dfs(v);
+        if (dd[v] == 0) d[u] = max(d[u], d[v]+1);
+        else dd[u] = 1;
+    }
+}
+int main(){
+    ios_base::sync_with_stdio(0);cin.tie(0);cout.tie(0);
+    cin &gt;&gt; n;
+    f1 (i, n-1)
+    {
+        int u, v;
+        cin &gt;&gt; u &gt;&gt; v;
+        a[u].push_back(v);
+        a[v].push_back(u);
+    }
+    cin &gt;&gt; r1 &gt;&gt; r2;
+    dfs(r1);
+    vector &lt;int&gt; path;
+    path.push_back(0);
+    int x = r2;
+    while (x!=0)
+    {
+        path.push_back(x);
+        x = p[x];
+    }
+    int m = path.size() - 1;
+    f1 (i, m) f[i] = max(f[i-1], d[path[i]] + i-1);
+    for (int i=m; i; i--) g[i] = max(g[i+1], d[path[i]] + m-i);
+    int ans = 0;
+    for (int i=1; i&lt;m; i++) ans = max(ans, min(f[i], g[i+1]));
+    cout &lt;&lt; ans;
+    return 0;
+}
+    </textarea>
+</div>
+
+   
+<script type="text/javascript">
+        editAreaLoader.init({
+            id: "SubmitCode",
+            syntax_selection_allow: "cpp,java,pas,csharp,python",
+            is_editable: false,
+            allow_toggle: false,
+            allow_resize: "no",
+            syntax: "cpp",
+            display: "onload",
+            start_highlight: true
+        });
+</script>

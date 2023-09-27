@@ -1,0 +1,63 @@
+
+
+
+<div id="fb-root"></div>
+<script>(function (d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v2.3";
+    fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+<div class="submission-title">
+    224738 - Coder: <a href="/Coder/Details/YugiHacker">YugiHacker</a> - Bài tập: <a href="/Problem/Details/9797">GAMEZ</a> - <span>Accepted</span> - Time: <span>296 ms</span> - Memory: <span>7492 KB </span> 
+        <a href="/Submission/Detail/224738/?fullScreen=1"><span class="red">(full screen)</span></a>
+</div>
+<div>
+    <textarea id="SubmitCode" rows="33" cols="125">#include&lt;bits/stdc++.h&gt;
+using namespace std;
+
+#define el cout&lt;&lt;&quot;\n&quot;
+#define	f0(i,n) for(int i=0;i&lt;n;i++)
+#define f1(i,n) for(int i=1;i&lt;=n;i++)
+#define maxn 200005
+#define fi first
+#define se second
+int n;
+pair&lt;int,int&gt; a[maxn];
+long long s[maxn];
+vector &lt;int&gt; ans;
+int main(){
+    ios_base::sync_with_stdio(0);cin.tie(0);cout.tie(0);
+    cin &gt;&gt; n;
+    f1 (i, n) cin &gt;&gt; a[i].fi, a[i].se=i;
+    sort (a+1, a+n+1);
+    int x=1;
+    f1 (i, n)
+    {
+        s[i]=s[i-1]+a[i].fi;
+        if (s[i] &lt; a[i+1].fi) x=i+1;
+    }
+    for (int i=x; i&lt;=n; i++) ans.push_back(a[i].se);
+    sort (ans.begin(), ans.end());
+    cout &lt;&lt; ans.size(); el;
+    for (auto x: ans) cout &lt;&lt; x &lt;&lt; &#39; &#39;;
+    return 0;
+}
+    </textarea>
+</div>
+
+   
+<script type="text/javascript">
+        editAreaLoader.init({
+            id: "SubmitCode",
+            syntax_selection_allow: "cpp,java,pas,csharp,python",
+            is_editable: false,
+            allow_toggle: false,
+            allow_resize: "no",
+            syntax: "cpp",
+            display: "onload",
+            start_highlight: true
+        });
+</script>

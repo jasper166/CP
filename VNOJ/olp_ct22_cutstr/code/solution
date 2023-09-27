@@ -1,0 +1,5 @@
+Tìm thứ tự cắt xâu để có thể cắt đc k xâu
+-> Sao cho xâu panlin cuối có vị trí là nhỏ nhất (ta còn thừa nhiều nhất nên khả năng cắt được tiếp là cao hơn)
+
+f[msk] là vị trí của xâu cuối cùng trong mask
+nxt[i][j] : vị trí nhỏ nhất của xâu panlin tiếp theo từ vị trí i

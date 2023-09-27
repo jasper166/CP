@@ -1,0 +1,80 @@
+
+
+
+<div id="fb-root"></div>
+<script>(function (d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v2.3";
+    fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+<div class="submission-title">
+    254010 - Coder: <a href="/Coder/Details/YugiHacker">YugiHacker</a> - Bài tập: <a href="/Problem/Details/9848">FOUNDSTRI</a> - <span>Accepted</span> - Time: <span>62 ms</span> - Memory: <span>3072 KB </span> 
+        <a href="/Submission/Detail/254010/?fullScreen=1"><span class="red">(full screen)</span></a>
+</div>
+<div>
+    <textarea id="SubmitCode" rows="50" cols="125">#include&lt;bits/stdc++.h&gt;
+#define maxn 10004
+using namespace std;
+int n, m, cnt;
+int child[500005][30], d[500005];
+void Add (string s)
+{
+    int u=0;
+    for (int i=0; i&lt;s.size(); i++)
+    {
+        int k=s[i]-97;
+        if (child[u][k]==0)
+            child[u][k]=++cnt;
+        u=child[u][k];
+    }
+    d[u]=1;
+}
+bool Found(string s)
+{
+    int u=0;
+    for (int i=0; i&lt;s.size(); i++)
+    {
+        int k=s[i]-97;
+        if (child[u][k]==0) return 0;
+        u=child[u][k];
+    }
+    return d[u];
+}
+main()
+{
+    ios_base::sync_with_stdio(0);cin.tie(0);cout.tie(0);
+    string s;
+    cin &gt;&gt; n;
+    while (n--)
+    {
+        cin &gt;&gt; s;
+        Add(s);
+    }
+    cin &gt;&gt; m;
+    while (m--)
+    {
+        cin &gt;&gt; s;
+        if (Found(s)) cout &lt;&lt; 1;
+        else cout &lt;&lt; 0;
+        cout &lt;&lt; endl;
+    }
+}
+    </textarea>
+</div>
+
+   
+<script type="text/javascript">
+        editAreaLoader.init({
+            id: "SubmitCode",
+            syntax_selection_allow: "cpp,java,pas,csharp,python",
+            is_editable: false,
+            allow_toggle: false,
+            allow_resize: "no",
+            syntax: "cpp",
+            display: "onload",
+            start_highlight: true
+        });
+</script>

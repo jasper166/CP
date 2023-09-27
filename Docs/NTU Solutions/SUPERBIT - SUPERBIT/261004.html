@@ -1,0 +1,79 @@
+
+
+
+<div id="fb-root"></div>
+<script>(function (d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v2.3";
+    fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+<div class="submission-title">
+    261004 - Coder: <a href="/Coder/Details/YugiHacker">YugiHacker</a> - Bài tập: <a href="/Problem/Details/8506">SUPERBIT</a> - <span>Accepted</span> - Time: <span>250 ms</span> - Memory: <span>4900 KB </span> 
+        <a href="/Submission/Detail/261004/?fullScreen=1"><span class="red">(full screen)</span></a>
+</div>
+<div>
+    <textarea id="SubmitCode" rows="49" cols="125">#include&lt;bits/stdc++.h&gt;
+using namespace std;
+
+#define el cout&lt;&lt;&quot;\n&quot;
+#define	f0(i,n) for(int i=0;i&lt;n;i++)
+#define f1(i,n) for(int i=1;i&lt;=n;i++)
+#define maxn 100005
+int a[maxn], b[maxn], c[maxn], tt[maxn], q, n;
+long long t[maxn];
+vector &lt;int&gt; v;
+void up(int x, int v)
+{
+    for (;x&lt;maxn;x+=x&amp;-x) t[x]+=v;
+}
+long long get(int x)
+{
+    long long s=0;
+    for (;x;x-=x&amp;-x) s+=t[x];
+    return s;
+}
+int main(){
+    ios_base::sync_with_stdio(0);cin.tie(0);cout.tie(0);
+    cin &gt;&gt; n &gt;&gt; q;
+    f1 (i, q)
+    {
+        cin &gt;&gt; tt[i] &gt;&gt; b[i] &gt;&gt; c[i];
+        if (tt[i]==1) v.push_back(b[i]);
+    }
+    sort (v.begin(), v.end());
+    f1 (i, q)
+    {
+        if (tt[i]==1)
+        {
+            b[i]=lower_bound(v.begin(), v.end(), b[i])-v.begin()+1;
+            up(b[i], c[i]-a[b[i]]);
+            a[b[i]]=c[i];
+        }
+        else
+        {
+            b[i]=lower_bound(v.begin(), v.end(), b[i])-v.begin();
+            c[i]=upper_bound(v.begin(), v.end(), c[i])-v.begin();
+            cout &lt;&lt; get(c[i])-get(b[i]); el;
+        }
+    }
+    return 0;
+}
+    </textarea>
+</div>
+
+   
+<script type="text/javascript">
+        editAreaLoader.init({
+            id: "SubmitCode",
+            syntax_selection_allow: "cpp,java,pas,csharp,python",
+            is_editable: false,
+            allow_toggle: false,
+            allow_resize: "no",
+            syntax: "cpp",
+            display: "onload",
+            start_highlight: true
+        });
+</script>

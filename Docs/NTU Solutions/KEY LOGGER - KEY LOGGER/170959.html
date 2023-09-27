@@ -1,0 +1,83 @@
+
+
+
+<div id="fb-root"></div>
+<script>(function (d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v2.3";
+    fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+<div class="submission-title">
+    170959 - Coder: <a href="/Coder/Details/YugiHacker">YugiHacker</a> - Bài tập: <a href="/Problem/Details/8298">KEY LOGGER</a> - <span>Accepted</span> - Time: <span>156 ms</span> - Memory: <span>2512 KB </span> 
+        <a href="/Submission/Detail/170959/?fullScreen=1"><span class="red">(full screen)</span></a>
+</div>
+<div>
+    <textarea id="SubmitCode" rows="53" cols="125">#include&lt;bits/stdc++.h&gt;
+using namespace std;
+
+#define file &quot;&quot;
+#define el cout&lt;&lt;&quot;\n&quot;
+#define	f0(i,n) for(int i=0;i&lt;n;i++)
+#define f1(i,n) for(int i=1;i&lt;=n;i++)
+#define maxn
+string s;
+stack &lt;char&gt; s1, s2;
+main()
+{
+    ios_base::sync_with_stdio(0);
+    cin.tie(0);
+    cout.tie(0);
+    ///freopen(file&quot;.inp&quot;,&quot;r&quot;,stdin);
+    ///freopen(file&quot;.out&quot;,&quot;w&quot;,stdout);
+    getline(cin, s);
+    f0(i, s.size())
+    {
+        if (s[i]==&#39;-&#39;)
+        {
+            if (s1.size())
+                s1.pop();
+        }
+        else if (s[i]==&#39;&lt;&#39;)
+        {
+            if (s1.size())
+            {
+                char x=s1.top();
+                s1.pop();
+                s2.push(x);
+            }
+        }
+        else if (s[i]==&#39;&gt;&#39;)
+        {
+            if (s2.size())
+                {
+                    char x=s2.top();
+                    s2.pop();
+                    s1.push(x);
+                }
+        }
+        else s1.push(s[i]);
+    }
+    vector &lt;char&gt; ans;
+    while (s1.size()) ans.push_back(s1.top()), s1.pop();
+    for (int i=ans.size()-1; i&gt;=0; i--) cout &lt;&lt; ans[i];
+    while (s2.size()) cout &lt;&lt; s2.top(), s2.pop();
+}
+    </textarea>
+</div>
+
+   
+<script type="text/javascript">
+        editAreaLoader.init({
+            id: "SubmitCode",
+            syntax_selection_allow: "cpp,java,pas,csharp,python",
+            is_editable: false,
+            allow_toggle: false,
+            allow_resize: "no",
+            syntax: "cpp",
+            display: "onload",
+            start_highlight: true
+        });
+</script>

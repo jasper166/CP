@@ -1,0 +1,83 @@
+
+
+
+<div id="fb-root"></div>
+<script>(function (d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v2.3";
+    fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+<div class="submission-title">
+    288163 - Coder: <a href="/Coder/Details/YugiHacker">YugiHacker</a> - Bài tập: <a href="/Problem/Details/10985">MAXDIS - Khoảng c&#225;ch lớn nhất</a> - <span>Accepted</span> - Time: <span>93 ms</span> - Memory: <span>2580 KB </span> 
+        <a href="/Submission/Detail/288163/?fullScreen=1"><span class="red">(full screen)</span></a>
+</div>
+<div>
+    <textarea id="SubmitCode" rows="53" cols="125">#include&lt;bits/stdc++.h&gt;
+#define el cout&lt;&lt;&quot;\n&quot;
+#define f0(i,n) for(int i=0;i&lt;n;++i)
+#define f1(i,n) for(int i=1;i&lt;=n;++i)
+#define maxn 100005
+using namespace std;
+int n;
+long long a[maxn], l, r, ans;
+long double ma=-1;
+void calc(long long p, long double l)
+{
+    if (l &gt; ma)
+    {
+        ma = l, ans = p;
+        return;
+    }
+    if (l == ma &amp;&amp; p &gt; ans) ans = p;
+    //cout &lt;&lt; l;
+    return;
+}
+main()
+{
+    ios_base::sync_with_stdio(0);cin.tie(0);cout.tie(0);
+    //cout &lt;&lt; -(1ll&lt;&lt;63) &lt;&lt; &#39; &#39; &lt;&lt; (-(1ll &lt;&lt; 63)) - 1; return 0;
+    cin &gt;&gt; n &gt;&gt; l &gt;&gt; r;
+    ans = l;
+    f1 (i, n) cin &gt;&gt; a[i];
+    sort(a+1, a+n+1);
+    f1 (i, n-1)
+    {
+        if (a[i]%2 == a[i+1]%2)
+        {
+            long double x = (long double)a[i+1] - (long double)(a[i+1]-a[i])/2;
+            if (x&gt;=l &amp;&amp; x&lt;=r) calc(x, x-a[i]);
+        }
+        else
+        {
+            long double x = a[i+1] - (a[i+1]-a[i])/2;
+            //cout &lt;&lt; x &lt;&lt; &#39; &#39; &lt;&lt; x-1; el;
+            if (x&gt;=l &amp;&amp; x&lt;=r) calc(x, (long double) a[i+1]- (long double) x);
+            if (x-1&gt;=l &amp;&amp; x-1&lt;=r) calc((long double) x-1, (long double) x-1-a[i]);
+        }
+        if (l&gt;=a[i] &amp;&amp; l&lt;=a[i+1]) calc(l, min((long double)l-(long double)a[i], (long double) a[i+1]-(long double)l));
+        if (r&gt;=a[i] &amp;&amp; r&lt;=a[i+1]) calc(r, min((long double)r-(long double)a[i], (long double) a[i+1]-(long double)r));
+    }
+    if (r&gt;=a[n]) calc(r, (long double) r-(long double)a[n]);
+    if (l&lt;=a[1]) calc(l, (long double) a[1]-(long double) l);
+    //cout &lt;&lt; ma; el;
+    cout&lt;&lt; ans;
+}
+    </textarea>
+</div>
+
+   
+<script type="text/javascript">
+        editAreaLoader.init({
+            id: "SubmitCode",
+            syntax_selection_allow: "cpp,java,pas,csharp,python",
+            is_editable: false,
+            allow_toggle: false,
+            allow_resize: "no",
+            syntax: "cpp",
+            display: "onload",
+            start_highlight: true
+        });
+</script>

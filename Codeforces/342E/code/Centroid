@@ -1,0 +1,14 @@
+- Cây centroid:
++ Độ cao cỡ log(n)
++ Mỗi cây con đều là tp liên thông trong cây gốc
+
+- Thuật toán tìm centroid:
+    centroid là nút sao cho xóa nút đi các cây con còn lại có kích thước <= [N / 2];
+    là hàm getCentroid();
+- Thuật toán centroid decomposition:
+    + Tìm centroid x của cây gốc và cố định root tại x
+    + Xử lí cho các cây con khi xóa đi x(xóa bằng bảng đánh dấu vis), set cha của cây con = x;
+    + Tìm tiếp centroid của cây con sau khi xóa x và lặp lại đến khi hết.
+
+
+

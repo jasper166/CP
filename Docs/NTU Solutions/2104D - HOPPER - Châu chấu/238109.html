@@ -1,0 +1,62 @@
+
+
+
+<div id="fb-root"></div>
+<script>(function (d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v2.3";
+    fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+<div class="submission-title">
+    238109 - Coder: <a href="/Coder/Details/YugiHacker">YugiHacker</a> - Bài tập: <a href="/Problem/Details/9841">HOPPER - Ch&#226;u chấu</a> - <span>Accepted</span> - Time: <span>15 ms</span> - Memory: <span>1040 KB </span> 
+        <a href="/Submission/Detail/238109/?fullScreen=1"><span class="red">(full screen)</span></a>
+</div>
+<div>
+    <textarea id="SubmitCode" rows="32" cols="125">#include&lt;bits/stdc++.h&gt;
+using namespace std;
+
+#define el cout&lt;&lt;&quot;\n&quot;
+#define	f0(i,n) for(int i=0;i&lt;n;i++)
+#define f1(i,n) for(int i=1;i&lt;=n;i++)
+#define maxn
+int x[4], y[4];
+int d(int a, int b)
+{
+    long long s=1ll*(x[1]-a)*(x[1]-a)+1ll*(y[1]-b)*(y[1]-b);
+    long long q=sqrt(s);
+    if (q*q==s) return q;
+    else return q+1;
+}
+int main(){
+    ios_base::sync_with_stdio(0);cin.tie(0);cout.tie(0);
+    f1 (i, 3) cin &gt;&gt; x[i] &gt;&gt; y[i];
+    if (x[2]&gt;x[3]) swap (x[2], x[3]);
+    if (y[2]&gt;y[3]) swap (y[2], y[3]);
+    if (x[1]&gt;=x[2] &amp;&amp; x[1]&lt;=x[3] &amp;&amp; y[1]&gt;=y[2] &amp;&amp; y[1]&lt;=y[3])
+        return cout &lt;&lt; 0, 0;
+    if (x[1]&gt;=x[2] &amp;&amp; x[1]&lt;=x[3])
+        return cout &lt;&lt; min(abs(y[1]-y[2]), abs(y[1]-y[3])), 0;
+    if (y[1]&gt;=y[2] &amp;&amp; y[1]&lt;=y[3])
+        return cout &lt;&lt; min(abs(x[1]-x[2]), abs(x[1]-x[3])), 0;
+    cout &lt;&lt; min(min(d(x[2], y[2]), d(x[2], y[3])), min(d(x[3], y[3]), d(x[3], y[2])));
+    return 0;
+}
+    </textarea>
+</div>
+
+   
+<script type="text/javascript">
+        editAreaLoader.init({
+            id: "SubmitCode",
+            syntax_selection_allow: "cpp,java,pas,csharp,python",
+            is_editable: false,
+            allow_toggle: false,
+            allow_resize: "no",
+            syntax: "cpp",
+            display: "onload",
+            start_highlight: true
+        });
+</script>

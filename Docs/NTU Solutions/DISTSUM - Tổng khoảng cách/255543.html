@@ -1,0 +1,73 @@
+
+
+
+<div id="fb-root"></div>
+<script>(function (d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v2.3";
+    fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+<div class="submission-title">
+    255543 - Coder: <a href="/Coder/Details/YugiHacker">YugiHacker</a> - Bài tập: <a href="/Problem/Details/6910">Tổng khoảng c&#225;ch</a> - <span>Accepted</span> - Time: <span>125 ms</span> - Memory: <span>4052 KB </span> 
+        <a href="/Submission/Detail/255543/?fullScreen=1"><span class="red">(full screen)</span></a>
+</div>
+<div>
+    <textarea id="SubmitCode" rows="43" cols="125">#include&lt;bits/stdc++.h&gt;
+#include&lt;string&gt;
+#include&lt;vector&gt;
+#define endl &#39;\n&#39;
+#define alphaa &quot;abcdefghijklmnopqrstuvwxyz&quot;
+#define ALPHAA &quot;ABCDEFGHIJKLMNOPQRSTUVWXYZ&quot;
+#define f(i,a,b) for(int i=a;i&lt;=b;i++)
+#define f1(i,n) for(int i=1;i&lt;=n;i++)
+#define f0(i,n) for(int i=0;i&lt;n;i++)
+#define sp(x) cout&lt;&lt;x&lt;&lt;&quot; &quot;;
+#define en(x) cout&lt;&lt;x&lt;&lt;endl;
+using namespace std;
+typedef long long ll;
+const int N=1e6+3;
+const int MOD=1e9+7;
+ll a[N],b[N];
+int main()
+{
+  ios::sync_with_stdio(false);
+  cin.tie(0);
+  cout.tie(0);
+  ll n,s=0,ans=0;
+  cin&gt;&gt;n;
+  f1(i,n) cin&gt;&gt;a[i]&gt;&gt;b[i];
+  sort(a+1,a+n+1);
+  sort(b+1,b+n+1);
+  f1(i,n-1)
+  {
+      s+=a[i];
+      ans+=a[i+1]*i-s;
+  }
+  s=0;
+  f1(i,n-1)
+  {
+      s+=b[i];
+      ans+=b[i+1]*i-s;
+  }
+  cout&lt;&lt;ans;
+  return 0;
+}
+    </textarea>
+</div>
+
+   
+<script type="text/javascript">
+        editAreaLoader.init({
+            id: "SubmitCode",
+            syntax_selection_allow: "cpp,java,pas,csharp,python",
+            is_editable: false,
+            allow_toggle: false,
+            allow_resize: "no",
+            syntax: "cpp",
+            display: "onload",
+            start_highlight: true
+        });
+</script>

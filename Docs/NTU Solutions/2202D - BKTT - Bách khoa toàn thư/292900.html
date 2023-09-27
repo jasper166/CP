@@ -1,0 +1,76 @@
+
+
+
+<div id="fb-root"></div>
+<script>(function (d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v2.3";
+    fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+<div class="submission-title">
+    292900 - Coder: <a href="/Coder/Details/YugiHacker">YugiHacker</a> - Bài tập: <a href="/Problem/Details/10988">BKTT - B&#225;ch khoa to&#224;n thư</a> - <span>Accepted</span> - Time: <span>46 ms</span> - Memory: <span>2564 KB </span> 
+        <a href="/Submission/Detail/292900/?fullScreen=1"><span class="red">(full screen)</span></a>
+</div>
+<div>
+    <textarea id="SubmitCode" rows="46" cols="125">#include&lt;bits/stdc++.h&gt;
+#define el cout&lt;&lt;&quot;\n&quot;
+#define f0(i,n) for(int i=0;i&lt;n;++i)
+#define f1(i,n) for(int i=1;i&lt;=n;++i)
+#define maxn
+using namespace std;
+string s;
+int n, k;
+set&lt;char&gt; st;
+main()
+{
+    ios_base::sync_with_stdio(0);cin.tie(0);cout.tie(0);
+    cin &gt;&gt; n &gt;&gt; s &gt;&gt; k;
+    for (auto c:s) st.insert(c);
+    if (k&gt;n)
+    {
+        cout &lt;&lt; s;
+        f1 (i, k-n) cout &lt;&lt; *st.begin();
+        return 0;
+    }
+    //cout &lt;&lt; *st.rbegin(); el;
+    for (int i=k-1; ~i; i--)
+    {
+        if (s[i]!=*st.rbegin())
+        {
+            f0 (j, k)
+            {
+                if (j&lt;i) cout &lt;&lt; s[j];
+                else if (j==i)
+                {
+                    for (char c = s[i]+1;;c++)
+                        if (st.find(c)!=st.end())
+                    {
+                        cout &lt;&lt; c;
+                        break;
+                    }
+                }
+                else cout &lt;&lt; *st.begin();
+            }
+            return 0;
+        }
+    }
+}
+    </textarea>
+</div>
+
+   
+<script type="text/javascript">
+        editAreaLoader.init({
+            id: "SubmitCode",
+            syntax_selection_allow: "cpp,java,pas,csharp,python",
+            is_editable: false,
+            allow_toggle: false,
+            allow_resize: "no",
+            syntax: "cpp",
+            display: "onload",
+            start_highlight: true
+        });
+</script>

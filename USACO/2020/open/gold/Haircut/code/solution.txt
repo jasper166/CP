@@ -1,0 +1,11 @@
+- Nếu j = N thì sao?
++ thì bài toán là đếm cặp inversion với mảng ban đầu
+- Nếu j = N - 1 thì sao?
++ thì các a(i) > N - 1 sẽ ko tồn tại cặp nghịch thế nào mà có (X, a(i))
+Đặt inv(i) = số cặp nghịch thế của mảng với kiểu (X, i)
+-> j = N có all
+-> j = N - 1 ->  all - inv(N)
+-> j = N - 2 -> all - inv(N) - inv(N - 1)
+...
+-> j = 0 -> 0
+vậy -> ans[i] = sum(0, i) inv(i)

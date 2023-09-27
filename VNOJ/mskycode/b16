@@ -1,0 +1,46 @@
+#include "bits/stdc++.h"
+using namespace std;
+using ll = long long;
+// B16
+void solve(ll x, ll y) {
+    if (y == 0 || x == 0) {
+        return;
+    }
+    if (y % x == 0) {
+        cout << "1/" << (y / x);
+        return;
+    }
+    if (x % y == 0) {
+        cout << x / y;
+        return;
+    }
+    if (x > y) {
+        ll j = x / y;
+        if (j == 1)
+            cout << "1/";
+        cout << j << " + ";
+        solve(x % y, y);
+    }
+    else {
+        int j = y / x + 1;
+        cout << "1/" << j << " + ";
+        solve(x * j - y, y * j);
+    }
+}
+
+void run_case() {
+    ll a, b;
+    cin >> a >> b;
+    solve(a, b);
+}
+
+signed main() {
+    cin.tie(0) -> sync_with_stdio(0);
+    
+    int Test = 1;
+    //cin >> Test;
+    for (int test = 1; test <= Test; test++){
+
+        run_case();
+    }
+}

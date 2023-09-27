@@ -1,0 +1,77 @@
+
+
+
+<div id="fb-root"></div>
+<script>(function (d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v2.3";
+    fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+<div class="submission-title">
+    200817 - Coder: <a href="/Coder/Details/YugiHacker">YugiHacker</a> - Bài tập: <a href="/Problem/Details/8536">CHTREE</a> - <span>Accepted</span> - Time: <span>1390 ms</span> - Memory: <span>26944 KB </span> 
+        <a href="/Submission/Detail/200817/?fullScreen=1"><span class="red">(full screen)</span></a>
+</div>
+<div>
+    <textarea id="SubmitCode" rows="47" cols="125">#include &lt;iostream&gt;
+#include &lt;map&gt;
+#include &lt;queue&gt;
+ 
+using namespace std;
+ 
+#define int long long
+ 
+int32_t main(){
+ 
+	int n,m; cin&gt;&gt;n&gt;&gt;m;
+	map&lt;int,int&gt; r;
+	queue&lt;int&gt; q;
+	int res = 0;
+	int cont = 0;
+	for(int i=0; i&lt;n; i++){
+		int x; cin&gt;&gt;x;
+		q.push(x);
+		r[x] = 1;
+	}
+	while(cont &lt; m){
+		int x = q.front();
+		int d = r[x];
+		q.pop();
+		if(!r[x-1]){
+			q.push(x-1);
+			r[x-1] = d+1;
+			cont++;
+			res += d;
+		}
+		if(!r[x+1] &amp;&amp; cont &lt; m){
+			q.push(x+1);
+			r[x+1] = d+1;
+			cont++;
+			res += d; 
+		}
+	}
+	cout&lt;&lt;res&lt;&lt;endl;
+	for(auto p: r){
+		if(p.second &gt; 1) cout&lt;&lt;p.first&lt;&lt;&#39; &#39;;
+	} cout&lt;&lt;endl;
+	
+	return 0;
+}
+    </textarea>
+</div>
+
+   
+<script type="text/javascript">
+        editAreaLoader.init({
+            id: "SubmitCode",
+            syntax_selection_allow: "cpp,java,pas,csharp,python",
+            is_editable: false,
+            allow_toggle: false,
+            allow_resize: "no",
+            syntax: "cpp",
+            display: "onload",
+            start_highlight: true
+        });
+</script>

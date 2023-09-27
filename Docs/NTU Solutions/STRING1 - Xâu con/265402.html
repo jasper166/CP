@@ -1,0 +1,68 @@
+
+
+
+<div id="fb-root"></div>
+<script>(function (d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v2.3";
+    fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+<div class="submission-title">
+    265402 - Coder: <a href="/Coder/Details/YugiHacker">YugiHacker</a> - Bài tập: <a href="/Problem/Details/4487">X&#226;u con</a> - <span>Accepted</span> - Time: <span>31 ms</span> - Memory: <span>2544 KB </span> 
+        <a href="/Submission/Detail/265402/?fullScreen=1"><span class="red">(full screen)</span></a>
+</div>
+<div>
+    <textarea id="SubmitCode" rows="38" cols="125">#include &lt;bits/stdc++.h&gt;
+#define maxn 100005
+#define MOD 1000000007
+#define base 31
+using namespace std;
+string s, t;
+long long h[maxn], H, Pow[maxn];
+int m, n, ans;
+long long get(int l, int r)
+{
+    return (h[r] - h[l-1] * Pow[r-l+1] % MOD + MOD) % MOD;
+}
+main()
+{
+    cin &gt;&gt; s &gt;&gt; t;
+    m=s.size(), n=t.size();
+    s = &#39; &#39;+s;
+    t = &#39; &#39;+t;
+    Pow[0] = 1;
+    for (int i=1; i&lt;=1e5; i++) Pow[i] = Pow[i-1] * base % MOD;
+    for (int i=1; i&lt;=m; i++)
+    {
+        H = (H * base + (s[i]-&#39;a&#39;+1)) % MOD;
+    }
+    //cout &lt;&lt; H &lt;&lt; endl;
+    for (int i=1; i&lt;=n; i++)
+    {
+        h[i] = (h[i-1] * base + (t[i]-&#39;a&#39;+1)) % MOD;
+    }
+    for (int i=1; i&lt;=(n-m+1); i++)
+    {
+        if (H == get(i, i+m-1)) ans++;
+    }
+    cout &lt;&lt; ans;
+}
+    </textarea>
+</div>
+
+   
+<script type="text/javascript">
+        editAreaLoader.init({
+            id: "SubmitCode",
+            syntax_selection_allow: "cpp,java,pas,csharp,python",
+            is_editable: false,
+            allow_toggle: false,
+            allow_resize: "no",
+            syntax: "cpp",
+            display: "onload",
+            start_highlight: true
+        });
+</script>

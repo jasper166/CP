@@ -1,0 +1,57 @@
+
+
+
+<div id="fb-root"></div>
+<script>(function (d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v2.3";
+    fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+<div class="submission-title">
+    170305 - Coder: <a href="/Coder/Details/YugiHacker">YugiHacker</a> - Bài tập: <a href="/Problem/Details/7079">Ph&#226;n số lớn hơn</a> - <span>Accepted</span> - Time: <span>0 ms</span> - Memory: <span>856 KB </span> 
+        <a href="/Submission/Detail/170305/?fullScreen=1"><span class="red">(full screen)</span></a>
+</div>
+<div>
+    <textarea id="SubmitCode" rows="27" cols="125">#include&lt;bits/stdc++.h&gt;
+using namespace std;
+
+#define file &quot;&quot;
+#define el cout&lt;&lt;&quot;\n&quot;
+#define	f0(i,n) for(int i=0;i&lt;n;i++)
+#define f1(i,n) for(int i=1;i&lt;=n;i++)
+#define maxn
+pair &lt;int, int&gt; a[3];
+bool cmp(pair &lt;int, int&gt; a, pair &lt;int, int&gt; b)
+{
+    return a.first*b.second &gt; a.second*b.first;
+}
+main(){
+    ios_base::sync_with_stdio(0);cin.tie(0);cout.tie(0);
+    ///freopen(file&quot;.inp&quot;,&quot;r&quot;,stdin);
+    ///freopen(file&quot;.out&quot;,&quot;w&quot;,stdout);
+    f0 (i, 3) cin &gt;&gt; a[i].first &gt;&gt; a[i].second;
+    sort (a, a+3, cmp);
+    int g=__gcd(a[0].first, a[0].second);
+    a[0].first/=g; a[0].second/=g;
+    if (a[0].second &lt; 0) a[0].first=-a[0].first, a[0].second=-a[0].second;
+    cout &lt;&lt; a[0].first&lt;&lt; &#39; &#39; &lt;&lt; a[0].second;
+}
+    </textarea>
+</div>
+
+   
+<script type="text/javascript">
+        editAreaLoader.init({
+            id: "SubmitCode",
+            syntax_selection_allow: "cpp,java,pas,csharp,python",
+            is_editable: false,
+            allow_toggle: false,
+            allow_resize: "no",
+            syntax: "cpp",
+            display: "onload",
+            start_highlight: true
+        });
+</script>

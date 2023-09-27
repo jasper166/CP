@@ -1,0 +1,93 @@
+
+
+
+<div id="fb-root"></div>
+<script>(function (d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v2.3";
+    fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+<div class="submission-title">
+    256043 - Coder: <a href="/Coder/Details/YugiHacker">YugiHacker</a> - Bài tập: <a href="/Problem/Details/9927">WATER - Nước đọng</a> - <span>Accepted</span> - Time: <span>109 ms</span> - Memory: <span>26072 KB </span> 
+        <a href="/Submission/Detail/256043/?fullScreen=1"><span class="red">(full screen)</span></a>
+</div>
+<div>
+    <textarea id="SubmitCode" rows="63" cols="125">#include &lt;bits/stdc++.h&gt;
+#define maxn 1002
+#define pii pair&lt;int,int&gt;
+using namespace std;
+
+int a[maxn][maxn], n, m, dx[]= {0,0,-1,1}, dy[]= {1,-1,0,0};
+int r[maxn*maxn], cnt[maxn*maxn], nn, id[maxn][maxn], ou[maxn*maxn], h[maxn*maxn] , sl[maxn*maxn];
+vector &lt; pii &gt; ke[maxn*maxn];
+int get(int u)
+{
+    return r[u]?r[u]=get(r[u]): u;
+}
+long long ans;
+int main()
+{
+    ios_base::sync_with_stdio(0);
+    cin.tie(0);
+    cout.tie(0);
+   // freopen(&quot;.inp&quot;,&quot;r&quot;,stdin);
+    cin&gt;&gt;n&gt;&gt;m;
+    for(int i=1; i&lt;=n; i++)
+        for(int j=1; j&lt;=m; j++)
+        {
+            cin&gt;&gt;a[i][j];
+            ke[a[i][j]].push_back({i,j});
+            id[i][j]=++nn;
+            sl[nn]=1;
+            if(i==1||j==1||i==n||j==m) ou[nn]=1;
+            h[nn]=a[i][j];
+        }
+    for(int i=1; i&lt;=1e6; i++)
+    {
+        for(auto z:ke[i])
+        {
+            int u=z.first, v=z.second;
+            int cs=id[u][v];
+            int x=get(id[u][v]);
+            for(int k=0; k&lt;4; k++)
+            {
+                int uu=u+dx[k], vv=v+dy[k];
+                if(uu&lt;1||uu&gt;n||vv&lt;1||vv&gt;m)
+                    continue;
+                int x1=get(id[uu][vv]);
+                if(h[x]&gt;=h[x1]&amp;&amp;x!=x1)
+                {
+                    if(!ou[x1])
+                    {
+                        ans+=1ll*sl[x1]*(h[x]-h[x1]);
+                    }
+                sl[x]+=sl[x1];
+                h[x1]=h[x];
+                r[x1]=x;
+                ou[x]|=ou[x1];
+                }
+            }
+        }
+    }
+    cout &lt;&lt; ans;
+    return 0;
+}
+    </textarea>
+</div>
+
+   
+<script type="text/javascript">
+        editAreaLoader.init({
+            id: "SubmitCode",
+            syntax_selection_allow: "cpp,java,pas,csharp,python",
+            is_editable: false,
+            allow_toggle: false,
+            allow_resize: "no",
+            syntax: "cpp",
+            display: "onload",
+            start_highlight: true
+        });
+</script>

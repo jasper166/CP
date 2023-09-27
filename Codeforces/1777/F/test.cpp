@@ -1,0 +1,58 @@
+
+struct node {
+    ll TREE[N * 2], range[N * 2], lazy[N], h;
+    node() { 
+        refresh(); 
+    }
+    void refresh() {
+        h = sizeof(int) * 8 - __builtin_clz(N);
+        for (int i = 0; i < N; i++) lazy[i] = 0;
+
+        for (int i = 0; i < 2 * N; i++) TREE[i] = 0; 
+        for (int i = 0; i < N - 1; i++) range[i + N] = 1;
+        for (int i = N - 1; i >= 1; i--) { 
+            range[i] = range[i << 1] + range[i << 1 | 1]; 
+        }
+    }
+    void build(ll idx){
+        while (idx >>= 1) {
+//              TREE[idx] = lazy[idx] * range[idx] + TREE[idx << 1] + TREE[idx << 1 | 1];
+            TREE[idx] = lazy[idx] + min(TREE[idx << 1], TREE[idx << 1 | 1]);
+        }
+    }
+    void update(ll l, ll r, ll num){ // [l, r)
+        ll l0 = l += N, r0 = r += N; 
+        for (; l < r; l >>= 1, r >>= 1){
+            if (l & 1) apply(l++, num); 
+            if (r & 1) apply(--r, num);
+        }; 
+        build(l0); build(r0);
+    }
+    void apply(ll idx, ll num) {
+//          TREE[idx] += num * range[idx]; 
+        TREE[idx] += num; 
+        if (idx < N) lazy[idx] += num;
+    }
+    void push(ll idx){
+        for (int i = h, k = idx >> i; i > 0; --i, k = idx >> i) {
+            if (lazy[k] != 0) {
+                apply(k << 1, lazy[k]);
+                apply(k << 1 | 1, lazy[k]);
+            }
+            lazy[k] = 0;
+        }
+    }
+    ll query(ll l, ll r){ // [l, r)
+        // r += N + 1 if [l, r]
+        ll ans = 1e9; 
+        push(l += N), 
+        push(r += N);
+        for (; l < r; l >>= 1, r >>= 1) {
+//              if (l&1) ans += TREE[l++];
+//              if (r&1) ans += TREE[--r];
+            if (l&1) ans = min(ans, TREE[l++]);
+            if (r&1) ans = min(ans, TREE[--r]);
+        }
+        return ans;
+    }
+} tree1, tree2;

@@ -1,0 +1,68 @@
+
+
+
+<div id="fb-root"></div>
+<script>(function (d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v2.3";
+    fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+<div class="submission-title">
+    268209 - Coder: <a href="/Coder/Details/YugiHacker">YugiHacker</a> - Bài tập: <a href="/Problem/Details/6889">D&#227;y Catalan</a> - <span>Accepted</span> - Time: <span>234 ms</span> - Memory: <span>7128 KB </span> 
+        <a href="/Submission/Detail/268209/?fullScreen=1"><span class="red">(full screen)</span></a>
+</div>
+<div>
+    <textarea id="SubmitCode" rows="38" cols="125">#include&lt;bits/stdc++.h&gt;
+using namespace std;
+
+#define el cout&lt;&lt;&quot;\n&quot;
+#define	f0(i,n) for(int i=0;i&lt;n;i++)
+#define f1(i,n) for(int i=1;i&lt;=n;i++)
+#define maxn 200005
+#define MOD 1000000007
+#define N 200000
+int t, n;
+long long gt[maxn], inv[maxn], d[maxn];
+long long Pow(int a, int n)
+{
+    if (n==0) return 1;
+    long long t=Pow(a, n/2);
+    t=t*t%MOD;
+    if (n%2) t=t*a%MOD;
+    return t;
+}
+int main(){
+    ios_base::sync_with_stdio(0);cin.tie(0);cout.tie(0);
+    gt[0]=1;
+    f1 (i, 2e5+1) gt[i]=gt[i-1]*i % MOD;
+    inv[N]=Pow(gt[N], MOD-2);
+    for (int i=N-1; ~i; i--) inv[i]=inv[i+1]*(i+1) % MOD;
+    for (int i=0; i&lt;=N; i++) d[i]=Pow(i, MOD-2);
+    cin &gt;&gt; t;
+    while (t--)
+    {
+        int n;
+        cin &gt;&gt; n;
+        cout &lt;&lt; gt[n*2] * inv[n] % MOD * inv[n] % MOD * d[n+1] % MOD, el;
+    }
+    return 0;
+}
+    </textarea>
+</div>
+
+   
+<script type="text/javascript">
+        editAreaLoader.init({
+            id: "SubmitCode",
+            syntax_selection_allow: "cpp,java,pas,csharp,python",
+            is_editable: false,
+            allow_toggle: false,
+            allow_resize: "no",
+            syntax: "cpp",
+            display: "onload",
+            start_highlight: true
+        });
+</script>

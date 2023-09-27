@@ -1,0 +1,63 @@
+
+
+
+<div id="fb-root"></div>
+<script>(function (d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v2.3";
+    fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+<div class="submission-title">
+    210787 - Coder: <a href="/Coder/Details/YugiHacker">YugiHacker</a> - Bài tập: <a href="/Problem/Details/7005">Chuyển m&#227;</a> - <span>Accepted</span> - Time: <span>15 ms</span> - Memory: <span>2604 KB </span> 
+        <a href="/Submission/Detail/210787/?fullScreen=1"><span class="red">(full screen)</span></a>
+</div>
+<div>
+    <textarea id="SubmitCode" rows="33" cols="125">#include&lt;bits/stdc++.h&gt;
+using namespace std;
+
+#define el cout&lt;&lt;&quot;\n&quot;
+#define	f0(i,n) for(int i=0;i&lt;n;i++)
+#define f1(i,n) for(int i=1;i&lt;=n;i++)
+#define maxn
+
+int main(){
+    ios_base::sync_with_stdio(0);cin.tie(0);cout.tie(0);
+    string s;
+    cin &gt;&gt; s;
+    bool b1, b2;
+    b1=b2=0;
+    f0 (i, s.size()) if (s[i]==&#39;_&#39;)
+    {
+        b1=1;
+        if (s[i+1]==&#39;_&#39;) return cout &lt;&lt; &quot;Error!&quot;, 0;
+    }
+    else if (s[i]&gt;=&#39;A&#39; &amp;&amp; s[i]&lt;=&#39;Z&#39;) b2=1;
+    if (b1&amp;b2) return cout &lt;&lt; &quot;Error!&quot;, 0;
+    if (s[0]==&#39;_&#39; || s.back()==&#39;_&#39; || (s[0]&gt;=&#39;A&#39; &amp;&amp; s[0]&lt;=&#39;Z&#39;)) return cout &lt;&lt; &quot;Error!&quot;, 0;
+    f0 (i, s.size())
+    {
+        if (s[i]==&#39;_&#39;) cout &lt;&lt; (char)(s[i+1]-(&#39;a&#39;-&#39;A&#39;)), i++;
+        else if (s[i]&gt;=&#39;A&#39; &amp;&amp; s[i]&lt;=&#39;Z&#39;) cout &lt;&lt; &#39;_&#39; &lt;&lt; (char)(s[i]+&#39;a&#39;-&#39;A&#39;);
+        else cout &lt;&lt; s[i];
+    }
+    return 0;
+}
+    </textarea>
+</div>
+
+   
+<script type="text/javascript">
+        editAreaLoader.init({
+            id: "SubmitCode",
+            syntax_selection_allow: "cpp,java,pas,csharp,python",
+            is_editable: false,
+            allow_toggle: false,
+            allow_resize: "no",
+            syntax: "cpp",
+            display: "onload",
+            start_highlight: true
+        });
+</script>

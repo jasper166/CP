@@ -1,0 +1,11 @@
+HLD + IT, BIT
+
+- Đề bài: Cập nhật các đỉnh thuộc đg đi từ u -> v và Truy vấn các đỉnh x sao cho A * Cx + B >= 0
+
+1. Dùng HLD để xử lí đoạn
+2. Dùng 1 cây BIT để quản lí số lượng đỉnh thỏa mãn, 1 cây IT để đánh dấu và cập nhật lazy
+Lưu node với x = A * Cx + B -> mỗi lần tăng 1 lượng w trên đoạn (u, v) thì dùng lazy với lượng thay đổi w * A
+Giá trị lưu của cây IT là max trong đoạn.
+Nhận xét vì các lượng tăng là 1 <= w <= 1e5 nên -> đỉnh nào đã thỏa mãn thì có tăng tiếp vẫn thỏa mãn -> ko xét nữa
+Vậy ta chỉ cần update các đỉnh đó 1 lần
+Dùng CNP trên IT để tìm các đỉnh cần update sau đó loại bỏ khỏi cây IT để ko phải xét nữa

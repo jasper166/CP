@@ -1,0 +1,73 @@
+
+
+
+<div id="fb-root"></div>
+<script>(function (d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v2.3";
+    fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+<div class="submission-title">
+    263497 - Coder: <a href="/Coder/Details/YugiHacker">YugiHacker</a> - Bài tập: <a href="/Problem/Details/4599">Giai Thừa</a> - <span>Accepted</span> - Time: <span>1765 ms</span> - Memory: <span>2620 KB </span> 
+        <a href="/Submission/Detail/263497/?fullScreen=1"><span class="red">(full screen)</span></a>
+</div>
+<div>
+    <textarea id="SubmitCode" rows="43" cols="125">#include&lt;bits/stdc++.h&gt;
+using namespace std;
+int t;
+long long p[64];
+long long f(long long x)
+{
+    long long s=0;
+    for (int i=1; ; i++)
+    {
+        if (p[i]&gt;x) break;
+        s+=x/p[i];
+    }
+    return s;
+}
+main()
+{
+    ios_base::sync_with_stdio(0);cin.tie(0);cout.tie(0);
+    p[0]=1;
+    for (int i=1; ; i++)
+    {
+        p[i]=p[i-1]*5;
+        if (p[i]&gt;5e16) break;
+    }
+    //cout &lt;&lt; (long long) 5e16; return 0;
+    cin &gt;&gt; t;
+    while (t--)
+    {
+        long long n;
+        cin &gt;&gt; n;
+        long long l=1, r=5e16;
+        while (r-l&gt;1)
+        {
+            long long m=(l+r)/2;
+            if (f(m) &gt;= n) r=m;
+            else l=m;
+        }
+        cout &lt;&lt; r;
+        cout &lt;&lt; &#39;\n&#39;;
+    }
+}
+    </textarea>
+</div>
+
+   
+<script type="text/javascript">
+        editAreaLoader.init({
+            id: "SubmitCode",
+            syntax_selection_allow: "cpp,java,pas,csharp,python",
+            is_editable: false,
+            allow_toggle: false,
+            allow_resize: "no",
+            syntax: "cpp",
+            display: "onload",
+            start_highlight: true
+        });
+</script>

@@ -1,0 +1,67 @@
+
+
+
+<div id="fb-root"></div>
+<script>(function (d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v2.3";
+    fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+<div class="submission-title">
+    207362 - Coder: <a href="/Coder/Details/YugiHacker">YugiHacker</a> - Bài tập: <a href="/Problem/Details/6983">Những ch&#250; khỉ </a> - <span>Accepted</span> - Time: <span>156 ms</span> - Memory: <span>4300 KB </span> 
+        <a href="/Submission/Detail/207362/?fullScreen=1"><span class="red">(full screen)</span></a>
+</div>
+<div>
+    <textarea id="SubmitCode" rows="37" cols="125">#include&lt;bits/stdc++.h&gt;
+using namespace std;
+
+#define el cout&lt;&lt;&quot;\n&quot;
+#define	f0(i,n) for(int i=0;i&lt;n;i++)
+#define f1(i,n) for(int i=1;i&lt;=n;i++)
+#define maxn 1003
+int n, m, u, v, cnt, b[maxn*maxn];
+int a[maxn][maxn], d[maxn][maxn];
+int x[]={1,0,0,-1};
+int y[]={0,1,-1,0};
+void dfs(int u, int v)
+{
+    if (u&lt;1||u&gt;n||v&lt;1||v&gt;m) return;
+    if (d[u][v]||a[u][v]==0) return;
+    d[u][v]=cnt;
+    b[cnt]++;
+    f0 (i, 4) dfs(u+x[i], v+y[i]);
+}
+int main(){
+    ios_base::sync_with_stdio(0);cin.tie(0);cout.tie(0);
+    cin &gt;&gt; n &gt;&gt; m &gt;&gt; u &gt;&gt; v;
+    f1 (i, n) f1 (j, m) cin &gt;&gt; a[i][j];
+    f1 (i, n) f1 (j, m)
+    {
+        if (a[i][j] &amp;&amp; d[i][j]==0)
+        {
+            cnt++;
+            dfs(i, j);
+        }
+    }
+    cout &lt;&lt; b[d[u][v]];
+    return 0;
+}
+    </textarea>
+</div>
+
+   
+<script type="text/javascript">
+        editAreaLoader.init({
+            id: "SubmitCode",
+            syntax_selection_allow: "cpp,java,pas,csharp,python",
+            is_editable: false,
+            allow_toggle: false,
+            allow_resize: "no",
+            syntax: "cpp",
+            display: "onload",
+            start_highlight: true
+        });
+</script>

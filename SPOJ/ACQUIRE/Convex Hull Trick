@@ -1,0 +1,36 @@
+Convex Hull Trick 
+DP Bao Lồi
+
+I. TH slope đã sort
+Tối ưu từ O(N^2) còn O(NlogN) hoặc O(N)
+
+Có dạng f[i] = max hoặc min (a(j) * x(i) + b(j));
+
+Bỏ đi các đoạn thẳng không thuộc bao lồi (useless and wont provide optimal answer)
+Mỗi đoạn thẳng có hệ số góc khác nhau
+Thường gồm 2 thao tác: Insert và Query
+
+Giả sử xét trong TH min, hệ số tăng dần
+
+1. Insert: 
+	+ Khi thêm 1 line nLine vào bao lồi, Xét xem giao điểm x1 của line bên phải cùng và kề với nó
+	Line(0) và Line(1)
+	và x2 của nLine với Line(0)
+		- Nếu x1 nằm bên phải x2 -> Line(0) không thuộc bao lồi nữa (x1 <= x2), bỏ Line(0);
+
+2. Query:
+	So sánh gtri hàm f tại x(i) của line bên trái cùng và kề với nó 
+	(line.back && line.back - 1) gọi là f1 và f2
+	+ f1 < f2 bỏ line.back đi, lặp lại
+	giá của bên trái cùng còn lại là gtri max
+
+Add line, Query
+
+Với TH lấy max thì hull sẽ lấy ngược lại 
+Query, Add
+
+
+II. Dynamic Hull - TH bất kì
+
+
+

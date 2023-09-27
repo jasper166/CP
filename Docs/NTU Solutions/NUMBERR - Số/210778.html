@@ -1,0 +1,62 @@
+
+
+
+<div id="fb-root"></div>
+<script>(function (d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v2.3";
+    fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+<div class="submission-title">
+    210778 - Coder: <a href="/Coder/Details/YugiHacker">YugiHacker</a> - Bài tập: <a href="/Problem/Details/4664">Số </a> - <span>Accepted</span> - Time: <span>15 ms</span> - Memory: <span>2524 KB </span> 
+        <a href="/Submission/Detail/210778/?fullScreen=1"><span class="red">(full screen)</span></a>
+</div>
+<div>
+    <textarea id="SubmitCode" rows="32" cols="125">#include&lt;bits/stdc++.h&gt;
+using namespace std;
+
+#define el cout&lt;&lt;&quot;\n&quot;
+#define	f0(i,n) for(int i=0;i&lt;n;i++)
+#define f1(i,n) for(int i=1;i&lt;=n;i++)
+#define maxn
+int n, d[102], k, ans, cnt;
+int main(){
+    ios_base::sync_with_stdio(0);cin.tie(0);cout.tie(0);
+    cin &gt;&gt; n &gt;&gt; k;
+    if (k==1) return cout &lt;&lt; 1, 0;
+    f1 (i, n)
+    {
+        int x;
+        cin &gt;&gt; x;
+        x%=k;
+        d[x]++;
+    }
+    ans += (d[0]&gt;0);
+    if (k%2==0) ans+=(d[k/2]&gt;0);
+    for (int i=1; i&lt;k/2; i++)
+    {
+        ans+=max(d[i], d[k-i]);
+    }
+    if (k%2) ans+=max(d[k/2], d[k/2+1]);
+    cout &lt;&lt; ans;
+    return 0;
+}
+    </textarea>
+</div>
+
+   
+<script type="text/javascript">
+        editAreaLoader.init({
+            id: "SubmitCode",
+            syntax_selection_allow: "cpp,java,pas,csharp,python",
+            is_editable: false,
+            allow_toggle: false,
+            allow_resize: "no",
+            syntax: "cpp",
+            display: "onload",
+            start_highlight: true
+        });
+</script>

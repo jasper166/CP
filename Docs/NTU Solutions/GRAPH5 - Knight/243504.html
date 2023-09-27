@@ -1,0 +1,71 @@
+
+
+
+<div id="fb-root"></div>
+<script>(function (d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v2.3";
+    fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+<div class="submission-title">
+    243504 - Coder: <a href="/Coder/Details/YugiHacker">YugiHacker</a> - Bài tập: <a href="/Problem/Details/9832">Knight</a> - <span>Accepted</span> - Time: <span>46 ms</span> - Memory: <span>5800 KB </span> 
+        <a href="/Submission/Detail/243504/?fullScreen=1"><span class="red">(full screen)</span></a>
+</div>
+<div>
+    <textarea id="SubmitCode" rows="41" cols="125">#include&lt;bits/stdc++.h&gt;
+using namespace std;
+
+#define el cout&lt;&lt;&quot;\n&quot;
+#define	f0(i,n) for(int i=0;i&lt;n;i++)
+#define f1(i,n) for(int i=1;i&lt;=n;i++)
+#define maxn 1003
+int n, m, k, a[maxn][maxn], u, v;
+int x[]={-1,1,2,2,1,-1,-2,-2};
+int y[]={-2,-2,-1,1,2,2,1,-1};
+int main(){
+    ios_base::sync_with_stdio(0);cin.tie(0);cout.tie(0);
+    cin &gt;&gt; n &gt;&gt; m &gt;&gt; k &gt;&gt; u &gt;&gt; v;
+    queue &lt;pair&lt;int,int&gt; &gt; q;
+    q.push({u,v});
+    a[u][v]=1;
+    while (q.size())
+    {
+        int u=q.front().first;
+        int v=q.front().second;
+        q.pop();
+        f0 (i, 8)
+        {
+            int U=u+x[i], V=v+y[i];
+            if (U&lt;1 || V&lt;1 || U&gt;n || V&gt;m) continue;
+            if (a[U][V]==0)
+            {
+                a[U][V]=a[u][v]+1;
+                if (a[U][V] &lt;= k) q.push({U,V});
+            }
+        }
+    }
+    vector&lt;pair&lt;int,int&gt; &gt;ans;
+    f1 (i, n) f1 (j, m) if (a[i][j]) ans.push_back({i, j});
+    cout &lt;&lt; ans.size(); el;
+    for (auto x:ans) cout &lt;&lt; x.first &lt;&lt; &#39; &#39; &lt;&lt; x.second, el;
+    return 0;
+}
+    </textarea>
+</div>
+
+   
+<script type="text/javascript">
+        editAreaLoader.init({
+            id: "SubmitCode",
+            syntax_selection_allow: "cpp,java,pas,csharp,python",
+            is_editable: false,
+            allow_toggle: false,
+            allow_resize: "no",
+            syntax: "cpp",
+            display: "onload",
+            start_highlight: true
+        });
+</script>

@@ -1,0 +1,72 @@
+
+
+
+<div id="fb-root"></div>
+<script>(function (d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v2.3";
+    fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+<div class="submission-title">
+    204936 - Coder: <a href="/Coder/Details/YugiHacker">YugiHacker</a> - Bài tập: <a href="/Problem/Details/8493">Trồng c&#226;y nguy&#234;n tố</a> - <span>Accepted</span> - Time: <span>750 ms</span> - Memory: <span>13088 KB </span> 
+        <a href="/Submission/Detail/204936/?fullScreen=1"><span class="red">(full screen)</span></a>
+</div>
+<div>
+    <textarea id="SubmitCode" rows="42" cols="125">#include&lt;bits/stdc++.h&gt;
+using namespace std;
+
+#define el cout&lt;&lt;&quot;\n&quot;
+#define	f0(i,n) for(int i=0;i&lt;n;i++)
+#define f1(i,n) for(int i=1;i&lt;=n;i++)
+#define maxn 10000007
+bool p[maxn];
+int ans=0, n;
+vector &lt;int&gt; a;
+deque &lt;int&gt; d;
+bool cmp(int a, int b)
+{
+    return a&gt;b;
+}
+int main(){
+    ios_base::sync_with_stdio(0);cin.tie(0);cout.tie(0);
+    for (int i=2; i*i&lt;maxn; i++)
+        if (!p[i]) for (int j=i*i; j&lt;maxn; j+=i) p[j]=1;
+    p[0]=p[1]=1;
+    cin &gt;&gt; n;
+    f1 (i, n)
+    {
+        int x; cin &gt;&gt; x;
+        if (!p[x]) a.push_back(x);
+    }
+    sort (a.begin(), a.end(), cmp);
+    for (int i=0; i&lt;a.size(); i++)
+        if (i%2) d.push_front(a[i]);
+        else d.push_back(a[i]);
+    if (d.size()==0) cout &lt;&lt; -1;
+    while (d.size())
+    {
+        int x=d.front();
+        cout &lt;&lt; x &lt;&lt; &#39; &#39;;
+        d.pop_front();
+    }
+    return 0;
+}
+    </textarea>
+</div>
+
+   
+<script type="text/javascript">
+        editAreaLoader.init({
+            id: "SubmitCode",
+            syntax_selection_allow: "cpp,java,pas,csharp,python",
+            is_editable: false,
+            allow_toggle: false,
+            allow_resize: "no",
+            syntax: "cpp",
+            display: "onload",
+            start_highlight: true
+        });
+</script>

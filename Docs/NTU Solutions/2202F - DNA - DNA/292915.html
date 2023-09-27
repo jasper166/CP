@@ -1,0 +1,77 @@
+
+
+
+<div id="fb-root"></div>
+<script>(function (d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v2.3";
+    fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+<div class="submission-title">
+    292915 - Coder: <a href="/Coder/Details/YugiHacker">YugiHacker</a> - Bài tập: <a href="/Problem/Details/10991">DNA - DNA</a> - <span>Accepted</span> - Time: <span>562 ms</span> - Memory: <span>22388 KB </span> 
+        <a href="/Submission/Detail/292915/?fullScreen=1"><span class="red">(full screen)</span></a>
+</div>
+<div>
+    <textarea id="SubmitCode" rows="47" cols="125">#include&lt;bits/stdc++.h&gt;
+#define el cout&lt;&lt;&quot;\n&quot;
+#define f0(i,n) for(int i=0;i&lt;n;++i)
+#define f1(i,n) for(int i=1;i&lt;=n;++i)
+#define maxn
+using namespace std;
+string s, t;
+int n;
+vector &lt;string&gt; s1, s2;
+vector &lt;string&gt; t1, t2;
+void Reverse(vector &lt;string&gt; &amp;s1, vector &lt;string&gt; &amp;s2)
+{
+    s2 = s1;
+    for (auto &amp;s:s1)
+    {
+        f0 (i, n) for (int j=i+1; j&lt;n; j++)
+        {
+            string x = s;
+            reverse(x.begin()+i, x.begin()+j+1);
+            s2.push_back(x);
+        }
+    }
+    swap(s1, s2);
+    sort(s1.begin(), s1.end());
+    s1.erase(unique(s1.begin(), s1.end()), s1.end());
+}
+main()
+{
+    ios_base::sync_with_stdio(0);cin.tie(0);cout.tie(0);
+    cin &gt;&gt; s &gt;&gt; t;
+    n = s.size();
+    s1.push_back(s);
+    t1.push_back(t);
+    Reverse(s1, s2);
+    Reverse(s1, s2);
+    Reverse(t1, t2);
+    Reverse(t1, t2);
+    for (auto &amp;ss:s1)
+    {
+        if (binary_search(t1.begin(), t1.end(), ss))
+            return cout &lt;&lt; &quot;Similar&quot;, 0;
+    }
+    cout &lt;&lt; &quot;Different&quot;;
+}
+    </textarea>
+</div>
+
+   
+<script type="text/javascript">
+        editAreaLoader.init({
+            id: "SubmitCode",
+            syntax_selection_allow: "cpp,java,pas,csharp,python",
+            is_editable: false,
+            allow_toggle: false,
+            allow_resize: "no",
+            syntax: "cpp",
+            display: "onload",
+            start_highlight: true
+        });
+</script>

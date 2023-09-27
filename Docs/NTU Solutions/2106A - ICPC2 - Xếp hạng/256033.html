@@ -1,0 +1,80 @@
+
+
+
+<div id="fb-root"></div>
+<script>(function (d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v2.3";
+    fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+<div class="submission-title">
+    256033 - Coder: <a href="/Coder/Details/YugiHacker">YugiHacker</a> - Bài tập: <a href="/Problem/Details/9922">ICPC2 - Xếp hạng</a> - <span>Accepted</span> - Time: <span>93 ms</span> - Memory: <span>15960 KB </span> 
+        <a href="/Submission/Detail/256033/?fullScreen=1"><span class="red">(full screen)</span></a>
+</div>
+<div>
+    <textarea id="SubmitCode" rows="50" cols="125">//From L4A with love
+#include&lt;bits/stdc++.h&gt;
+#define ll long long
+#define nmax 1000005
+#define FASTER ios_base::sync_with_stdio(0); cin.tie(0); cout.tie(0);
+#define fi first
+#define se second
+using namespace std;
+ll n ;
+struct icpc
+{
+	string name;
+	string schu;
+	int ac ;
+	int pen;
+};
+bool cmp(icpc k , icpc l)
+{
+	
+    if(l.ac == k.ac)
+	{
+		return k.pen &lt; l.pen;
+	}
+	if(k.ac == l.ac &amp;&amp; k.pen == l.pen)
+	{
+		return k.ac &lt; l.ac &amp;&amp; k.pen &lt; l.pen;
+	}
+	return k.ac &gt; l.ac;
+	
+	
+}
+icpc xyz[1000005];
+signed main()
+{
+	FASTER;
+	cin &gt;&gt; n;
+	for(int i = 1 ; i &lt;= n ; i++)
+	{
+		cin &gt;&gt;  xyz[i].name &gt;&gt; xyz[i].schu &gt;&gt; xyz[i].ac &gt;&gt; xyz[i].pen;
+	}
+	sort(xyz + 1 , xyz + n + 1 , cmp);
+	for(int i = 1 ; i &lt;= n ; i++)
+	{
+		cout &lt;&lt; xyz[i].name &lt;&lt; &quot; &quot; &lt;&lt; xyz[i].schu;
+		cout &lt;&lt; endl;
+	}
+}
+    </textarea>
+</div>
+
+   
+<script type="text/javascript">
+        editAreaLoader.init({
+            id: "SubmitCode",
+            syntax_selection_allow: "cpp,java,pas,csharp,python",
+            is_editable: false,
+            allow_toggle: false,
+            allow_resize: "no",
+            syntax: "cpp",
+            display: "onload",
+            start_highlight: true
+        });
+</script>

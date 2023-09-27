@@ -1,0 +1,46 @@
+
+
+
+<div id="fb-root"></div>
+<script>(function (d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v2.3";
+    fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+<div class="submission-title">
+    171825 - Coder: <a href="/Coder/Details/YugiHacker">YugiHacker</a> - Bài tập: <a href="/Problem/Details/8308">BOY&amp;GIRL</a> - <span>Accepted</span> - Time: <span>15 ms</span> - Memory: <span>860 KB </span> 
+        <a href="/Submission/Detail/171825/?fullScreen=1"><span class="red">(full screen)</span></a>
+</div>
+<div>
+    <textarea id="SubmitCode" rows="16" cols="125">#include&lt;bits/stdc++.h&gt;
+#define maxn 100010
+#define MOD 2111992
+using namespace std;
+int n,k,f[maxn];
+main()
+{
+    cin&gt;&gt;n&gt;&gt;k;
+    f[0]=1;
+    for(int i=1;i&lt;=k;i++)f[i]=f[i-1]+1;
+    for(int i=k+1;i&lt;=n;i++)f[i]=(f[i-1]+f[i-k-1])%MOD;
+    cout&lt;&lt;f[n];
+}
+    </textarea>
+</div>
+
+   
+<script type="text/javascript">
+        editAreaLoader.init({
+            id: "SubmitCode",
+            syntax_selection_allow: "cpp,java,pas,csharp,python",
+            is_editable: false,
+            allow_toggle: false,
+            allow_resize: "no",
+            syntax: "cpp",
+            display: "onload",
+            start_highlight: true
+        });
+</script>
