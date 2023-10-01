@@ -1,0 +1,81 @@
+
+
+
+<div id="fb-root"></div>
+<script>(function (d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v2.3";
+    fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+<div class="submission-title">
+    155668 - Coder: <a href="/Coder/Details/YugiHacker">YugiHacker</a> - Bài tập: <a href="/Problem/Details/7110">Sức mạnh d&#227;y số</a> - <span>Accepted</span> - Time: <span>156 ms</span> - Memory: <span>2340 KB </span> 
+        <a href="/Submission/Detail/155668/?fullScreen=1"><span class="red">(full screen)</span></a>
+</div>
+<div>
+    <textarea id="SubmitCode" rows="51" cols="125">#include&lt;bits/stdc++.h&gt;
+
+#define file &quot;&quot;
+#define el cout&lt;&lt;&quot;\n&quot;
+#define	f0(i,n) for(int i=0;i&lt;n;i++)
+#define f1(i,n) for(int i=1;i&lt;=n;i++)
+#define maxn 1000006
+
+using namespace std;
+int n, q, a[maxn], b[maxn];
+inline int ReadInt()
+{
+  char c ;
+  for(c=getchar();(c&gt;&#39;9&#39; || c&lt;&#39;0&#39;)&amp;&amp; c!=&#39;-&#39; ;c=getchar()) ;
+  int x,neg ;
+  if(c==&#39;-&#39;) neg=-1,x=0 ;
+  else x=c-&#39;0&#39;,neg=1 ;
+  for(c=getchar();c&gt;=&#39;0&#39; &amp;&amp; c&lt;=&#39;9&#39;;c=getchar())
+	  x=x*10+c-&#39;0&#39; ;
+  return x*neg ;
+}
+void WriteInt(long long x)
+{
+    if(x&gt;9) WriteInt(x/10);
+    putchar(x%10+&#39;0&#39;);
+}
+int main()
+{
+    ios_base::sync_with_stdio(0);
+    cin.tie(0);
+    cout.tie(0);
+    ///freopen(file&quot;.inp&quot;,&quot;r&quot;,stdin);
+    ///freopen(file&quot;.out&quot;,&quot;w&quot;,stdout);
+    n=ReadInt(); q=ReadInt();
+    f1 (i, n) a[i]=ReadInt(), b[i]=b[i-1]+a[i]*a[i], a[i]+=a[i-1];
+    f1 (i, q)
+    {
+        int l, r;
+        l=ReadInt(), r=ReadInt();
+        int s=a[r]-a[l-1];
+        int p=b[r]-b[l-1];
+        long long ans=(1ll*s*s-p)/2;
+        if (ans &lt; 0) putchar(&#39;-&#39;), ans=abs(ans);
+        WriteInt(ans);
+        putchar(&#39;\n&#39;);
+    }
+    return 0;
+}
+    </textarea>
+</div>
+
+   
+<script type="text/javascript">
+        editAreaLoader.init({
+            id: "SubmitCode",
+            syntax_selection_allow: "cpp,java,pas,csharp,python",
+            is_editable: false,
+            allow_toggle: false,
+            allow_resize: "no",
+            syntax: "cpp",
+            display: "onload",
+            start_highlight: true
+        });
+</script>

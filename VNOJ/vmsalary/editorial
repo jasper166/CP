@@ -1,0 +1,17 @@
+Tóm tắt: 
+	Cho cây n đỉnh với a(u) là giá trị của nút u. Tìm số cặp (x, y, z) : 
+	1. x là cha của (y, z)
+	2, a[x] > max(a[y], a[z]);
+
+Nhận xét:
+	Dễ thấy bài toán đưa về với mỗi nút u tìm số các nút v là nút con sao cho
+	a(v) < a(u) là x;
+	Để tìm số cặp thì dùng tổ hợp C(2, x) -> ans += C(2, x);
+	
+	1. Sort theo a(u)
+	2. Dùng Euler tour trải phẳng
+	với mỗi nút u có đoạn (st(u), en(u)) gồm các nút con: 
+		Cập nhật trâu các nút con v của u mà a(v) < a(u) (DPT vẫn luôn là n nhưng các nút đều chỉ xuất hiện
+		trong tour[] 1 lần nên dpt tổng k quá O(2 * n))
+	x = query(st(u), en(u));
+	Cập nhật, truy vấn dùng BIT;

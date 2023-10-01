@@ -1,0 +1,69 @@
+
+
+
+<div id="fb-root"></div>
+<script>(function (d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v2.3";
+    fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+<div class="submission-title">
+    168199 - Coder: <a href="/Coder/Details/YugiHacker">YugiHacker</a> - Bài tập: <a href="/Problem/Details/8246">D&#227;y truy hồi</a> - <span>Accepted</span> - Time: <span>281 ms</span> - Memory: <span>1940 KB </span> 
+        <a href="/Submission/Detail/168199/?fullScreen=1"><span class="red">(full screen)</span></a>
+</div>
+<div>
+    <textarea id="SubmitCode" rows="39" cols="125">#include&lt;bits/stdc++.h&gt;
+
+#define file &quot;&quot;
+#define el cout&lt;&lt;&quot;\n&quot;
+#define	f0(i,n) for(int i=0;i&lt;n;i++)
+#define f1(i,n) for(int i=1;i&lt;=n;i++)
+#define maxn
+#define MOD 1000000007
+
+using namespace std;
+int t;
+long long c, n;
+long long PoW(long long a, long long x)
+{
+    if (x==0) return 1;
+    long long t=PoW(a, x/2);
+    t=t*t%MOD;
+    if (x%2) t*=a;
+    return t%MOD;
+}
+int main()
+{
+    ios_base::sync_with_stdio(0);
+    cin.tie(0);
+    cout.tie(0);
+    ///freopen(file&quot;.inp&quot;,&quot;r&quot;,stdin);
+    ///freopen(file&quot;.out&quot;,&quot;w&quot;,stdout);
+    cin &gt;&gt; t;
+    while (t--)
+    {
+        cin &gt;&gt; n &gt;&gt; c;
+        //cout &lt;&lt; PoW(3, n-1); el;
+        cout &lt;&lt; ((PoW(3, n-1)*(c+2)%MOD)+MOD-2)%MOD; el;
+    }
+    return 0;
+}
+    </textarea>
+</div>
+
+   
+<script type="text/javascript">
+        editAreaLoader.init({
+            id: "SubmitCode",
+            syntax_selection_allow: "cpp,java,pas,csharp,python",
+            is_editable: false,
+            allow_toggle: false,
+            allow_resize: "no",
+            syntax: "cpp",
+            display: "onload",
+            start_highlight: true
+        });
+</script>

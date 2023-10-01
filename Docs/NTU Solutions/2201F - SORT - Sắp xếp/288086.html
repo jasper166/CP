@@ -1,0 +1,81 @@
+
+
+
+<div id="fb-root"></div>
+<script>(function (d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v2.3";
+    fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+<div class="submission-title">
+    288086 - Coder: <a href="/Coder/Details/YugiHacker">YugiHacker</a> - Bài tập: <a href="/Problem/Details/10984">SORT - Sắp xếp</a> - <span>Accepted</span> - Time: <span>140 ms</span> - Memory: <span>4036 KB </span> 
+        <a href="/Submission/Detail/288086/?fullScreen=1"><span class="red">(full screen)</span></a>
+</div>
+<div>
+    <textarea id="SubmitCode" rows="51" cols="125">#include&lt;bits/stdc++.h&gt;
+#define el cout&lt;&lt;&quot;\n&quot;
+#define f0(i,n) for(int i=0;i&lt;n;++i)
+#define f1(i,n) for(int i=1;i&lt;=n;++i)
+#define maxn 100005
+using namespace std;
+int n, a[maxn], t[maxn*4], ans[maxn], p[maxn];
+void init(int id, int l, int r)
+{
+    if (l==r) return void(t[id] = 1);
+    int m = (l+r)/2;
+    init(id*2, l, m);
+    init(id*2+1, m+1, r);
+    t[id] = t[id*2] + t[id*2+1];
+}
+int get(int id, int l, int r, int u, int v)
+{
+    if (r &lt; u || l &gt; v) return 0;
+    if (u &lt;= l &amp;&amp; r &lt;= v)
+        return t[id];
+    int m=(l+r)/2;
+    int t1=get(id*2, l, m, u, v);
+    int t2=get(id*2+1, m+1, r, u, v);
+    return t1+t2;;
+}
+void up(int id, int l, int r, int p)
+{
+    if (r &lt; p || l &gt; p) return;
+    if (l==r) return void(t[id] = 0);
+    int m=(l+r)/2;
+    up(id*2, l, m, p);
+    up(id*2+1, m+1, r, p);
+    t[id]=t[id*2] + t[id*2+1];
+}
+main()
+{
+    ios_base::sync_with_stdio(0);cin.tie(0);cout.tie(0);
+    cin &gt;&gt; n;
+    f1 (i, n) cin &gt;&gt; a[i], p[a[i]] = i;
+    init(1, 1, n);
+    int l = 1, r = n;
+    f1 (i, n)
+    {
+        if (i%2) ans[l] = get(1, 1, n, 1, p[l]-1), up(1, 1, n, p[l]), cout &lt;&lt; ans[l++];
+        else ans[r] = get(1, 1, n, p[r]+1, n), up(1, 1, n, p[r]), cout &lt;&lt; ans[r--];
+        cout &lt;&lt; &#39; &#39;;
+    }
+}
+    </textarea>
+</div>
+
+   
+<script type="text/javascript">
+        editAreaLoader.init({
+            id: "SubmitCode",
+            syntax_selection_allow: "cpp,java,pas,csharp,python",
+            is_editable: false,
+            allow_toggle: false,
+            allow_resize: "no",
+            syntax: "cpp",
+            display: "onload",
+            start_highlight: true
+        });
+</script>

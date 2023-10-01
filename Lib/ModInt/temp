@@ -1,0 +1,16 @@
+struct Mint
+{
+    ll MOD = 1e9 + 7;
+    ll val;
+    bool operator==(const Mint& other) {return val == other.val;}
+    Mint operator+(const Mint& other) {ll res = val + other.val; while(res >= MOD) res -= MOD; while(res < 0) res += MOD; return Mint(res);}
+    Mint operator-(const Mint& other) {ll res = val - other.val; while(res >= MOD) res -= MOD; while(res < 0) res += MOD; return Mint(res);}
+    Mint operator*(const Mint& other) {return Mint((val * 1ll * other.val) % MOD);}
+    Mint operator+=(const Mint& other) {val += other.val; while(val >= MOD) val -= MOD; while(val < 0) val += MOD; return val;}
+    Mint operator-=(const Mint& other) {val -= other.val; while(val >= MOD) val -= MOD; while(val < 0) val += MOD; return val;}
+    Mint operator*=(const Mint& other) {return val = (val * 1ll * other.val) % MOD;}
+    Mint pow(ll y) {Mint z(1); Mint x(val); while(y > 0) {if(y % 2 == 1) z = z * x; x = x * x; y /= 2;} return z;}
+    Mint operator/(const Mint& other) {return Mint(val) * Mint(other.val).pow(MOD - 2);}
+    Mint() {val = 0;};
+    Mint(ll x) {x %= MOD; while(x < 0) x += MOD; val = x;};
+};

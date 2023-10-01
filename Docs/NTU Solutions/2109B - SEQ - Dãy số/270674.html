@@ -1,0 +1,58 @@
+
+
+
+<div id="fb-root"></div>
+<script>(function (d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v2.3";
+    fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+<div class="submission-title">
+    270674 - Coder: <a href="/Coder/Details/YugiHacker">YugiHacker</a> - Bài tập: <a href="/Problem/Details/9950">SEQ - D&#227;y số</a> - <span>Accepted</span> - Time: <span>46 ms</span> - Memory: <span>2600 KB </span> 
+        <a href="/Submission/Detail/270674/?fullScreen=1"><span class="red">(full screen)</span></a>
+</div>
+<div>
+    <textarea id="SubmitCode" rows="28" cols="125">#include&lt;bits/stdc++.h&gt;
+using namespace std;
+
+#define el cout&lt;&lt;&quot;\n&quot;
+#define	f0(i,n) for(int i=0;i&lt;n;i++)
+#define f1(i,n) for(int i=1;i&lt;=n;i++)
+#define maxn 100005
+int n;
+long long a[maxn];
+long long ma1, ma2, ma3;
+int main(){
+    ios_base::sync_with_stdio(0);cin.tie(0);cout.tie(0);
+    cin &gt;&gt; n;
+    f1 (i, n) cin &gt;&gt; a[i];
+    ma1 = max(a[1], a[2]);
+    ma2 = a[1] - a[2];
+    for (int i=3; i&lt;=n; i++)
+    {
+        ma3 = max(ma3, ma2 + a[i]);
+        ma2 = max(ma2, ma1 - a[i]);
+        ma1 = max(ma1, a[i]);
+    }
+    cout &lt;&lt; ma3;
+    return 0;
+}
+    </textarea>
+</div>
+
+   
+<script type="text/javascript">
+        editAreaLoader.init({
+            id: "SubmitCode",
+            syntax_selection_allow: "cpp,java,pas,csharp,python",
+            is_editable: false,
+            allow_toggle: false,
+            allow_resize: "no",
+            syntax: "cpp",
+            display: "onload",
+            start_highlight: true
+        });
+</script>

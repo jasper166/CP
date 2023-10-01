@@ -1,0 +1,81 @@
+
+
+
+<div id="fb-root"></div>
+<script>(function (d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v2.3";
+    fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+<div class="submission-title">
+    240113 - Coder: <a href="/Coder/Details/YugiHacker">YugiHacker</a> - Bài tập: <a href="/Problem/Details/9846">BRAMEX</a> - <span>Accepted</span> - Time: <span>46 ms</span> - Memory: <span>2976 KB </span> 
+        <a href="/Submission/Detail/240113/?fullScreen=1"><span class="red">(full screen)</span></a>
+</div>
+<div>
+    <textarea id="SubmitCode" rows="51" cols="125">#include&lt;bits/stdc++.h&gt;
+using namespace std;
+int n,m,cnt;
+int Child[1000010][11],dem[1000010];
+
+void Add(string s)
+{
+    int u=0;
+    for(int i=0;i&lt;s.length();i++)
+    {
+        int k=s[i]-97;
+        if(Child[u][k]==0)
+            Child[u][k]=++cnt;
+        u=Child[u][k];
+        dem[u]++;
+    }
+}
+int Found(string s)
+{
+    int u=0;
+    for(int i=0;i&lt;s.length();i++)
+    {
+        int k=s[i]-97;
+        if(Child[u][k]==0)return 0;
+        u=Child[u][k];
+    }
+    return dem[u];
+}
+int main()
+{
+    ios_base::sync_with_stdio(0);
+    cin.tie(0);
+    cout.tie(0);
+    cin&gt;&gt;n;
+    for(int i=1;i&lt;=n;i++)
+    {
+        string s;
+        cin&gt;&gt;s;
+        Add(s);
+    }
+    cin&gt;&gt;m;
+    while(m--)
+    {
+        string s;
+        cin&gt;&gt;s;
+        cout&lt;&lt;Found(s)&lt;&lt;&quot;\n&quot;;
+    }
+}
+    </textarea>
+</div>
+
+   
+<script type="text/javascript">
+        editAreaLoader.init({
+            id: "SubmitCode",
+            syntax_selection_allow: "cpp,java,pas,csharp,python",
+            is_editable: false,
+            allow_toggle: false,
+            allow_resize: "no",
+            syntax: "cpp",
+            display: "onload",
+            start_highlight: true
+        });
+</script>

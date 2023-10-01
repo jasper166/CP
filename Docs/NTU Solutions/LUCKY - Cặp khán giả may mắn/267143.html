@@ -1,0 +1,72 @@
+
+
+
+<div id="fb-root"></div>
+<script>(function (d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v2.3";
+    fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+<div class="submission-title">
+    267143 - Coder: <a href="/Coder/Details/YugiHacker">YugiHacker</a> - Bài tập: <a href="/Problem/Details/9914">Cặp kh&#225;n giả may mắn</a> - <span>Accepted</span> - Time: <span>453 ms</span> - Memory: <span>16680 KB </span> 
+        <a href="/Submission/Detail/267143/?fullScreen=1"><span class="red">(full screen)</span></a>
+</div>
+<div>
+    <textarea id="SubmitCode" rows="42" cols="125">#include&lt;bits/stdc++.h&gt;
+using namespace std;
+
+#define el cout&lt;&lt;&quot;\n&quot;
+#define	f0(i,n) for(int i=0;i&lt;n;i++)
+#define f1(i,n) for(int i=1;i&lt;=n;i++)
+#define maxn 1000006
+int n, p, b[maxn], c[maxn], ma;
+pair&lt;int, int&gt; a[maxn], ans;
+int main(){
+    ios_base::sync_with_stdio(0);cin.tie(0);cout.tie(0);
+    cin &gt;&gt; n &gt;&gt; p;
+    f1 (i, n) cin &gt;&gt; a[i].first , a[i].second=i;
+    sort (a+1, a+n+1);
+    for (int i=n; i; i--)
+    {
+        c[i]=max(c[i+1], a[i].second);
+        b[i]=a[i].first;
+    }
+    int k=0;
+    f1 (i, n)
+    {
+        while (a[k].first &lt; a[i].first+p) k++;
+        if (k&gt;n) break;
+        if (c[k]-a[i].second&gt;ma)
+        {
+            ma=c[k]-a[i].second;
+            ans = {a[i].second, c[k]};
+        }
+        else if (ma==c[k]-a[i].second)
+        {
+            if (a[i].second&lt;ans.first)
+            ans = {a[i].second, c[k]};
+        }
+    }
+    if (ma) cout &lt;&lt; ans.first &lt;&lt; &#39; &#39; &lt;&lt; ans.second;
+    else cout &lt;&lt; 0;
+    return 0;
+}
+    </textarea>
+</div>
+
+   
+<script type="text/javascript">
+        editAreaLoader.init({
+            id: "SubmitCode",
+            syntax_selection_allow: "cpp,java,pas,csharp,python",
+            is_editable: false,
+            allow_toggle: false,
+            allow_resize: "no",
+            syntax: "cpp",
+            display: "onload",
+            start_highlight: true
+        });
+</script>

@@ -1,0 +1,79 @@
+
+
+
+<div id="fb-root"></div>
+<script>(function (d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v2.3";
+    fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+<div class="submission-title">
+    220224 - Coder: <a href="/Coder/Details/YugiHacker">YugiHacker</a> - Bài tập: <a href="/Problem/Details/8439">Bộ ba</a> - <span>Accepted</span> - Time: <span>375 ms</span> - Memory: <span>8620 KB </span> 
+        <a href="/Submission/Detail/220224/?fullScreen=1"><span class="red">(full screen)</span></a>
+</div>
+<div>
+    <textarea id="SubmitCode" rows="49" cols="125">#include&lt;bits/stdc++.h&gt;
+using namespace std;
+
+#define el cout&lt;&lt;&quot;\n&quot;
+#define	f0(i,n) for(int i=0;i&lt;n;i++)
+#define f1(i,n) for(int i=1;i&lt;=n;i++)
+#define maxn 300005
+int n, a[maxn], b[maxn], c[maxn], d[maxn], m;
+long long t1[maxn], t2[maxn], t3[maxn];
+void up (int x, long long t[], long long v)
+{
+    for (;x&lt;maxn;x+=x&amp;-x) t[x]+=v;
+}
+long long get(int x, long long t[])
+{
+    long long s=0;
+    for (;x;x-=x&amp;-x) s+=t[x];
+    return s;
+}
+int main(){
+    ios_base::sync_with_stdio(0);cin.tie(0);cout.tie(0);
+    cin &gt;&gt; n;
+    f1 (i, n) cin &gt;&gt; a[i], d[++m]=a[i];
+    f1 (i, n) cin &gt;&gt; b[i], d[++m]=b[i];
+    f1 (i, n) cin &gt;&gt; c[i], d[++m]=c[i];
+    sort (d+1, d+m+1);
+    f1 (i, n)
+    {
+        int x=lower_bound(d+1, d+m+1, a[i])-d;
+        up(x, t1, 1);
+    }
+    f1 (i, n)
+    {
+        int x=lower_bound(d+1, d+m+1, b[i])-d;
+        int v=get(x-1, t1);
+        up(x, t2, v);
+    }
+    long long ans=0;
+    f1 (i, n)
+    {
+        int x=lower_bound(d+1, d+m+1, c[i])-d;
+        ans += get(x-1, t2);
+    }
+    cout &lt;&lt; ans;
+    return 0;
+}
+    </textarea>
+</div>
+
+   
+<script type="text/javascript">
+        editAreaLoader.init({
+            id: "SubmitCode",
+            syntax_selection_allow: "cpp,java,pas,csharp,python",
+            is_editable: false,
+            allow_toggle: false,
+            allow_resize: "no",
+            syntax: "cpp",
+            display: "onload",
+            start_highlight: true
+        });
+</script>

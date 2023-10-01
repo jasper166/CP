@@ -1,0 +1,88 @@
+
+
+
+<div id="fb-root"></div>
+<script>(function (d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v2.3";
+    fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+<div class="submission-title">
+    218287 - Coder: <a href="/Coder/Details/YugiHacker">YugiHacker</a> - Bài tập: <a href="/Problem/Details/9787">EVENSUM - Tổng chữ số l&#224; chẵn</a> - <span>Accepted</span> - Time: <span>15 ms</span> - Memory: <span>1064 KB </span> 
+        <a href="/Submission/Detail/218287/?fullScreen=1"><span class="red">(full screen)</span></a>
+</div>
+<div>
+    <textarea id="SubmitCode" rows="58" cols="125">#include &lt;bits/stdc++.h&gt;
+using namespace std;
+
+vector&lt;int&gt; num;
+int a, b, d, k;
+int DP[12][200][2];
+
+int call(int pos, int s, int f){
+    if(pos == num.size()){
+        if(s%2) return 1;
+        return 0;
+    }
+
+    if(DP[pos][s][f] != -1) return DP[pos][s][f];
+    int res = 0;
+
+    int LMT;
+
+    if(f == 0){
+        LMT = num[pos];
+    } else {
+        LMT = 9;
+    }
+
+    for(int dgt = 0; dgt&lt;=LMT; dgt++){
+        int nf = f;
+        int ns = s+dgt;
+        if(f == 0 &amp;&amp; dgt &lt; LMT) nf = 1;
+        res += call(pos+1, ns, nf);
+    }
+
+    return DP[pos][s][f] = res;
+}
+
+int solve(int b){
+    num.clear();
+    while(b&gt;0){
+        num.push_back(b%10);
+        b/=10;
+    }
+    reverse(num.begin(), num.end());
+
+    memset(DP, -1, sizeof(DP));
+    int res = call(0, 0, 0);
+    return res;
+}
+
+int main () {
+
+    cin &gt;&gt; a &gt;&gt; b;
+    int res = solve(b) - solve(a-1);
+    cout &lt;&lt; res &lt;&lt; endl;
+
+    return 0;
+}
+    </textarea>
+</div>
+
+   
+<script type="text/javascript">
+        editAreaLoader.init({
+            id: "SubmitCode",
+            syntax_selection_allow: "cpp,java,pas,csharp,python",
+            is_editable: false,
+            allow_toggle: false,
+            allow_resize: "no",
+            syntax: "cpp",
+            display: "onload",
+            start_highlight: true
+        });
+</script>

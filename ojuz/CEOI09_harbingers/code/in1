@@ -1,0 +1,71 @@
+5
+1 2 20
+2 3 12
+2 4 1
+4 5 3
+26 9
+1 10
+500 2
+2 30
+
+struct CHT {
+    struct Line {
+        ll a, b;
+        Line (ll _a = 0, ll _b = 0) { a = _a; b = _b; };
+        ll cal(ll x) { return a * x + b; }
+        ll cross(Line o) { return (long double) (b - o.b) / (long double) (o.a - a); }
+    };
+
+    Line q[MAX];
+
+    struct Pre {
+        int pos, top;
+        Line past;
+        Pre (int a, int b, Line c) : pos(a), top(b), past(c) {};
+    };
+
+    vector <Pre> undo;
+    int top;
+
+    void add(ll a, ll b) {
+        Line nLine(a, b);
+        int pos = top + 1;
+        int l = 2, r = top;
+        while (l <= r) {
+            int m = (l + r) / 2;
+            if (q[m - 1].cross(nLine) <= q[m - 1].cross(q[m])) {
+                pos = m;
+                r = m - 1;
+            }
+            else
+                l = m + 1;
+        }
+
+        undo.push_back({pos, top, q[pos]});
+        q[pos] = nLine;
+        top = pos;
+    }
+
+    void roll_back() {
+        if (undo.empty()) return;
+        Pre x = undo.back(); undo.pop_back();
+        top = x.top;
+        q[x.pos] = x.past;
+    }
+
+    ll qry(ll x) {
+        int l = 1, r = top;
+        ll ans = LINF;
+        while (l <= r) {
+            int m = (l + r) / 2;
+            ll lhs = q[m].cal(x);
+            ll rhs = (m + 1 <= top)? q[m + 1].cal(x) : LINF;
+            if (lhs > rhs)
+                l = m + 1;
+            else
+                r = m - 1;
+            ans = min({ans, lhs, rhs});
+        }
+        return ans;
+    }
+} hull;

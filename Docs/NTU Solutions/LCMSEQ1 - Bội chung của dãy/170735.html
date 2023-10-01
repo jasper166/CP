@@ -1,0 +1,83 @@
+
+
+
+<div id="fb-root"></div>
+<script>(function (d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v2.3";
+    fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+<div class="submission-title">
+    170735 - Coder: <a href="/Coder/Details/YugiHacker">YugiHacker</a> - Bài tập: <a href="/Problem/Details/7159">Bội chung của d&#227;y</a> - <span>Accepted</span> - Time: <span>46 ms</span> - Memory: <span>64 KB </span> 
+        <a href="/Submission/Detail/170735/?fullScreen=1"><span class="red">(full screen)</span></a>
+</div>
+<div>
+    <textarea id="SubmitCode" rows="53" cols="125">#include&lt;bits/stdc++.h&gt;
+using namespace std;
+
+#define file &quot;&quot;
+#define el cout&lt;&lt;&quot;\n&quot;
+#define	f0(i,n) for(int i=0;i&lt;n;i++)
+#define f1(i,n) for(int i=1;i&lt;=n;i++)
+#define maxn 1000006
+int d[maxn], a[maxn];
+int calc(int n)
+{
+    int a2=1, a5=1;
+    int x=-1, y=-1;
+    for (;a2&lt;=n;x++, a2*=2);
+    for (;a5&lt;=n;y++, a5*=5);
+    ///cout &lt;&lt; x &lt;&lt; &#39; &#39; &lt;&lt; y; el;
+    int s=1;
+    for (int i=1; i&lt;=(x-y); i++) s*=2, s%=10;
+    return s;
+}
+main(){
+    ios_base::sync_with_stdio(0);cin.tie(0);cout.tie(0);
+    ///freopen(file&quot;.inp&quot;,&quot;r&quot;,stdin);
+    ///freopen(file&quot;.out&quot;,&quot;w&quot;,stdout);
+    int n;
+    for (int i=2; i*i&lt;maxn; i++)
+        if (d[i]==0) for (int j=i*i; j&lt;maxn; j+=i)
+            d[j]=1;
+    a[1]=1;
+    f1 (i, maxn-1) a[i]=1;
+    for (int i=2; i&lt;maxn; i++)
+    {
+        if (d[i]==0 &amp;&amp; i!=2 &amp;&amp; i!=5)
+        {
+            a[i]=a[i-1]*i;
+            if (i&lt;=1000)
+            for (int x=i*i;;x*=i)
+            {
+                if (x&gt;maxn) break;
+                a[x]=i;
+            }
+        }
+        else a[i]*=a[i-1];
+        a[i]%=10;
+    }
+    while (cin &gt;&gt; n)
+    {
+        cout &lt;&lt; (a[n]*calc(n))%10; el;
+    }
+}
+    </textarea>
+</div>
+
+   
+<script type="text/javascript">
+        editAreaLoader.init({
+            id: "SubmitCode",
+            syntax_selection_allow: "cpp,java,pas,csharp,python",
+            is_editable: false,
+            allow_toggle: false,
+            allow_resize: "no",
+            syntax: "cpp",
+            display: "onload",
+            start_highlight: true
+        });
+</script>

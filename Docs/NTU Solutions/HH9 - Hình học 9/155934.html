@@ -1,0 +1,75 @@
+
+
+
+<div id="fb-root"></div>
+<script>(function (d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v2.3";
+    fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+<div class="submission-title">
+    155934 - Coder: <a href="/Coder/Details/YugiHacker">YugiHacker</a> - Bài tập: <a href="/Problem/Details/4549">H&#236;nh học 9</a> - <span>Accepted</span> - Time: <span>15 ms</span> - Memory: <span>1092 KB </span> 
+        <a href="/Submission/Detail/155934/?fullScreen=1"><span class="red">(full screen)</span></a>
+</div>
+<div>
+    <textarea id="SubmitCode" rows="45" cols="125">#include&lt;bits/stdc++.h&gt;
+
+#define el cout&lt;&lt;&quot;\n&quot;
+#define file &quot;&quot;
+#define	f0(i,n) for(int i=0;i&lt;n;i++)
+#define f1(i,n) for(int i=1;i&lt;=n;i++)
+#define maxn
+#define eps 1e-6
+
+using namespace std;
+int t, xa, xb, ya, yb;
+double f(double k)
+{
+    return sqrt(1ll*(k-xa)*(k-xa)+1ll*ya*ya) + sqrt(1ll*(k-xb)*(k-xb)+1ll*yb*yb);
+}
+int main()
+{
+    ios_base::sync_with_stdio(0);
+    cin.tie(0);
+    cout.tie(0);
+    //freopen(file&quot;.inp&quot;,&quot;r&quot;,stdin);
+    //freopen(file&quot;.out&quot;,&quot;w&quot;,stdout);
+    cin &gt;&gt; t;
+    while (t--)
+    {
+        cin &gt;&gt; xa &gt;&gt; ya &gt;&gt; xb &gt;&gt; yb;
+        if (xa &gt; xb) swap (xa, xb), swap (ya, yb);
+        double l=xa, r=xb;
+        while (r-l&gt;eps*4)
+        {
+            double m1=(l+r)/2;
+            double m2=m1+eps;
+            //cout &lt;&lt; l &lt;&lt; &#39; &#39; &lt;&lt; r, el;
+            if (f(m1)&gt;f(m2)) l=m1;
+            else r=m2;
+        }
+        double ans=1e18;
+        for (double i=l; i&lt;=r; i+=eps) ans=min(ans, f(i));
+        cout &lt;&lt; (int) ans; el;
+    }
+    return 0;
+}
+    </textarea>
+</div>
+
+   
+<script type="text/javascript">
+        editAreaLoader.init({
+            id: "SubmitCode",
+            syntax_selection_allow: "cpp,java,pas,csharp,python",
+            is_editable: false,
+            allow_toggle: false,
+            allow_resize: "no",
+            syntax: "cpp",
+            display: "onload",
+            start_highlight: true
+        });
+</script>

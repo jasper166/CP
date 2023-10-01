@@ -1,0 +1,58 @@
+
+
+
+<div id="fb-root"></div>
+<script>(function (d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v2.3";
+    fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+<div class="submission-title">
+    258823 - Coder: <a href="/Coder/Details/YugiHacker">YugiHacker</a> - Bài tập: <a href="/Problem/Details/9889">MAFR</a> - <span>Accepted</span> - Time: <span>15 ms</span> - Memory: <span>1056 KB </span> 
+        <a href="/Submission/Detail/258823/?fullScreen=1"><span class="red">(full screen)</span></a>
+</div>
+<div>
+    <textarea id="SubmitCode" rows="28" cols="125">#pragma GCC optimize(&quot;O3&quot;)
+#include&lt;bits/stdc++.h&gt;
+using namespace std;
+#define ll long long
+ll a[4];
+int main(){
+    ios::sync_with_stdio(0);
+    cin.tie(0); cout.tie(0);
+    while(cin&gt;&gt;a[1]&gt;&gt;a[2]&gt;&gt;a[3]&gt;&gt;a[4])
+    {ll x = 0;
+    for(ll i = 1; i &lt;= 4; i++)
+        if(a[i] == 0)
+            x++;
+    if(x &gt; 2)
+    {
+        cout&lt;&lt;&quot;NO&quot;&lt;&lt;&#39;\n&#39;;
+    }
+    else{
+    if(a[1] * a[2] == a[3] * a[4] || a[1] * a[4] == a[2] * a[3] || a[1] * a[3] == a[2]*a[4])
+        cout&lt;&lt;&quot;YES&quot;&lt;&lt;&#39;\n&#39;;
+    else
+        cout&lt;&lt;&quot;NO&quot;&lt;&lt;&#39;\n&#39;;
+    }
+}
+}
+    </textarea>
+</div>
+
+   
+<script type="text/javascript">
+        editAreaLoader.init({
+            id: "SubmitCode",
+            syntax_selection_allow: "cpp,java,pas,csharp,python",
+            is_editable: false,
+            allow_toggle: false,
+            allow_resize: "no",
+            syntax: "cpp",
+            display: "onload",
+            start_highlight: true
+        });
+</script>

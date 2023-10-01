@@ -1,0 +1,97 @@
+
+
+
+<div id="fb-root"></div>
+<script>(function (d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v2.3";
+    fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+<div class="submission-title">
+    172722 - Coder: <a href="/Coder/Details/YugiHacker">YugiHacker</a> - Bài tập: <a href="/Problem/Details/8314">Số level D8</a> - <span>Accepted</span> - Time: <span>46 ms</span> - Memory: <span>2504 KB </span> 
+        <a href="/Submission/Detail/172722/?fullScreen=1"><span class="red">(full screen)</span></a>
+</div>
+<div>
+    <textarea id="SubmitCode" rows="67" cols="125">#include&lt;bits/stdc++.h&gt;
+using namespace std;
+
+#define file &quot;&quot;
+#define el cout&lt;&lt;&quot;\n&quot;
+#define	f0(i,n) for(int i=0;i&lt;n;i++)
+#define f1(i,n) for(int i=1;i&lt;=n;i++)
+#define maxn 1000006
+#define bit(n,i) ((n&gt;&gt;i)&amp;1)
+long long n, k, a[maxn], d[maxn], f[maxn];
+long long ans;
+void sub1()
+{
+    f1 (x, (1&lt;&lt;n)-1)
+    {
+        long long bc=1;
+        f0 (i, n) if (bit(x, i))
+        {
+            long long g=__gcd(1ll*a[i+1], bc);
+            bc=bc/g*a[i+1];
+        }
+        if (int(__builtin_popcount(x))%2) ans += k/bc;
+        else ans -= k/bc;
+    }
+    cout &lt;&lt; ans;
+}
+void sub2()
+{
+    queue &lt;int&gt; q;
+    f1 (i, n)
+    {
+        if(d[a[i]]==0) q.push(a[i]) ;
+        d[a[i]]=1;
+    }
+    if(d[1]==1)
+    {
+        cout&lt;&lt;k ;
+        return ;
+    }
+    while(!q.empty())
+    {
+        int u=q.front() ;
+        q.pop() ;
+        for(int v=u*2; v&lt;=k; v+=u)
+            if(d[v]==0)
+            {
+                q.push(v) ;
+                d[v]=1 ;
+            }
+    }
+    int ans=0 ;
+    f1 (i, k)
+    ans += d[i];
+    cout&lt;&lt;ans ;
+}
+main(){
+    ios_base::sync_with_stdio(0);cin.tie(0);cout.tie(0);
+    ///freopen(file&quot;.inp&quot;,&quot;r&quot;,stdin);
+    ///freopen(file&quot;.out&quot;,&quot;w&quot;,stdout);
+    cin &gt;&gt; n &gt;&gt; k;
+    f1 (i, n) cin &gt;&gt; a[i];
+    if (n&lt;=1e5 &amp;&amp; k&lt;=1e5) sub2();
+    else sub1();
+}
+    </textarea>
+</div>
+
+   
+<script type="text/javascript">
+        editAreaLoader.init({
+            id: "SubmitCode",
+            syntax_selection_allow: "cpp,java,pas,csharp,python",
+            is_editable: false,
+            allow_toggle: false,
+            allow_resize: "no",
+            syntax: "cpp",
+            display: "onload",
+            start_highlight: true
+        });
+</script>

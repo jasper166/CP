@@ -1,0 +1,23 @@
+Xét đoạn (l, r), cần thêm tối thiểu lượng bn để tạo dãy tăng?
+
+Gọi vị trí đầu tiên > a(l) là l1
+-> Lượng tăng của dãy (l, l1) là (l1 - l) * a(l) - sum(l, l1 - 1)
+Gọi vị trí đầu tiên > a(l1) là l2
+-> Lượng tăng của dãy (l1, l2) là (l2 - l1) * a(l1) - sum(l1, l2 - 1)
+...
+Đến vị trí cuối cùng là pos
+lượng tăng còn lại là dãy (pos, r) là (r - pos + 1) * a(pos) - sum(pos, r);
+
+Vậy tổng lượng tăng (l, r):
+ans = (l1 - l) * a(l) - sum(l, l1 - 1) + (l2 - l1) * a(l1) - sum(l1, l2 - 1)
+... + (r - pos + 1) * a(pos) - sum(pos, r)
+ans = (l1 - l) * a(l) + (l2 - l1) * a(l1) + .. + (r - pos + 1) * a(pos) - sum(l, r)
+
+- Sử dụng stack để tìm nhanh vị trí số lớn hơn gần nhất
+
+- Sử dụng binary jumping:
+ + để tìm vị trí xa nhất có thể > a(l) mà <= r : pos = jump[k][l]
+ + để tính toán lượng cần thiết để nhảy tới pos: sum[k][l];
+ -> đáp án = sum[k][l] - (r - pos + 1) * a[pos] - sum(l, r)
+
+ĐPT: O(NlogN) + O(Q*logN);

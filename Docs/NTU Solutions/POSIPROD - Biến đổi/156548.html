@@ -1,0 +1,57 @@
+
+
+
+<div id="fb-root"></div>
+<script>(function (d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v2.3";
+    fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+<div class="submission-title">
+    156548 - Coder: <a href="/Coder/Details/YugiHacker">YugiHacker</a> - Bài tập: <a href="/Problem/Details/5793">Biến đổi</a> - <span>Accepted</span> - Time: <span>15 ms</span> - Memory: <span>2524 KB </span> 
+        <a href="/Submission/Detail/156548/?fullScreen=1"><span class="red">(full screen)</span></a>
+</div>
+<div>
+    <textarea id="SubmitCode" rows="27" cols="125">#include&lt;bits/stdc++.h&gt;
+
+#define file &quot;&quot;
+#define el cout&lt;&lt;&quot;\n&quot;
+#define	f0(i,n) for(int i=0;i&lt;n;i++)
+#define f1(i,n) for(int i=1;i&lt;=n;i++)
+#define maxn
+
+using namespace std;
+
+int main()
+{
+    int n, a=0, b=0;
+    cin &gt;&gt; n;
+    while (n--)
+    {
+        int x;
+        cin &gt;&gt; x;
+        if (x==0) return cout &lt;&lt; -1, 0;
+        if (x&lt;0) a++;
+        else b++;
+    }
+    cout &lt;&lt; min(a, b);
+}
+    </textarea>
+</div>
+
+   
+<script type="text/javascript">
+        editAreaLoader.init({
+            id: "SubmitCode",
+            syntax_selection_allow: "cpp,java,pas,csharp,python",
+            is_editable: false,
+            allow_toggle: false,
+            allow_resize: "no",
+            syntax: "cpp",
+            display: "onload",
+            start_highlight: true
+        });
+</script>

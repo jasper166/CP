@@ -1,0 +1,87 @@
+
+
+
+<div id="fb-root"></div>
+<script>(function (d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v2.3";
+    fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+<div class="submission-title">
+    274659 - Coder: <a href="/Coder/Details/YugiHacker">YugiHacker</a> - Bài tập: <a href="/Problem/Details/9960">CLOCK3 - Đồng hồ 3</a> - <span>Accepted</span> - Time: <span>31 ms</span> - Memory: <span>2540 KB </span> 
+        <a href="/Submission/Detail/274659/?fullScreen=1"><span class="red">(full screen)</span></a>
+</div>
+<div>
+    <textarea id="SubmitCode" rows="57" cols="125">#include&lt;bits/stdc++.h&gt;
+using namespace std;
+
+#define el cout&lt;&lt;&quot;\n&quot;
+#define	f0(i,n) for(int i=0;i&lt;n;++i)
+#define f1(i,n) for(int i=1;i&lt;=n;++i)
+#define maxn
+#define eps 1e-9
+int t;
+const int sth = 22 * 180;
+int convert(string a)
+{
+    int s=0;
+    s=((a[0]-&#39;0&#39;)*10+(a[1]-&#39;0&#39;))*60+((a[3]-&#39;0&#39;)*10+(a[4]-&#39;0&#39;));
+    return s*sth;
+}
+vector &lt;int&gt; Make(int alpha)
+{
+    set &lt;int&gt; s;
+    for (int x=0; x&lt;60*24*sth; x+= 720 * sth /11)
+    {
+        int pre = x - 720.0 * alpha;
+        int nxt = x + 720.0 * alpha;
+        if (pre &lt; 0) pre += 60 * 24 * sth;
+        if (nxt &gt;= 60*24*sth) nxt -= 60 * 24 * sth;
+        s.insert(pre);
+        s.insert(nxt);
+    }
+    vector &lt;int&gt; ans(s.begin(), s.end());
+    return ans;
+}
+void change(long double x)
+{
+    x/=sth;
+    cout &lt;&lt; (int)x/60 &lt;&lt;  &#39;:&#39; &lt;&lt; x-((int)x/60)*60; el;
+}
+int main(){
+    ios_base::sync_with_stdio(0);cin.tie(0);cout.tie(0);
+    cin &gt;&gt; t;
+    while (t--)
+    {
+        string s1, s2;
+        int alpha;
+        cin &gt;&gt; s1 &gt;&gt; s2 &gt;&gt; alpha;
+        int x1 = convert(s1), x2= convert(s2);
+        vector &lt;int&gt; time = Make(alpha);
+        int ans = 0;
+        int p1 = lower_bound(time.begin(), time.end(), x1) - time.begin();
+        int p2 = upper_bound(time.begin(), time.end(), x2) - time.begin();
+        //for (auto x:time) change(x);
+        cout &lt;&lt; p2 - p1; el;
+    }
+    return 0;
+}
+    </textarea>
+</div>
+
+   
+<script type="text/javascript">
+        editAreaLoader.init({
+            id: "SubmitCode",
+            syntax_selection_allow: "cpp,java,pas,csharp,python",
+            is_editable: false,
+            allow_toggle: false,
+            allow_resize: "no",
+            syntax: "cpp",
+            display: "onload",
+            start_highlight: true
+        });
+</script>

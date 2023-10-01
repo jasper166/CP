@@ -1,0 +1,75 @@
+
+
+
+<div id="fb-root"></div>
+<script>(function (d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v2.3";
+    fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+<div class="submission-title">
+    266906 - Coder: <a href="/Coder/Details/YugiHacker">YugiHacker</a> - Bài tập: <a href="/Problem/Details/4518">T&#237;nh cho vui</a> - <span>Accepted</span> - Time: <span>15 ms</span> - Memory: <span>988 KB </span> 
+        <a href="/Submission/Detail/266906/?fullScreen=1"><span class="red">(full screen)</span></a>
+</div>
+<div>
+    <textarea id="SubmitCode" rows="45" cols="125">#include&lt;bits/stdc++.h&gt;
+using namespace std;
+
+#define el cout&lt;&lt;&quot;\n&quot;
+#define	f0(i,n) for(int i=0;i&lt;n;i++)
+#define f1(i,n) for(int i=1;i&lt;=n;i++)
+#define maxn 100005
+#define pii pair&lt;long long, long long&gt;
+#define fi first
+#define se second
+#define MOD 1000000000000007
+pii a[maxn];
+int n;
+bool cmp(pii a, pii b)
+{
+    return a.fi*b.se&lt;a.se*b.fi;
+}
+long long Mul(long long a, long long b)
+{
+    return (b?((Mul(a, b/2)*2+((b%2)?a:0))%MOD):0);
+}
+long long Pow(long long a, long long b)
+{
+    if (b==0) return 1;
+    long long t=Pow(a, b/2);
+    t=Mul(t,t);
+    if (b%2) t=Mul(t,a);
+    return t;
+}
+int main(){
+    ios_base::sync_with_stdio(0);cin.tie(0);cout.tie(0);
+    cin &gt;&gt; n;
+    f1 (i, n) cin &gt;&gt; a[i].fi;
+    f1 (i, n) cin &gt;&gt; a[i].se;
+    sort (a+1, a+n+1, cmp);
+    long long A=a[1].se*a[n].fi+a[1].fi*a[n].se;
+    long long B=a[1].se*a[n].se;
+    long long G=__gcd(A, B);
+    A/=G, B/=G;
+    cout &lt;&lt; Pow(A, B);
+    return 0;
+}
+    </textarea>
+</div>
+
+   
+<script type="text/javascript">
+        editAreaLoader.init({
+            id: "SubmitCode",
+            syntax_selection_allow: "cpp,java,pas,csharp,python",
+            is_editable: false,
+            allow_toggle: false,
+            allow_resize: "no",
+            syntax: "cpp",
+            display: "onload",
+            start_highlight: true
+        });
+</script>

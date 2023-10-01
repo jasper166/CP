@@ -1,0 +1,47 @@
+Hôm nay tôi biêt được 1 điều rất hay ho
+Lazy trên Segment tree có 2 cách
+1. là push ở trên
+2. là push dưới 
+ void update(int x, int l, int r, int u, int v, int val) {
+        // 1. push(x, l, r) 
+        if (l > v || r < u)
+            return;
+        if (u <= l && r <= v) {
+            lz[x] ^= val;
+            //1. push(x, l, r);
+            //2. f[x] = sz[x] - f[x]; 
+            return;
+        }
+        // push(x);2. Ở đây
+        int m = (l + r) / 2;	
+        update(x << 1, l, m, u, v, val);
+        update(x << 1 | 1, m + 1, r, u, v, val);
+        merge(x);
+    }
+
+Tất nhiên với mỗi cách push thì hàm push cũng khác chút
+	1. 
+    void push(int x, int l, int r) {
+        if (lz[x]) {
+        	f[x] = sz[x] - f[x];
+            if (l < r) {
+            	lz[x << 1] ^= 1;
+            	lz[x << 1 | 1] ^= 1;
+            }
+            lz[x] = 0;
+        }
+    }
+    2.
+    void push(int x) {
+        if (lz[x]) {
+            f[x << 1] = sz[x << 1] - f[x << 1];
+            f[x << 1 | 1] = sz[x << 1 | 1] - f[x << 1 | 1];
+            lz[x << 1] ^= 1;
+            lz[x << 1 | 1] ^= 1;
+
+            lz[x] = 0;
+        }
+    }
+    Nhìn chung 2 cách đều cho đúng kết quả. Nhưng cách 1 tiện hơn chút :v viết ít hơn 1 xíu
+
+    

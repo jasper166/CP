@@ -1,0 +1,34 @@
+vector<ll> b[N]{};
+ll c[N]{}, ans[N]{};
+
+void solve(){
+	ll n = rd, k = rd, l = 0, r = n - 1;
+	vector<ll> C; set<ll> S;
+	for (int i = 0; i < n; i++){
+		C.eb(rd); b[C.back()].pb(i);
+		c[i] = 0; S.insert(C.back());
+	}
+	for (int i = 1; i <= k; i++){
+		ans[i] = 0;
+	}
+	for (auto &x : S){
+		while (l <= r && c[l] == 1){
+			l++;
+		}
+		while (r >= l && c[r] == 1){
+			r--;
+		}
+		if (l > r){
+			ans[x] = 0; continue;
+		}
+		ans[x] = r - l + 1;
+		for (auto &y : b[x]){
+			c[y]++;
+		}
+		b[x].clear();
+	}
+	for (int i = 1; i <= k; i++){
+		cout << ans[i] * 2 << ' ';
+	}
+	cout << '\n';
+}

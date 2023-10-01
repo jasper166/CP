@@ -1,0 +1,109 @@
+
+
+
+<div id="fb-root"></div>
+<script>(function (d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v2.3";
+    fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+<div class="submission-title">
+    171466 - Coder: <a href="/Coder/Details/YugiHacker">YugiHacker</a> - Bài tập: <a href="/Problem/Details/7134">Đếm nguy&#234;n tố</a> - <span>Accepted</span> - Time: <span>375 ms</span> - Memory: <span>13776 KB </span> 
+        <a href="/Submission/Detail/171466/?fullScreen=1"><span class="red">(full screen)</span></a>
+</div>
+<div>
+    <textarea id="SubmitCode" rows="79" cols="125">#include &lt;stdio.h&gt;
+#include &lt;math.h&gt;
+#include &lt;vector&gt;
+#include &lt;map&gt;
+#include &lt;iostream&gt;
+#include &lt;algorithm&gt;
+using namespace std;
+
+#define long long long
+const int N = 100005;
+const int M = 1000000007;
+bool np[N];
+int p[N], pp=0;
+
+void eratos() {
+    np[0]=np[1]=true;
+    for (int i=2; i*i&lt;N; i++) if (!np[i])
+        for (int j=i*i; j&lt;N; j+=i) np[j]=true;
+    for (int i=2; i&lt;N; i++)
+    if (!np[i]) p[++pp]=i;
+}
+
+long power(long a, long k) {
+    long P = 1;
+    while (k) {
+        if (k&amp;1) P=P*a;
+        k/=2; a=a*a;
+    }
+    return P;
+}
+
+long power(long a, long k, long M) {
+    long P=1;
+    for (a=a%M; k; k/=2)
+    { if (k&amp;1) P=P*a%M; a=a*a%M; }
+    return P;
+}
+
+long root(long n, long k) {
+    long x = pow(n, 1.0/k);
+    while (power(x, k)%M==power(x, k, M) &amp;&amp; power(x, k)&lt;n) x++;
+    while (power(x, k)%M!=power(x, k, M) || power(x, k)&gt;n) x--;
+    return x;
+}
+
+map&lt;long, long&gt; Phi[N];
+
+long phi(long x, int a) {
+    if (Phi[a].count(x)) return Phi[a][x];
+    if (a==1) return (x+1)/2;
+    long Result = phi(x, a-1) - phi(x/p[a], a-1);
+    return Phi[a][x] = Result;
+}
+
+long pi(long x) {
+    if (x&lt;N)
+        return upper_bound(p+1, p+pp+1, x) - (p+1);
+    long a = pi(root(x, 4));
+    long b = pi(root(x, 2));
+    long c = pi(root(x, 3));
+    long Sum = phi(x, a) + (b+a-2)*(b-a+1)/2;
+    for (int i=a+1; i&lt;=b; i++)
+        Sum -= pi(x/p[i]);
+    for (int i=a+1; i&lt;=c; i++) {
+        long bi = pi(root(x/p[i], 2));
+        for (int j=i; j&lt;=bi; j++)
+        Sum -= pi(x/p[i]/p[j]) - (j-1);
+    }
+    return Sum;
+}
+
+main(){
+    eratos();
+    int l, r; cin &gt;&gt; l &gt;&gt; r;
+    cout &lt;&lt; pi(r)-pi(l-1);
+}
+    </textarea>
+</div>
+
+   
+<script type="text/javascript">
+        editAreaLoader.init({
+            id: "SubmitCode",
+            syntax_selection_allow: "cpp,java,pas,csharp,python",
+            is_editable: false,
+            allow_toggle: false,
+            allow_resize: "no",
+            syntax: "cpp",
+            display: "onload",
+            start_highlight: true
+        });
+</script>

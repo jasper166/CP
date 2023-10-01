@@ -1,0 +1,64 @@
+
+
+
+<div id="fb-root"></div>
+<script>(function (d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v2.3";
+    fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+<div class="submission-title">
+    282662 - Coder: <a href="/Coder/Details/YugiHacker">YugiHacker</a> - Bài tập: <a href="/Problem/Details/8402">Đường đến số kh&#244;ng</a> - <span>Accepted</span> - Time: <span>31 ms</span> - Memory: <span>2496 KB </span> 
+        <a href="/Submission/Detail/282662/?fullScreen=1"><span class="red">(full screen)</span></a>
+</div>
+<div>
+    <textarea id="SubmitCode" rows="34" cols="125">#include&lt;bits/stdc++.h&gt;
+#define el cout&lt;&lt;&quot;\n&quot;
+#define f0(i,n) for(int i=0;i&lt;n;i++)
+#define f1(i,n) for(int i=1;i&lt;=n;i++)
+#define maxn 10004
+using namespace std;
+int n, d[maxn];
+void dfs(int n)
+{
+    for (int x = 1; x &lt;= sqrt(n); x++)
+    if (n%x==0)
+    {
+        int y = n/x;
+        int m = (x-1)*(y+1);
+        if (d[m] == 0)
+        {
+            d[m] = 1;
+            dfs(m);
+        }
+    }
+}
+main()
+{
+    ios_base::sync_with_stdio(0);cin.tie(0);cout.tie(0);
+    cin &gt;&gt; n;
+    dfs(n);
+    vector&lt;int&gt; ans;
+    for (int i=0; i&lt;=n; i++) if(d[i] == 1) ans.push_back(i);
+    cout &lt;&lt; ans.size(); el;
+    for (int x:ans) cout &lt;&lt; x &lt;&lt; &#39; &#39;;
+}
+    </textarea>
+</div>
+
+   
+<script type="text/javascript">
+        editAreaLoader.init({
+            id: "SubmitCode",
+            syntax_selection_allow: "cpp,java,pas,csharp,python",
+            is_editable: false,
+            allow_toggle: false,
+            allow_resize: "no",
+            syntax: "cpp",
+            display: "onload",
+            start_highlight: true
+        });
+</script>

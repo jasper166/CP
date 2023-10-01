@@ -1,0 +1,61 @@
+
+
+
+<div id="fb-root"></div>
+<script>(function (d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v2.3";
+    fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+<div class="submission-title">
+    261253 - Coder: <a href="/Coder/Details/YugiHacker">YugiHacker</a> - Bài tập: <a href="/Problem/Details/9937">INCSEQ - D&#227;y con tăng li&#234;n tiếp d&#224;i nhất</a> - <span>Accepted</span> - Time: <span>31 ms</span> - Memory: <span>2576 KB </span> 
+        <a href="/Submission/Detail/261253/?fullScreen=1"><span class="red">(full screen)</span></a>
+</div>
+<div>
+    <textarea id="SubmitCode" rows="31" cols="125">#include&lt;bits/stdc++.h&gt;
+using namespace std;
+
+#define el cout&lt;&lt;&quot;\n&quot;
+#define	f0(i,n) for(int i=0;i&lt;n;i++)
+#define f1(i,n) for(int i=1;i&lt;=n;i++)
+#define maxn 100005
+int n, a[maxn], b[maxn], f[2][maxn], ans;
+int main(){
+    ios_base::sync_with_stdio(0);cin.tie(0);cout.tie(0);
+    cin &gt;&gt; n;
+    f1 (i, n) cin &gt;&gt; a[i];
+    a[0]=-1e9;
+    f1 (i, n)
+    {
+        if (a[i]&gt;a[i-1]) f[0][i]=f[0][i-1]+1, f[1][i]=f[1][i-1]+1;
+        else f[0][i]=1, f[1][i]=1;
+        if (i&gt;1)
+        {
+            if (a[i]&gt;a[i-2]+1) f[1][i]=max(f[1][i], f[0][i-2]+2);
+        }
+        ans = max(ans, f[1][i]);
+        ans = max(ans, min(f[0][i]+1, n));
+        //cout &lt;&lt; f[0][i] &lt;&lt; &#39; &#39; &lt;&lt; f[1][i], el;
+    }
+    cout &lt;&lt; ans;
+    return 0;
+}
+    </textarea>
+</div>
+
+   
+<script type="text/javascript">
+        editAreaLoader.init({
+            id: "SubmitCode",
+            syntax_selection_allow: "cpp,java,pas,csharp,python",
+            is_editable: false,
+            allow_toggle: false,
+            allow_resize: "no",
+            syntax: "cpp",
+            display: "onload",
+            start_highlight: true
+        });
+</script>

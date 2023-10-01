@@ -1,0 +1,13 @@
+
+
+void func (int i, int sum) {
+	if (sum == 0)
+		display();
+	if (sum < 0)
+		return;
+	for (int j = i; j <= n; j++) {
+		vec.push_back(j);
+		func(j, sum - j);
+		vec.pop_back(j)
+	}
+}

@@ -1,0 +1,98 @@
+
+
+
+<div id="fb-root"></div>
+<script>(function (d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v2.3";
+    fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+<div class="submission-title">
+    269091 - Coder: <a href="/Coder/Details/YugiHacker">YugiHacker</a> - Bài tập: <a href="/Problem/Details/9917">LCSME</a> - <span>Accepted</span> - Time: <span>1093 ms</span> - Memory: <span>2704 KB </span> 
+        <a href="/Submission/Detail/269091/?fullScreen=1"><span class="red">(full screen)</span></a>
+</div>
+<div>
+    <textarea id="SubmitCode" rows="68" cols="125">#include &lt;algorithm&gt;
+#include &lt;iostream&gt;
+#include &lt;vector&gt;
+
+using namespace std;
+
+template&lt;class ITR&gt;
+void matching(vector&lt;int&gt; &amp;score, const ITR &amp;lx, const ITR &amp;rx, const ITR &amp;ly, const ITR &amp;ry)
+{
+	score.assign(distance(ly, ry) + 1, 0);
+	for (auto x = lx; x != rx; ++x)
+    {
+		int i = 0, pre = 0;
+        for (auto y = ly; y != ry; ++y)
+        {
+			int tmp = score[++i];
+            score[i] = (*x == *y) ? pre + 1 : max(score[i - 1], score[i]);
+			pre = tmp;
+		}
+	}
+}
+
+#define all(x) (x).begin(), (x).end()
+#define rall(x) (x).rbegin(), (x).rend()
+string lcs(string &amp;x, string &amp;y)
+{
+    if (x.size() &gt; y.size()) swap(x, y);
+    if (x.empty() || x == y) return x;
+    if (x.size() &lt; 8 &amp;&amp; y.find(x) != -1) return x;
+
+    int n = x.size(), m = y.size();
+    int l = 0, rx = n - 1, ry = m - 1;
+    while (l &lt;= rx &amp;&amp; x[l] == y[l]) ++l;
+    while (l &lt;= rx &amp;&amp; x[rx] == y[ry]) --rx, --ry;
+
+    string head = x.substr(0, l);
+    string tail = x.substr(rx + 1);
+    x = x.substr(l, rx - l + 1);
+    y = y.substr(l, ry - l + 1);
+
+    int mid = x.size() &gt;&gt; 1;
+    int rmid = x.size() - mid;
+    vector&lt;int&gt; L, R;
+    matching(L, all(x) - rmid,  all(y));
+    matching(R, rall(x) - mid, rall(y));
+
+    transform(all(L), R.rbegin(), L.begin(), plus&lt;int&gt;());
+    auto maxIterator = max_element(all(L));
+    if (*maxIterator == 0) return head + tail;
+    int len = distance(L.begin(), maxIterator);
+    
+    string head_x = x.substr(0, mid);
+    string head_y = y.substr(0, len);
+    string tail_x = x.substr(mid);
+    string tail_y = y.substr(len);
+    return head + lcs(head_x, head_y) + lcs(tail_x, tail_y) + tail;
+}
+
+int main()
+{
+    string x, y;
+    cin &gt;&gt; x &gt;&gt; y;
+	cout &lt;&lt; lcs(x, y) &lt;&lt; endl;
+	return 0;
+}
+    </textarea>
+</div>
+
+   
+<script type="text/javascript">
+        editAreaLoader.init({
+            id: "SubmitCode",
+            syntax_selection_allow: "cpp,java,pas,csharp,python",
+            is_editable: false,
+            allow_toggle: false,
+            allow_resize: "no",
+            syntax: "cpp",
+            display: "onload",
+            start_highlight: true
+        });
+</script>

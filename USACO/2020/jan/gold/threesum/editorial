@@ -1,0 +1,23 @@
+n <= 5000
+q <= 5000
+
+
+query tìm số cặp (i, j, k) : L <= i, j, k <= R
+sao cho Ai + Aj + Ak = 0;
+
+preprocessing 
+mảng f(L, R) : số bộ 3 (i, j, k) thoả mãn trong đoạn [L, R]: Ai + Aj + Ak = 0;
+mảng g(L, R) : số bộ 3 (l, x, r) thoả mãn: Al + Ax + Ar = 0;
+query trong O(1);
+
+DP range để tính
+f(i, j) = f(i + 1, j) + f(i, j - 1) - f(i + 1, j - 1)
+
+Để ý rằng với cách tính f(L, R) trên, ta chưa bao gồm các bộ 3: g(L, x, R) dùng phần tử ở cả L và R
+-> f(i, j) = f(i + 1, j) + f(i, j - 1) - f(i + 1, j - 1) + g(i, j);
+
+
+
+
+
+

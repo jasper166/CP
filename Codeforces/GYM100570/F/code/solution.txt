@@ -1,0 +1,27 @@
+
+- Cách làm na ná bài Xenia
+- Cây có trọng số, Q truy vấn : u, L . với mỗi đỉnh u bất kì đếm số lượng đỉnh v sao cho d(u, v) <= L
+- Xây dựng LCA để tìm dis, Centroid để phân rã cây để tính 2 mảng vector sau nhanh
+
+- Gọi 2 mảng vector:
+ + cnt(u) : Lưu trữ khoảng cách d(x, u) tăng dần các đỉnh x thuộc cây con của u
+ + cnt_p(u) : Lưu trữ khoảng cách d(x, pa(u)) tăng dần các đỉnh x thuộc cây con của u
+
+
+- Vậy với mỗi truy vấn : u, L
+Safely assume that
++ Nếu như các đỉnh v thuộc cây con u thì ans = upper_bound(cnt[u].begin(), cnt[u].end(), l) - cnt[u].begin()
++ Nếu như ngoài cây con của u thì trên đường đi từ u tới v sẽ phải qua ít nhất 1 cha chung thuộc cây centroid
+Vậy với mỗi cha trên u(x) ta xét xem có bao nhiêu đỉnh con v ko thuộc cây con của u và có khoảng cách d(v, x) <= L - d(u, x);
+-> Lượng cộng thêm: total = upper_bound(cnt[pa[v]].begin(), cnt[pa[v]].end(), d) - cnt[pa[v]].begin();
+Tuy nhiên phải trừ đi lượng nằm trong cây con của u: sub = upper_bound(cnt_p[v].begin(), cnt_p[v].end(), d) - cnt_p[v].begin();
+
+mỗi cha x ta cộng thêm lượng: ans += total - sub;
+
+DPT:
+
+Xây dựng LCA = Euler tour (NlogN)
+Xây dựng trc 2 mảng vector (NlogNlog(logN))
+Q truy vấn
+ như đã phân tích tính chất của cây centroid thì u ko có quá log(n) đỉnh cha -> mỗi truy vấn mất cỡ log(n) đi lên các cha * log(n) chặt np;
+ -> N.logN.log(logN) + Q.log^2N

@@ -1,0 +1,79 @@
+
+
+
+<div id="fb-root"></div>
+<script>(function (d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v2.3";
+    fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+<div class="submission-title">
+    156511 - Coder: <a href="/Coder/Details/YugiHacker">YugiHacker</a> - Bài tập: <a href="/Problem/Details/7112">Số tam gi&#225;c</a> - <span>Accepted</span> - Time: <span>31 ms</span> - Memory: <span>2508 KB </span> 
+        <a href="/Submission/Detail/156511/?fullScreen=1"><span class="red">(full screen)</span></a>
+</div>
+<div>
+    <textarea id="SubmitCode" rows="49" cols="125">#include&lt;bits/stdc++.h&gt;
+
+#define file &quot;&quot;
+#define el cout&lt;&lt;&quot;\n&quot;
+#define	f0(i,n) for(long long i=0;i&lt;n;i++)
+#define f1(i,n) for(long long i=1;i&lt;=n;i++)
+#define maxn
+#define MOD 1000000000000000007
+
+using namespace std;
+long long ans;
+long long nhan(unsigned long long a,unsigned long long b)
+{
+    a%=MOD;
+    b%=MOD;
+    unsigned long long q=(long double)a*b/MOD;
+    long long r=(long long) (a*b-q*MOD) % (long long) MOD;
+    if (r&lt;0) r+=MOD;
+    return r;
+}
+long long calc(long long x)
+{
+    if (x&lt;6) return 0;
+    long long a[3]={x,x-1,x-2};
+    f0 (i, 3) if (a[i]%2==0) {a[i]/=2; break;}
+    f0 (i, 3) if (a[i]%3==0) {a[i]/=3; break;}
+    long long ans=nhan(a[0], a[1]);
+    ans = nhan (ans, a[2]);
+    ans -= 1ll*x*(x-3);
+    while (ans &lt; 0) ans += MOD;
+    return ans;
+}
+main()
+{
+    int n;
+    cin &gt;&gt; n;
+    f1 (i, n)
+    {
+        int x;
+        cin &gt;&gt; x;
+        ans += calc(x);
+        ans%=MOD;
+    }
+    while (ans &lt; 0) ans += MOD;
+    cout &lt;&lt; ans;
+}
+    </textarea>
+</div>
+
+   
+<script type="text/javascript">
+        editAreaLoader.init({
+            id: "SubmitCode",
+            syntax_selection_allow: "cpp,java,pas,csharp,python",
+            is_editable: false,
+            allow_toggle: false,
+            allow_resize: "no",
+            syntax: "cpp",
+            display: "onload",
+            start_highlight: true
+        });
+</script>

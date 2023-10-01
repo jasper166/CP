@@ -1,0 +1,91 @@
+
+
+
+<div id="fb-root"></div>
+<script>(function (d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v2.3";
+    fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+<div class="submission-title">
+    155661 - Coder: <a href="/Coder/Details/YugiHacker">YugiHacker</a> - Bài tập: <a href="/Problem/Details/7111">B&#224;i tập về nh&#224; 2</a> - <span>Accepted</span> - Time: <span>218 ms</span> - Memory: <span>2684 KB </span> 
+        <a href="/Submission/Detail/155661/?fullScreen=1"><span class="red">(full screen)</span></a>
+</div>
+<div>
+    <textarea id="SubmitCode" rows="61" cols="125">#include&lt;bits/stdc++.h&gt;
+
+#define el cout&lt;&lt;&quot;\n&quot;
+#define file &quot;debug&quot;
+#define	f0(i,n) for(int i=0;i&lt;n;i++)
+#define f1(i,n) for(int i=1;i&lt;=n;i++)
+#define maxn
+
+using namespace std;
+int a[65], t;
+long long f[65][65][2][2];
+long long dq(int pos, int cnt, bool ok, bool cc)
+{
+    if (cnt &gt; 1) return 0;
+    if (pos==t) return (cnt==1);
+    if (f[pos][cnt][ok][cc]!=-1) return f[pos][cnt][ok][cc];
+    long long ans = 0;
+    int limit=ok?1:a[pos];
+    for (int dgt=0; dgt&lt;=limit; dgt++)
+    {
+        int newcc=cc||(dgt==1);
+        bool newok=(ok||dgt&lt;limit);
+        int newcnt=cnt;
+        if (cc) if (dgt==0) newcnt++;
+        ans += dq(pos+1, newcnt, newok, newcc);
+    }
+    return f[pos][cnt][ok][cc]=ans;
+}
+int calc(long long n)
+{
+    t=0;
+    while (n)
+    {
+        a[t++]=n%2;
+        n/=2;
+    }
+    f0 (i, t/2) swap (a[i], a[t-1-i]);
+    memset(f,-1,sizeof(f));
+    return dq(0, 0, 0, 0);
+}
+int main()
+{
+    ios_base::sync_with_stdio(0);
+    cin.tie(0);
+    cout.tie(0);
+    //freopen(file&quot;.inp&quot;,&quot;r&quot;,stdin);
+    //freopen(file&quot;.out&quot;,&quot;w&quot;,stdout);
+    int test;
+    cin &gt;&gt; test;
+    while (test--)
+    {
+        long long a, b;
+        cin &gt;&gt; a &gt;&gt; b;
+        cout &lt;&lt; calc(b)-calc(a-1);
+        el;
+    }
+    return 0;
+}
+    </textarea>
+</div>
+
+   
+<script type="text/javascript">
+        editAreaLoader.init({
+            id: "SubmitCode",
+            syntax_selection_allow: "cpp,java,pas,csharp,python",
+            is_editable: false,
+            allow_toggle: false,
+            allow_resize: "no",
+            syntax: "cpp",
+            display: "onload",
+            start_highlight: true
+        });
+</script>

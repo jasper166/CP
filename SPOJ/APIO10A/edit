@@ -1,0 +1,18 @@
+Cho n và 3 số a, b, c;
+
+Tìm cách chia dãy n thành các đoạn (i, j) để tổng f lớn nhất với f(x) = ax^2 + bx + c
+với x là tổng phần tử của (i, j);
+
+-> 
+	f(i) = max (f(j) + g(j + 1, i)) với j < i;
+	g(j + 1, i)
+		= a * sum(j + 1, i) ^ 2 + b * sum(j + 1, i) + c
+		= a * (p(i) - p(j)) ^ 2 + b * (p(i) - p(j)) + c
+		= (-2 * a * p(j) * p(i)) + (f(j) - b * p(j) + a * p(j) ^ 2) + (a * p(i) ^ 2 + b * p(j) + c);
+
+	Vậy đặt 
+		1. A = -2 * a * p(j)
+		2. B = f(j) - b * p(j) + a * p(j) ^ 2;
+		rõ ràng p tăng, a < 0 -> A sẽ luôn tăng
+
+	Vậy dùng CHT mono

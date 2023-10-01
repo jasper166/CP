@@ -1,0 +1,79 @@
+
+
+
+<div id="fb-root"></div>
+<script>(function (d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v2.3";
+    fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+<div class="submission-title">
+    175700 - Coder: <a href="/Coder/Details/YugiHacker">YugiHacker</a> - Bài tập: <a href="/Problem/Details/7131">Tổng phần nguy&#234;n</a> - <span>Accepted</span> - Time: <span>15 ms</span> - Memory: <span>1072 KB </span> 
+        <a href="/Submission/Detail/175700/?fullScreen=1"><span class="red">(full screen)</span></a>
+</div>
+<div>
+    <textarea id="SubmitCode" rows="49" cols="125">//--------HUNGPOGBA---------
+#include &lt;bits/stdc++.h&gt;
+#define  HUNGPOGBA &quot;&quot;
+#define memset(f,a) memset(f,a,sizeof(f))
+#define forr(i,a,b) for(int i=a;i&lt;=b;i++)
+#define ford(i,a,b) for(int i=a;i&gt;=b;i--)
+#define F first
+#define S second
+#define mp make_pair
+#define all(a) a.begin(),a.end()
+#define pub push_back
+#define sz(a) int(a.size())
+using namespace std;
+mt19937 Rand(time(0));
+/*
+template&lt;class A,class B&gt; void Max(A &amp;a,B b){a=((a&lt;b)?b:a);}
+template&lt;class A,class B&gt; void Min(A &amp;a,B b){a=((a&lt;b)?a:b);}
+template&lt;class T&gt;T lcm(T a,T b) {return a/__gcd(a,b)*b ;}
+template&lt;class T&gt; inline void Write(T x){if(x&lt;0){putchar(&#39;-&#39;);x*=-1;}if(x&gt;9) Write(x/10);putchar(x%10+&#39;0&#39;);}
+template&lt;class T&gt;inline void Read(T &amp;x){char c;for(c=getchar();(c&gt;&#39;9&#39;||c&lt;&#39;0&#39;)&amp;&amp;c!=&#39;-&#39;;c=getchar());
+T y;if(c==&#39;-&#39;)x=0,y=-1;else x=c-&#39;0&#39;,y=1;for(c=getchar();c&gt;=&#39;0&#39;&amp;&amp;c&lt;=&#39;9&#39;;c=getchar())x=x*10+c-&#39;0&#39;;x*=y;}
+*/
+typedef long long ll ;
+typedef long double ld ;
+typedef pair&lt;int,int&gt; ii ;
+
+const int maxn=1e5+5;
+const ll maxc=1e9+7;
+
+int main()
+{
+    ios_base::sync_with_stdio(0);
+    cin.tie(0);
+    cout.tie(0);
+    #ifndef ONLINE_JUDGE
+    //freopen(HUNGPOGBA&quot;.inp&quot;, &quot;r&quot;, stdin);
+    //freopen(HUNGPOGBA&quot;.out&quot;, &quot;w&quot;, stdout);
+    #endif  //ONLINE_JUDGE
+    ll n,Ans=0 ;
+    cin&gt;&gt;n ;
+    for(int i=1;i&lt;=sqrt(n);++i)
+       Ans+=(n-1ll*i*i)/(1ll*i)*2+1 ;
+       cout&lt;&lt;Ans ;
+    return 0;
+}
+//-----------CODE MY DREAM------------
+    </textarea>
+</div>
+
+   
+<script type="text/javascript">
+        editAreaLoader.init({
+            id: "SubmitCode",
+            syntax_selection_allow: "cpp,java,pas,csharp,python",
+            is_editable: false,
+            allow_toggle: false,
+            allow_resize: "no",
+            syntax: "cpp",
+            display: "onload",
+            start_highlight: true
+        });
+</script>

@@ -1,0 +1,96 @@
+
+
+
+<div id="fb-root"></div>
+<script>(function (d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v2.3";
+    fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+<div class="submission-title">
+    260329 - Coder: <a href="/Coder/Details/YugiHacker">YugiHacker</a> - Bài tập: <a href="/Problem/Details/7174">Ph&#226;n t&#237;ch số</a> - <span>Accepted</span> - Time: <span>15 ms</span> - Memory: <span>1132 KB </span> 
+        <a href="/Submission/Detail/260329/?fullScreen=1"><span class="red">(full screen)</span></a>
+</div>
+<div>
+    <textarea id="SubmitCode" rows="66" cols="125">#include&lt;bits/stdc++.h&gt;
+#define base 1000000000
+#define INF 99999999
+#define el cout&lt;&lt;&#39;\n&#39;
+#define fx(i,j,n) for(int i=j;i&lt;=n;i++)
+#define fn(i,j,n) for(int i=j;i&gt;=n;i--)
+#define fi first
+#define se second
+#define ii pair&lt;int,int&gt;
+#define file &quot;&quot;
+#define N 100005
+using namespace std;
+typedef long long ll;
+template &lt;class X, class Y&gt; bool minimize(X &amp;a, Y b) {
+    if (a &gt; b) return a = b, true;
+    return false;
+}
+template &lt;class X, class Y&gt; bool maximize(X &amp;a, Y b) {
+    if (a &lt; b) return a = b, true;
+    return false;
+}
+int n, f[N];
+void solve()
+{
+	cin &gt;&gt; n;
+	f[0] = 1;
+	f[1] = 1;
+	fx(i, 2, n)
+	{
+	    int res = 0;
+	    int cur = 1;
+           for(int t=1;t != 0;++t) {
+            int k = t*(3*t-1)/2;
+            if(k&gt;i) break;
+            res = (res+cur*f[i-k])%base;
+            if(res&lt;0) res+=base;
+            k += t;
+            if(k&gt;i) break;
+            res = (res+cur*f[i-k])%base;
+            if(res&lt;0) res+=base;
+            cur = -cur;
+        }
+        f[i] = res;
+	}
+	cout &lt;&lt; f[n];
+}
+int main()
+{
+	 ios_base::sync_with_stdio(0);cin.tie(0);cout.tie(0);
+	//freopen(file&quot;.inp&quot;,&quot;r&quot;,stdin);
+	//freopen(file&quot;.out&quot;,&quot;w&quot;,stdout);
+	int T=1;
+	//cin&gt;&gt;T;
+	while(T--)
+	{
+	solve();
+	}
+	return 0;
+}
+/*   /\_/\
+    (= ._.)
+    / &gt;0  \&gt;1
+*/
+    </textarea>
+</div>
+
+   
+<script type="text/javascript">
+        editAreaLoader.init({
+            id: "SubmitCode",
+            syntax_selection_allow: "cpp,java,pas,csharp,python",
+            is_editable: false,
+            allow_toggle: false,
+            allow_resize: "no",
+            syntax: "cpp",
+            display: "onload",
+            start_highlight: true
+        });
+</script>

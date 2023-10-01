@@ -1,0 +1,64 @@
+
+
+
+<div id="fb-root"></div>
+<script>(function (d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v2.3";
+    fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+<div class="submission-title">
+    267569 - Coder: <a href="/Coder/Details/YugiHacker">YugiHacker</a> - Bài tập: <a href="/Problem/Details/7042">Height of cylinder</a> - <span>Accepted</span> - Time: <span>62 ms</span> - Memory: <span>1832 KB </span> 
+        <a href="/Submission/Detail/267569/?fullScreen=1"><span class="red">(full screen)</span></a>
+</div>
+<div>
+    <textarea id="SubmitCode" rows="34" cols="125">#include&lt;bits/stdc++.h&gt;
+using namespace std;
+
+#define el cout&lt;&lt;&quot;\n&quot;
+#define	f0(i,n) for(int i=0;i&lt;n;i++)
+#define f1(i,n) for(int i=1;i&lt;=n;i++)
+#define maxn 100005
+int n1, n2, n3, s1, s2, s3, i1, i2, i3, a[maxn], b[maxn], c[maxn];
+void change (int &amp;i, int &amp;s, int a[])
+{
+    s-=a[++i];
+}
+int main(){
+    ios_base::sync_with_stdio(0);cin.tie(0);cout.tie(0);
+    cin &gt;&gt; n1 &gt;&gt; n2 &gt;&gt; n3;
+    f1 (i, n1) cin &gt;&gt; a[i], s1+=a[i];
+    f1 (i, n2) cin &gt;&gt; b[i], s2+=b[i];
+    f1 (i, n3) cin &gt;&gt; c[i], s3+=c[i];
+    while (s1!=s2 || s1!=s3 || s2!=s3)
+    {
+        int ma=max(s1, max(s2, s3));
+        if (s1==ma)
+            change(i1, s1, a);
+        else if (s2==ma)
+            change(i2, s2, b);
+        else
+            change(i3, s3, c);
+    }
+    cout &lt;&lt; s1;
+    return 0;
+}
+    </textarea>
+</div>
+
+   
+<script type="text/javascript">
+        editAreaLoader.init({
+            id: "SubmitCode",
+            syntax_selection_allow: "cpp,java,pas,csharp,python",
+            is_editable: false,
+            allow_toggle: false,
+            allow_resize: "no",
+            syntax: "cpp",
+            display: "onload",
+            start_highlight: true
+        });
+</script>

@@ -1,0 +1,76 @@
+
+
+
+<div id="fb-root"></div>
+<script>(function (d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v2.3";
+    fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+<div class="submission-title">
+    275588 - Coder: <a href="/Coder/Details/YugiHacker">YugiHacker</a> - Bài tập: <a href="/Problem/Details/4491">Gh&#233;p x&#226;u</a> - <span>Accepted</span> - Time: <span>31 ms</span> - Memory: <span>2524 KB </span> 
+        <a href="/Submission/Detail/275588/?fullScreen=1"><span class="red">(full screen)</span></a>
+</div>
+<div>
+    <textarea id="SubmitCode" rows="46" cols="125">#include&lt;bits/stdc++.h&gt;
+using namespace std;
+
+#define el cout&lt;&lt;&quot;\n&quot;
+#define	f0(i,n) for(int i=0;i&lt;n;i++)
+#define f1(i,n) for(int i=1;i&lt;=n;i++)
+#define maxn 100005
+#define MOD 1000000007
+#define base 31
+string s, t;
+int n, m;
+long long p[maxn], h1[maxn], h2[maxn];
+void build(string s, long long h[], int n)
+{
+    for (int i=1; i&lt;=n; i++) h[i]=(h[i-1] * base + (s[i]-&#39;a&#39;+1)) %MOD;
+}
+long long get(int l, int r, long long h[])
+{
+    return (h[r] - h[l-1] * p[r-l+1] % MOD + MOD) % MOD;
+}
+int main(){
+    ios_base::sync_with_stdio(0);cin.tie(0);cout.tie(0);
+    cin &gt;&gt; s &gt;&gt; t;
+    n=s.size(), m=t.size();
+    s=&#39; &#39;+s;
+    t=&#39; &#39;+t;
+    p[0]=1;
+    for (int i=1; i&lt;=max(n, m); i++) p[i]=p[i-1] * base % MOD;
+    build(s, h1, n);
+    build(t, h2, m);
+    for (int i=min(n, m); i; i--)
+    {
+        if (get(n-i+1, n, h1) == h2[i])
+        {
+            for (int j=1; j&lt;=n; j++) cout &lt;&lt; s[j];
+            for (int j=i+1; j&lt;=m; j++) cout &lt;&lt; t[j];
+            return 0;
+        }
+    }
+    for (int i=1; i&lt;=n; i++) cout &lt;&lt; s[i];
+    for (int i=1; i&lt;=m; i++) cout &lt;&lt; t[i];
+    return 0;
+}
+    </textarea>
+</div>
+
+   
+<script type="text/javascript">
+        editAreaLoader.init({
+            id: "SubmitCode",
+            syntax_selection_allow: "cpp,java,pas,csharp,python",
+            is_editable: false,
+            allow_toggle: false,
+            allow_resize: "no",
+            syntax: "cpp",
+            display: "onload",
+            start_highlight: true
+        });
+</script>

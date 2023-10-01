@@ -1,0 +1,14 @@
+
+n = 5e4;
+
+cho n hcn (w * h). Chi phí nhỏ nhất để chọn được tất cả n hcn.
+
+- Nếu hcn B và A có B.w <= A.w và B.h <= A.h thì ta coi B bao chứa trong A -> k mất phí cho B;
+- Sort theo chiều tang của w, sau khi bỏ các hcn không đóng góp vào đáp án (useless) thì h sẽ giam;
+- Tập còn lại là tập bao lồi S;
+- Nếu chọn được hcn ở i và j -> các hcn trong [i + 1, j - 1] sẽ không mất phí;
+
+*CT QHD:
+	f[i] = min(f[i), s[j].h * s[i].w + f[j]) với 1 <= j < i;
+	đặt theo dạng đt y = ax + b;
+	-> a = s[j].h, x = s[i].w, b = f[j];

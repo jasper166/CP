@@ -1,0 +1,111 @@
+
+
+
+<div id="fb-root"></div>
+<script>(function (d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v2.3";
+    fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+<div class="submission-title">
+    218343 - Coder: <a href="/Coder/Details/YugiHacker">YugiHacker</a> - Bài tập: <a href="/Problem/Details/9788">DREAMEE - Giấc mơ</a> - <span>Accepted</span> - Time: <span>78 ms</span> - Memory: <span>2524 KB </span> 
+        <a href="/Submission/Detail/218343/?fullScreen=1"><span class="red">(full screen)</span></a>
+</div>
+<div>
+    <textarea id="SubmitCode" rows="81" cols="125">#include&lt;bits/stdc++.h&gt;
+using namespace std;
+
+#define el cout&lt;&lt;&quot;\n&quot;
+#define	f0(i,n) for(int i=0;i&lt;n;i++)
+#define f1(i,n) for(int i=1;i&lt;=n;i++)
+#define maxn
+int t;
+string s;
+int a[10], b[10];
+bool LYear(int y)
+{
+    if ((y%4==0 &amp;&amp; y%100!=0) || y%400==0) return 1;
+    return 0;
+}
+int dm[]={0,31,28,31,30,31,30,31,31,30,31,30,31};
+int d_in_m (int m, int y)
+{
+    if (m==2 &amp;&amp; LYear(y)) return 29;
+    return dm[m];
+}
+bool check(int d, int m, int y)
+{
+    if (m&lt;1 || m&gt;12) return 0;
+    if (d&lt;1 || d&gt;d_in_m(m, y)) return 0;
+    return 1;
+}
+void fix(int a, int b, int c)
+{
+    if (a&lt;10) cout &lt;&lt; 0;
+    cout &lt;&lt; a &lt;&lt; &#39; &#39;;
+    if (b&lt;10) cout &lt;&lt; 0;
+    cout &lt;&lt; b &lt;&lt; &#39; &#39; &lt;&lt; c;
+}
+void minimize(int &amp;a, int &amp;b, int &amp;c, int x, int y, int z)
+{
+    if (z&gt;c) return;
+    else if (z==c)
+    {
+        if (y&gt;b) return;
+        else if (y==b) if (x&gt;a) return;
+    }
+    a=x; b=y, c=z;
+}
+void solve(string s)
+{
+    int n=0;
+    for (auto x:s) if (x!=&#39; &#39;) a[++n]=x-&#39;0&#39;;
+    sort (a+1, a+n+1);
+    int dd=31, mm=12, yy=9999, ans=0;
+    f1 (i, 10) b[i]=i;
+    do
+    {
+        int d, m, y;
+        d=m=y=0;
+        d=a[1]*10+a[2];
+        m=a[3]*10+a[4];
+        y=a[5]*1000+a[6]*100+a[7]*10+a[8];
+        if (check(d, m, y) &amp;&amp; y&gt;=2000)
+        {
+            ans++;
+            minimize(dd, mm, yy, d, m, y);
+        }
+    }
+    while (next_permutation(a+1, a+n+1));
+    cout &lt;&lt; ans &lt;&lt; &#39; &#39;;
+    if (ans) {fix(dd, mm, yy);} el;
+}
+int main(){
+    ios_base::sync_with_stdio(0);cin.tie(0);cout.tie(0);
+    cin &gt;&gt; t; getline(cin, s);
+    while (t--)
+    {
+        getline(cin, s);
+        solve(s);
+    }
+    return 0;
+}
+    </textarea>
+</div>
+
+   
+<script type="text/javascript">
+        editAreaLoader.init({
+            id: "SubmitCode",
+            syntax_selection_allow: "cpp,java,pas,csharp,python",
+            is_editable: false,
+            allow_toggle: false,
+            allow_resize: "no",
+            syntax: "cpp",
+            display: "onload",
+            start_highlight: true
+        });
+</script>

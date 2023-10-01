@@ -1,0 +1,58 @@
+
+
+
+<div id="fb-root"></div>
+<script>(function (d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v2.3";
+    fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+<div class="submission-title">
+    213392 - Coder: <a href="/Coder/Details/YugiHacker">YugiHacker</a> - Bài tập: <a href="/Problem/Details/4668">Đường đi tr&#234;n lưới</a> - <span>Accepted</span> - Time: <span>62 ms</span> - Memory: <span>2444 KB </span> 
+        <a href="/Submission/Detail/213392/?fullScreen=1"><span class="red">(full screen)</span></a>
+</div>
+<div>
+    <textarea id="SubmitCode" rows="28" cols="125">#include&lt;bits/stdc++.h&gt;
+using namespace std;
+
+#define file &quot;&quot;
+#define el cout&lt;&lt;&quot;\n&quot;
+#define	f0(i,n) for(int i=0;i&lt;n;i++)
+#define f1(i,n) for(int i=1;i&lt;=n;i++)
+#define maxn 503
+long long f[maxn][maxn], n, m;
+main(){
+    ios_base::sync_with_stdio(0);cin.tie(0);cout.tie(0);
+    ///freopen(file&quot;.inp&quot;,&quot;r&quot;,stdin);
+    ///freopen(file&quot;.out&quot;,&quot;w&quot;,stdout);
+    cin &gt;&gt; n &gt;&gt; m;
+    f1 (i, n) f1 (j, m)
+    {
+        int x; cin &gt;&gt; x;
+        f[i][j]=-1e15;
+        if (i==1&amp;&amp;j==1) f[i][j]=x;
+        if (i&gt;1) f[i][j]=max(f[i-1][j]+x, f[i][j]);
+        if (j&gt;1) f[i][j]=max(f[i][j-1]+x, f[i][j]);
+    }
+    //f1 (i, n) {f1(j, m) cout &lt;&lt; f[i][j] &lt;&lt; &#39; &#39;; el;}
+    cout &lt;&lt; f[n][m];
+}
+    </textarea>
+</div>
+
+   
+<script type="text/javascript">
+        editAreaLoader.init({
+            id: "SubmitCode",
+            syntax_selection_allow: "cpp,java,pas,csharp,python",
+            is_editable: false,
+            allow_toggle: false,
+            allow_resize: "no",
+            syntax: "cpp",
+            display: "onload",
+            start_highlight: true
+        });
+</script>

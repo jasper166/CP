@@ -1,0 +1,62 @@
+
+
+
+<div id="fb-root"></div>
+<script>(function (d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v2.3";
+    fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+<div class="submission-title">
+    266464 - Coder: <a href="/Coder/Details/YugiHacker">YugiHacker</a> - Bài tập: <a href="/Problem/Details/9942">G2HCN - Giao hai h&#236;nh chữ nhật</a> - <span>Accepted</span> - Time: <span>15 ms</span> - Memory: <span>2096 KB </span> 
+        <a href="/Submission/Detail/266464/?fullScreen=1"><span class="red">(full screen)</span></a>
+</div>
+<div>
+    <textarea id="SubmitCode" rows="32" cols="125">#include&lt;bits/stdc++.h&gt;
+using namespace std;
+
+#define el cout&lt;&lt;&quot;\n&quot;
+#define	f0(i,n) for(int i=0;i&lt;n;i++)
+#define f1(i,n) for(int i=1;i&lt;=n;i++)
+#define maxn
+#define fi first
+#define se second
+#define mp make_pair
+int calc(pair&lt;int,int&gt; a, pair&lt;int,int&gt; b)
+{
+    if (a.first&gt;b.first || (a.first == b.first &amp;&amp; a.second&gt;b.second)) swap (a, b);
+    int ma=max(a.fi, b.fi);
+    int mi=min(a.se, b.se);
+    return max(0, mi-ma);
+}
+int main(){
+    ios_base::sync_with_stdio(0);cin.tie(0);cout.tie(0);
+    int x[5], y[5];
+    f1 (i, 4) cin &gt;&gt; x[i] &gt;&gt; y[i];
+    swap(y[1], y[2]);
+    swap(y[3], y[4]);
+    int xx=calc(mp(x[1], x[2]), mp(x[3], x[4]));
+    int yy=calc(mp(y[1], y[2]), mp(y[3], y[4]));
+    //cout &lt;&lt; xx &lt;&lt; &#39; &#39; &lt;&lt; yy; el;
+    cout &lt;&lt; 1ll * xx * yy;
+    return 0;
+}
+    </textarea>
+</div>
+
+   
+<script type="text/javascript">
+        editAreaLoader.init({
+            id: "SubmitCode",
+            syntax_selection_allow: "cpp,java,pas,csharp,python",
+            is_editable: false,
+            allow_toggle: false,
+            allow_resize: "no",
+            syntax: "cpp",
+            display: "onload",
+            start_highlight: true
+        });
+</script>

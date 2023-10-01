@@ -1,0 +1,32 @@
+int fact[MAX], invs[MAX];
+
+int Power (int A, int B) {
+    ll res = 1;
+    for (; B ; B >>= 1, A = (1LL * A * A) % MOD)
+       if (B & 1)
+        (res *= A) %= MOD;
+    return (int) res;
+}
+
+int C(int N, int K) {
+    if (K > N || N < 0 || K < 0)
+        return 0;
+    return (1LL * (1LL * fact[N] * invs[N - K]) % MOD * invs[K]) % MOD;
+}
+
+int P(int N, int K) {
+    if (K > N)
+        return 0;
+    return (1LL * fact[N] * invs[N - K]) % MOD;
+}
+
+void prepare(int N) {
+
+    fact[0] = 1;
+    for (int i = 1 ; i <= N ; i ++)
+        fact[i] = (1LL * fact[i - 1] * i) % MOD;
+
+    invs[N] = Power(fact[N], MOD - 2);
+    for (int i = N - 1 ; i >= 0 ; i --)
+        invs[i] = (1LL * invs[i + 1] * (i + 1)) % MOD;
+} 

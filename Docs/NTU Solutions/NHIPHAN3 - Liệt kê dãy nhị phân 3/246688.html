@@ -1,0 +1,66 @@
+
+
+
+<div id="fb-root"></div>
+<script>(function (d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v2.3";
+    fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+<div class="submission-title">
+    246688 - Coder: <a href="/Coder/Details/YugiHacker">YugiHacker</a> - Bài tập: <a href="/Problem/Details/8270">Liệt k&#234; d&#227;y nhị ph&#226;n 3</a> - <span>Accepted</span> - Time: <span>0 ms</span> - Memory: <span>1116 KB </span> 
+        <a href="/Submission/Detail/246688/?fullScreen=1"><span class="red">(full screen)</span></a>
+</div>
+<div>
+    <textarea id="SubmitCode" rows="36" cols="125">#include&lt;bits/stdc++.h&gt;
+using namespace std;
+
+#define el cout&lt;&lt;&quot;\n&quot;
+#define	f0(i,n) for(int i=0;i&lt;n;i++)
+#define f1(i,n) for(int i=1;i&lt;=n;i++)
+#define maxn
+int a[30], n, cnt, f[30];
+void calc(int d)
+{
+    if (d==n)
+    {
+        f1 (i, n) cout &lt;&lt; a[i]; el;
+        return;
+    }
+    if (a[d]==0)
+    {
+        calc(d+1);
+        a[d+1]=1;
+        calc(d+1);
+        a[d+1]=0;
+    }
+    else calc(d+1);
+}
+int main(){
+    ios_base::sync_with_stdio(0);cin.tie(0);cout.tie(0);
+    cin &gt;&gt; n;
+    f[1]=2, f[2]=3;
+    for (int i=3; i&lt;=25; i++) f[i]=f[i-1]+f[i-2];
+    cout &lt;&lt; f[n]; el;
+    calc(0);
+    return 0;
+}
+    </textarea>
+</div>
+
+   
+<script type="text/javascript">
+        editAreaLoader.init({
+            id: "SubmitCode",
+            syntax_selection_allow: "cpp,java,pas,csharp,python",
+            is_editable: false,
+            allow_toggle: false,
+            allow_resize: "no",
+            syntax: "cpp",
+            display: "onload",
+            start_highlight: true
+        });
+</script>

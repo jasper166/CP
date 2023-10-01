@@ -1,0 +1,7 @@
+
+ans[i] = min cost to reach ith springboard
+-> ans[i] = ans[j] + x[i] + y[i] - x[j] - y[j];
+Min query j: ans[j] - x[j] - y[j] such that x[j] <= x[i] and y[j] <= y[j]
+
+Sort according to x, store by y;
+Using cordinate compression

@@ -1,0 +1,99 @@
+
+
+
+<div id="fb-root"></div>
+<script>(function (d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v2.3";
+    fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+<div class="submission-title">
+    267747 - Coder: <a href="/Coder/Details/YugiHacker">YugiHacker</a> - Bài tập: <a href="/Problem/Details/4489">X&#226;u con chung</a> - <span>Accepted</span> - Time: <span>1468 ms</span> - Memory: <span>8832 KB </span> 
+        <a href="/Submission/Detail/267747/?fullScreen=1"><span class="red">(full screen)</span></a>
+</div>
+<div>
+    <textarea id="SubmitCode" rows="69" cols="125">#pragma GCC optimize(&quot;O3&quot;)
+#include&lt;bits/stdc++.h&gt;
+using namespace std;
+
+#define el cout&lt;&lt;&quot;\n&quot;
+#define	f0(i,n) for(int i=0;i&lt;n;i++)
+#define f1(i,n) for(int i=1;i&lt;=n;i++)
+#define maxn 100005
+#define MOD 1000000007
+#define base 131
+#define fi first
+#define se second
+string s, t;
+long long h1[maxn], h2[maxn], p[maxn], s1[maxn], s2[maxn];
+int n, m;
+int get(int i, int j, long long h[])
+{
+    return ((h[j]-h[i-1]*p[j-i+1])%MOD+MOD)%MOD;
+}
+bool check(int k)
+{
+    if (k==0) return 1;
+    //cout &lt;&lt; &quot;k = &quot; &lt;&lt; k; el;
+    vector &lt;pair&lt;int,int&gt; &gt; a, b;
+    f1 (i, n-k+1)
+        a.push_back({get(i, i+k-1, h1), s1[i+k-1] - s1[i-1]});
+    f1 (i, m-k+1)
+        b.push_back({get(i, i+k-1, h2), s2[i+k-1] - s2[i-1]});
+    sort(a.begin(), a.end());
+    sort(b.begin(), b.end());
+    //for (auto x:a) cout &lt;&lt; x.fi &lt;&lt; &#39; &#39; &lt;&lt; x.se, el; el;
+    //for (auto x:b) cout &lt;&lt; x.fi &lt;&lt; &#39; &#39; &lt;&lt; x.se, el; el;
+    int j=-1;
+    f0(i, a.size())
+    {
+        //cout &lt;&lt; a[i].fi &lt;&lt; &#39; &#39; &lt;&lt; a[i].se, el;
+        while (j+1 &lt; b.size() &amp;&amp; (b[j+1].fi &lt; a[i].fi || (b[j+1].fi==a[i].fi &amp;&amp; b[j+1].se &lt;= a[i].se))) j++;
+        if (a[i]==b[j]) return 1;
+        //cout &lt;&lt; b[j].fi &lt;&lt; &#39; &#39; &lt;&lt; b[j].se, el;
+    }
+    return 0;
+}
+int main(){
+    ios_base::sync_with_stdio(0);cin.tie(0);cout.tie(0);
+    cin &gt;&gt; s &gt;&gt; t;
+    n=s.size();
+    m=t.size();
+    s=&#39; &#39;+s;
+    t=&#39; &#39;+t;
+    p[0]=1;
+    f1 (i, max(n, m)) p[i]=p[i-1]*base%MOD;
+    f1 (i, n) h1[i]=(h1[i-1]*base+s[i]-&#39;a&#39;+1)%MOD;
+    f1 (i, m) h2[i]=(h2[i-1]*base+t[i]-&#39;a&#39;+1)%MOD;
+    f1 (i, n) s1[i]=s1[i-1]+s[i];
+    f1 (i, m) s2[i]=s2[i-1]+t[i];
+    int l=0, r=min(n, m)+1;
+    while (r-l&gt;1)
+    {
+        int mid=(l+r)/2;
+        if (check(mid)) l=mid;
+        else r=mid;
+    }
+    //check(3);
+    cout &lt;&lt; l;
+    return 0;
+}
+    </textarea>
+</div>
+
+   
+<script type="text/javascript">
+        editAreaLoader.init({
+            id: "SubmitCode",
+            syntax_selection_allow: "cpp,java,pas,csharp,python",
+            is_editable: false,
+            allow_toggle: false,
+            allow_resize: "no",
+            syntax: "cpp",
+            display: "onload",
+            start_highlight: true
+        });
+</script>

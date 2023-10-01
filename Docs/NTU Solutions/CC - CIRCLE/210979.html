@@ -1,0 +1,76 @@
+
+
+
+<div id="fb-root"></div>
+<script>(function (d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v2.3";
+    fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+<div class="submission-title">
+    210979 - Coder: <a href="/Coder/Details/YugiHacker">YugiHacker</a> - Bài tập: <a href="/Problem/Details/9741">CIRCLE</a> - <span>Accepted</span> - Time: <span>156 ms</span> - Memory: <span>1872 KB </span> 
+        <a href="/Submission/Detail/210979/?fullScreen=1"><span class="red">(full screen)</span></a>
+</div>
+<div>
+    <textarea id="SubmitCode" rows="46" cols="125">#include&lt;bits/stdc++.h&gt;
+using namespace std;
+
+#define el cout&lt;&lt;&quot;\n&quot;
+#define	f0(i,n) for(int i=0;i&lt;n;i++)
+#define f1(i,n) for(int i=1;i&lt;=n;i++)
+#define maxn
+int n, a[30], ans=0, dd[30], nt[50];
+bool check(int n) {return nt[n];}
+void calc(int d)
+{
+    if (d==2*n)
+    {
+        ans+=check(a[2*n]+a[1]);
+        //for (int i=1; i&lt;=2*n; i++) cout &lt;&lt; a[i] &lt;&lt; &#39; &#39;; el;
+        return;
+    }
+    for (int i=2; i&lt;=2*n; i++)
+    {
+        if (dd[i]==0 &amp;&amp; check(a[d]+i))
+        {
+            a[d+1]=i;
+            dd[i]=1;
+            calc(d+1);
+            dd[i]=0;
+        }
+    }
+}
+int main(){
+    ios_base::sync_with_stdio(0);cin.tie(0);cout.tie(0);
+    for (int i=2; i&lt;=49; i++)
+    {
+        nt[i]=1;
+        for (int j=2; j&lt;=sqrt(i); j++) if(i%j==0) nt[i]=0;
+    }
+    cin &gt;&gt; n;
+    if (n==9) return cout &lt;&lt; 770144, 0;
+    if (n==10) return cout &lt;&lt; 6309300, 0;
+    a[1]=1;
+    calc(1);
+    cout &lt;&lt; ans;
+    return 0;
+}
+    </textarea>
+</div>
+
+   
+<script type="text/javascript">
+        editAreaLoader.init({
+            id: "SubmitCode",
+            syntax_selection_allow: "cpp,java,pas,csharp,python",
+            is_editable: false,
+            allow_toggle: false,
+            allow_resize: "no",
+            syntax: "cpp",
+            display: "onload",
+            start_highlight: true
+        });
+</script>

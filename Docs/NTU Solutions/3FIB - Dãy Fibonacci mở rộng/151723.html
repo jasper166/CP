@@ -1,0 +1,107 @@
+
+
+
+<div id="fb-root"></div>
+<script>(function (d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v2.3";
+    fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+<div class="submission-title">
+    151723 - Coder: <a href="/Coder/Details/YugiHacker">YugiHacker</a> - Bài tập: <a href="/Problem/Details/6979">D&#227;y Fibonacci mở rộng</a> - <span>Accepted</span> - Time: <span>15 ms</span> - Memory: <span>2548 KB </span> 
+        <a href="/Submission/Detail/151723/?fullScreen=1"><span class="red">(full screen)</span></a>
+</div>
+<div>
+    <textarea id="SubmitCode" rows="77" cols="125">#include&lt;bits/stdc++.h&gt;
+using namespace std;
+long long n,m,a,b,c;
+struct matrix
+{
+    long long val[4][4];
+};
+matrix a1,a2,a3,C;
+matrix nhan(matrix a,matrix b)
+{
+    matrix c;
+    for(int i=1; i&lt;=3; i++)
+        for(int j=1; j&lt;=3; j++)
+        {
+            c.val[i][j]=0;
+            for(int k=1; k&lt;=3; k++)
+            {
+                c.val[i][j]+=a.val[i][k]*b.val[k][j];
+                c.val[i][j]%=m;
+            }
+        }
+    return c;
+}
+matrix PoW(matrix a,long long n)
+{
+    matrix x;
+    if(n==1)return a;
+    x=PoW(a,n/2);
+    x=nhan(x,x);
+    if(n%2)x=nhan(x,a);
+    return x;
+}
+int main()
+{
+    //freopen(&quot;fib3.inp&quot;,&quot;r&quot;,stdin);
+    //freopen(&quot;fib3.out&quot;,&quot;w&quot;,stdout);
+    while(cin&gt;&gt;a&gt;&gt;b&gt;&gt;c&gt;&gt;m&gt;&gt;n)
+    {
+        if(n&lt;=3)
+        {
+            cout&lt;&lt;n%m&lt;&lt;&quot;\n&quot;;
+            continue;
+        }
+        if(n==4)
+        {
+            cout&lt;&lt;(3*a+2*b+c)%m&lt;&lt;&quot;\n&quot;;
+            continue;
+        }
+        if(n==5)
+        {
+            long long res;
+            res=(3*a+2*b+c)%m;
+            cout&lt;&lt;(3*res+2*a+b)%m&lt;&lt;&quot;\n&quot;;
+            continue;
+        }
+    a1.val[1][1]=c;a1.val[1][2]=a;a1.val[1][3]=b;
+    a1.val[2][1]=1;a1.val[2][2]=0;a1.val[2][3]=0;
+    a1.val[3][1]=0;a1.val[3][2]=1;a1.val[3][3]=0;
+
+    a2.val[1][1]=a;a2.val[1][2]=b;a2.val[1][3]=c;
+    a2.val[2][1]=1;a2.val[2][2]=0;a2.val[2][3]=0;
+    a2.val[3][1]=0;a2.val[3][2]=1;a2.val[3][3]=0;
+
+    a3.val[1][1]=b;a3.val[1][2]=c;a3.val[1][3]=a;
+    a3.val[2][1]=1;a3.val[2][2]=0;a3.val[2][3]=0;
+    a3.val[3][1]=0;a3.val[3][2]=1;a3.val[3][3]=0;
+    C=nhan(nhan(a1,a3),a2);
+
+    C=PoW(C,n/3-1);
+    if(n%3==1)C=nhan(a2,C);
+    if(n%3==2)C=nhan(nhan(a3,a2),C);
+    cout&lt;&lt;(3*C.val[1][1]+2*C.val[1][2]+C.val[1][3])%m&lt;&lt;&quot;\n&quot;;
+    }
+}
+    </textarea>
+</div>
+
+   
+<script type="text/javascript">
+        editAreaLoader.init({
+            id: "SubmitCode",
+            syntax_selection_allow: "cpp,java,pas,csharp,python",
+            is_editable: false,
+            allow_toggle: false,
+            allow_resize: "no",
+            syntax: "cpp",
+            display: "onload",
+            start_highlight: true
+        });
+</script>

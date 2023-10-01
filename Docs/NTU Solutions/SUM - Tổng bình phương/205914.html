@@ -1,0 +1,65 @@
+
+
+
+<div id="fb-root"></div>
+<script>(function (d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v2.3";
+    fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+<div class="submission-title">
+    205914 - Coder: <a href="/Coder/Details/YugiHacker">YugiHacker</a> - Bài tập: <a href="/Problem/Details/6806">Tổng b&#236;nh phương</a> - <span>Accepted</span> - Time: <span>15 ms</span> - Memory: <span>1004 KB </span> 
+        <a href="/Submission/Detail/205914/?fullScreen=1"><span class="red">(full screen)</span></a>
+</div>
+<div>
+    <textarea id="SubmitCode" rows="35" cols="125">#include&lt;bits/stdc++.h&gt;
+using namespace std;
+
+#define el cout&lt;&lt;&quot;\n&quot;
+#define	f0(i,n) for(int i=0;i&lt;n;i++)
+#define f1(i,n) for(int i=1;i&lt;=n;i++)
+#define maxn
+#define MOD 1000000007
+long long sum(int n)
+{
+    long long ans=1;
+    int a=n+1, b=2*n+1;
+    if (n%3==0) n/=3;
+    if (a%3==0) a/=3;
+    if (b%3==0) b/=3;
+    if (n%2==0) n/=2;
+    else a/=2;
+    ans = ans*n%MOD;
+    ans = ans*a%MOD;
+    ans = ans*b%MOD;
+    return ans;
+}
+int main(){
+    ios_base::sync_with_stdio(0);cin.tie(0);cout.tie(0);
+    int a, b;
+    double c, d;
+    cin &gt;&gt; c &gt;&gt; d;
+    c-= 0.00000001;
+    a=c, b=d;
+    cout &lt;&lt; (sum(b)-sum(a)+MOD)%MOD;
+    return 0;
+}
+    </textarea>
+</div>
+
+   
+<script type="text/javascript">
+        editAreaLoader.init({
+            id: "SubmitCode",
+            syntax_selection_allow: "cpp,java,pas,csharp,python",
+            is_editable: false,
+            allow_toggle: false,
+            allow_resize: "no",
+            syntax: "cpp",
+            display: "onload",
+            start_highlight: true
+        });
+</script>

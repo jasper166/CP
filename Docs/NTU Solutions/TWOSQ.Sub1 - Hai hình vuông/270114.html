@@ -1,0 +1,93 @@
+
+
+
+<div id="fb-root"></div>
+<script>(function (d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v2.3";
+    fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+<div class="submission-title">
+    270114 - Coder: <a href="/Coder/Details/YugiHacker">YugiHacker</a> - Bài tập: <a href="/Problem/Details/6951">Hai h&#236;nh vu&#244;ng</a> - <span>Accepted</span> - Time: <span>31 ms</span> - Memory: <span>2600 KB </span> 
+        <a href="/Submission/Detail/270114/?fullScreen=1"><span class="red">(full screen)</span></a>
+</div>
+<div>
+    <textarea id="SubmitCode" rows="63" cols="125">/* code from MeeSatThu */
+#include &lt;bits/stdc++.h&gt;
+#define ll long long
+#define f1(i , a, b) for(int i = a; i &lt;= b; i++)
+#define f0(i , a, b) for(int i = a; i &lt; b; i++)
+#define nmax 1009
+#define mmax 1000007
+using namespace std;
+int m, n, k;
+ll a[nmax][nmax];
+ll b[nmax][nmax];
+ll amax = INT_MIN;
+
+void nhap()
+{
+    cin &gt;&gt; m &gt;&gt; n &gt;&gt; k;
+    f1(i , 1 , m) f1(j , 1 , n) cin &gt;&gt; a[i][j];
+}
+
+int main()
+{
+    nhap();
+    for(int i = 1; i &lt;= m - k + 1; i++)
+    {
+        for(int j = 1; j &lt;= n - k + 1; j++)
+        {
+            for(int v = 0; v &lt; k; v++)
+            {
+                for(int u = 0; u &lt; k; u++)
+                {
+                    b[i][j] += a[i + v][j + u];
+                }
+            }
+            //cout &lt;&lt; b[i][j] &lt;&lt; &#39; &#39;;
+        }
+        //cout &lt;&lt; &#39;\n&#39;;
+    }
+
+    for(int i = 1; i &lt;= m - k + 1; i++)
+    {
+        for(int j = 1; j &lt;= n - k + 1; j++)
+        {
+            for(int u = i + k; u &lt;= m - k + 1; u++)
+            {
+                for(int v = 1; v &lt;= n - k + 1; v++)
+                {
+                    amax = max(amax , b[i][j] + b[u][v]);
+                }
+            }
+            for(int u = 1; u &lt;= m - k + 1; u++)
+            {
+                for(int v = j + k; v &lt;= n - k + 1; v++)
+                {
+                    amax = max(amax , b[i][j] + b[u][v]);
+                }
+            }
+        }
+    }
+    cout &lt;&lt; amax;
+}
+    </textarea>
+</div>
+
+   
+<script type="text/javascript">
+        editAreaLoader.init({
+            id: "SubmitCode",
+            syntax_selection_allow: "cpp,java,pas,csharp,python",
+            is_editable: false,
+            allow_toggle: false,
+            allow_resize: "no",
+            syntax: "cpp",
+            display: "onload",
+            start_highlight: true
+        });
+</script>

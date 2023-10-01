@@ -1,0 +1,51 @@
+
+
+
+<div id="fb-root"></div>
+<script>(function (d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v2.3";
+    fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+<div class="submission-title">
+    258137 - Coder: <a href="/Coder/Details/YugiHacker">YugiHacker</a> - Bài tập: <a href="/Problem/Details/4631">D&#227;y số 1</a> - <span>Accepted</span> - Time: <span>984 ms</span> - Memory: <span>5192 KB </span> 
+        <a href="/Submission/Detail/258137/?fullScreen=1"><span class="red">(full screen)</span></a>
+</div>
+<div>
+    <textarea id="SubmitCode" rows="21" cols="125">#include &lt;bits/stdc++.h&gt;
+using namespace std;
+int n;
+int a[1000006];
+int ma, mi;
+main()
+{
+    cin &gt;&gt; n;
+    for (int i=1; i&lt;=n; i++) cin &gt;&gt; a[i];
+    mi = a[1];
+    ma = -1e9;
+    for (int i=2; i&lt;=n; i++)
+    {
+        ma = max(ma, a[i] - mi);
+        mi = min(a[i], mi);
+    }
+    cout &lt;&lt; ma;
+}
+    </textarea>
+</div>
+
+   
+<script type="text/javascript">
+        editAreaLoader.init({
+            id: "SubmitCode",
+            syntax_selection_allow: "cpp,java,pas,csharp,python",
+            is_editable: false,
+            allow_toggle: false,
+            allow_resize: "no",
+            syntax: "cpp",
+            display: "onload",
+            start_highlight: true
+        });
+</script>

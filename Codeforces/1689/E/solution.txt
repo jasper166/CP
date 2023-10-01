@@ -1,0 +1,31 @@
+
+/*
+
+    Increasing all 0s to 1s always gives optimal answer. It takes C 
+    Then calculate the addition X.
+    Create a graph between bits
+    If graph is already connected then X = 0
+    else X is at most 2
+    *Prove:
+        + Find maximum lower bit : a(i) & -a(i) = k, 
+        and numbers have lower bit = k: x1, x2,...xm;
+        ......
+          ^
+          k
+        1. m = 1
+        + Subtract 1 from x1, the binary form should be:
+            11111110...
+            .......k...
+        As k is maximum among all the lower bits then
+        for any j, such a(j) & -a(j) < k -> j is connected to x1. Thus, X costs 1
+        to make the graph connected 
+        2. m >= 2
+        We apply the same to x1 but we might disconnect 
+        other j, such a(j) & -a(j) == k 
+        Thus, we have to:
+        + Add 1 to x2, the binary form is:
+            10000001..
+            .......k..
+        By doing so, X costs 2 in this case
+        Overall, it takes C + X
+*/
