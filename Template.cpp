@@ -2,7 +2,6 @@
 // @JASPER'S BOILERPLATE
 using namespace std;
 using ll = long long;
-using pii = pair < int, int >;
 
 #define FOR(i, a, b) for(int i = a; i <= b; i++)
 #define FORD(i, a, b) for(int i = a; i >= b; i--)
@@ -17,10 +16,10 @@ using pii = pair < int, int >;
 #define debug(...) 166
 #endif
 
-const ll LINF = 1e18 + 5;
+using pii = pair < int, int >;
 const int INF = 1e9;
 const int MOD = 1e9 + 7;
-const int MAX = 1e6 + 5;
+const int N = 1e6 + 5;
 
 void run_case() {
 
