@@ -1,8 +1,0 @@
-[
-	{
-		"test": "int m1 = *max_element(a, a + n);\n\tint m2 = *max_element(b, b + m);\n"
-	},
-	{
-		"test": "4\n1\n6\n2\n6 8\n4\n1 3 3 7\n2\n4 2\n1\n50\n2\n25 50\n10\n1 2 3 4 5 6 7 8 9 10\n2\n5 15\n"
-	}
-]
