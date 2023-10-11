@@ -42,8 +42,8 @@ bool used[N];
 int helper(int x, int id) {
     for (int i = n; i >= 1; --i) {
         f[i] = f[i + 1];
-        f[i] += used[i + 1];
-        if (used[i]) continue;
+        f[i] += use[i + 1];
+        if (use[i]) continue;
         x += f[i];
     }
     int ret;
