@@ -27,34 +27,34 @@ int dp[1 << M];
 
 void run_case() {
     cin >> n;
-    // for (int i = 1; i <= n; ++i) {
-    //     string s; cin >> s;
-    //     int sz = s.size();
-    //     // take non-empty mask
-    //     for (int it = 1; it < (1 << sz); ++it) {
-    //         int mask = 0, c = 0;
-    //         for (int j = 0; j < sz; ++j) {
-    //             if (it & (1 << j)) {
-    //                 ++c;
-    //                 int x = s[j] - 'a';
-    //                 mask |= (1 << x);
-    //             }
-    //         }
-    //         dp[mask] += (c & 1)? 1 : -1;
-    //     }
-    // }
+    for (int i = 1; i <= n; ++i) {
+        string s; cin >> s;
+        int sz = s.size();
+        // take non-empty mask
+        for (int it = 1; it < (1 << sz); ++it) {
+            int mask = 0, c = 0;
+            for (int j = 0; j < sz; ++j) {
+                if (it & (1 << j)) {
+                    ++c;
+                    int x = s[j] - 'a';
+                    mask |= (1 << x);
+                }
+            }
+            dp[mask] += (c & 1)? 1 : -1;
+        }
+    }
 
-    // for (int i = 0; i < M; ++i) {
-    //     for (int mask = 0; mask < (1 << M); ++mask)
-    //         if (mask & (1 << i))
-    //             dp[mask] += dp[mask ^ (1 << i)];
-    // }
+    for (int i = 0; i < M; ++i) {
+        for (int mask = 0; mask < (1 << M); ++mask)
+            if (mask & (1 << i))
+                dp[mask] += dp[mask ^ (1 << i)];
+    }
 
-    // int ans = 0;
-    // for (int mask = 0; mask < (1 << M); ++mask) {
-    //     ans = (ans ^ (dp[mask] * dp[mask]));
-    // }
-    // cout << ans << "\n";
+    int ans = 0;
+    for (int mask = 0; mask < (1 << M); ++mask) {
+        ans = (ans ^ (dp[mask] * dp[mask]));
+    }
+    cout << ans << "\n";
 }
 
 /*
