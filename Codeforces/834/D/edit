@@ -1,0 +1,4 @@
+
+dp(k, i) = max : dp(j, k - 1) + cost(j + 1, i);
+
+cost(l, r) : number of distinct cake types in [l, r]
