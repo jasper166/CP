@@ -2,15 +2,13 @@
 // @JASPER'S BOILERPLATE
 using namespace std;
 using ll = long long;
-
 #define FOR(i, a, b) for(int i = a; i <= b; i++)
 #define FORD(i, a, b) for(int i = a; i >= b; i--)
 #define REP(i, b) for(int i = 0; i < b; i++)
 #define PER(i, b) for(int i = b - 1; i >= 0; i--)
 #define fi first
 #define se second
-
-#ifdef JASPER
+#ifdef JASPER2
 #include "debug.h"
 #else
 #define debug(...) 166
@@ -40,38 +38,41 @@ int func(multiset <int> &l, multiset <int> &r) {
             ret = min(ret, c[i] | c[j]);
     return ret;
 }
-
-
+ 
+ 
 void dnc(int l, int r, vector <vector <int>> &queries) {
     if (l > r || queries.empty())
         return;
-
+ 
     int m = (l + r) / 2;
     vector <vector <int>> lhs, rhs;
     for (auto x : queries) {
         // l, r, id;
-        if (x[1] <= m) {
+        if (l <= x[0] && x[1] <= m) {
             lhs.push_back(x);
             continue;
         }
-        if (x[0] > m) {
+        if (m + 1 <= x[0] && x[1] <= r) {
             rhs.push_back(x);
             continue;
         }
-        qs[x[0]].push_back({x[1], x[2]});
+        if (x[0] <= m && m <= x[1]) {
+        	qs[x[0]].push_back({x[1], x[2]});
+        	continue;
+        }
     }
     // Take min elements from right, maintain max size <= 31 
-    multiset <int> S = st[m];
+    multiset <int> S;
     for (int i = m + 1; i <= r; ++i) {
         S.insert(a[i]);
-        if (S.size() > B) S.erase(*S.rbegin());
+        if (S.size() > B) S.erase(--(S.end()));
         st[i] = S;
     }   
     // Take min elements from left and solve queries
     S.clear();
     for (int i = m; i >= l; --i) {
         S.insert(a[i]);
-        if (S.size() > B) S.erase(*S.rbegin());
+        if (S.size() > B) S.erase(--(S.end()));
         // S : (l, m), st[rx] : (m + 1, rx);
         for (auto [rx, id] : qs[i]) {
             ans[id] = func(S, st[rx]);
@@ -79,16 +80,16 @@ void dnc(int l, int r, vector <vector <int>> &queries) {
             // debug(ans[id], id, l, r, i, rx);
         }
     }
-
+ 
     for (int i = l; i <= r; ++i) {
         st[i].clear();
         qs[i].clear();
     }
-
+ 
     dnc(l, m, lhs);
     dnc(m + 1, r, rhs);
 }
-
+ 
 void run_case() {
     cin >> n;
     for (int i = 1; i <= n; ++i) cin >> a[i];
@@ -99,13 +100,13 @@ void run_case() {
         cin >> l >> r;
         todo.push_back({l, r, i});
     }
-
+ 
     dnc(1, n, todo);
     for (int i = 1; i <= q; ++i) {
         cout << ans[i] << "\n";
         ans[i]= 0;
     }
-
+ 
 }
 /*
     Minimize a(i) | a(j) ? -> answer will lies in range of at most 31 minimum elements
@@ -117,13 +118,17 @@ void run_case() {
         if (l < r < m) -> on the left
         if (m < l < r) -> save for solving on the right
         (l < m < r) -> we can solve this at current step
-
+ 
     O((n + q) * logn * (31 ^ 2));
 */
 
 signed main() {
     cin.tie(0) -> sync_with_stdio(0);
-    
+
+    #ifdef JASPER2
+        freopen("in1", "r", stdin);
+    #endif
+
     int Test = 1;
     cin >> Test;
     for (int test = 1; test <= Test; test++){
@@ -131,5 +136,3 @@ signed main() {
         run_case();
     }
 }
-
-

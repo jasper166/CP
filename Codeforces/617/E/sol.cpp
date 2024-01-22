@@ -1,71 +1,89 @@
 #include "bits/stdc++.h"
-// @JASPER'S BOILERPLATE
+// @Jasper
+
+
 using namespace std;
 using ll = long long;
+using pii = pair < int, int >;
+using pll = pair < ll, ll >;
 
-#ifdef JASPER
+template<class T> bool ckmin(T& a, const T& b) { return b < a ? a = b, 1 : 0; }
+template<class T> bool ckmax(T& a, const T& b) { return a < b ? a = b, 1 : 0; }
+
+#define FOR(i, a, b) for(int i = a; i <= b; i++)
+#define FORD(i, a, b) for(int i = a; i >= b; i--)
+#define REP(i, b) for(int i = 0; i < b; i++)
+#define PER(i, b) for(int i = b - 1; i >= 0; i--)
+#define fi first
+#define se second
+#define all(x) x.begin(), x.end()
+
+#ifdef LOCAL
 #include "debug.h"
 #else
-#define debug(...) 166
+#define debug(...) 42
+#define debugArr(...) 42
 #endif
 
-const int N = 1e5 + 5;
-const int X = 2e6 + 5;
-const int BLOCK = 311;
+const int INF = 1e9;
+const int MOD = 1e9 + 7;
+const int MAX = 1e6 + 10;
+const int BLOCK_SIZE = 333;
 
-struct Queries {
-    int l, r, id;
-    bool operator < (const Queries ot) const {
-        if (l / BLOCK == ot.l / BLOCK)
-            return (l / BLOCK & 1)? r > ot.r : r < ot.r;
-        else 
-            return (l / BLOCK < ot.l / BLOCK);
+struct query{
+    int L, R, id;
+};
+int n, m, k;
+query q[MAX];
+int a[MAX];
+ll get_answer, ans[MAX];
+int cnt[1 << 21];
+
+void remove(int op){
+    cnt[a[op]]--;
+    get_answer -= cnt[a[op] ^ k];
+}
+void add(int op){
+    get_answer += cnt[a[op] ^ k];
+    cnt[a[op]]++;
+}
+
+void run_case(){
+    cin >> n >> m >> k;
+    for (int i = 1; i <= n; i++){
+        cin >> a[i];
+        a[i] ^= a[i - 1];
     }
-} qs[N];
-
-int n ,q, k;
-int cnt[X];
-int a[N], p[N];
-ll ret, ans[N];
-int l, r;
-
-void add(int i) {
-    int x = p[i];
-    ret += cnt[k ^ x];
-    ++cnt[x];
+    for (int i = 1; i <= m; i++){
+        cin >> q[i].L >> q[i].R;
+        q[i].id = i;
+        --q[i].L;
+    }
+    sort(q + 1, q + 1 + m, [](query x, query y){
+        return (x.L / BLOCK_SIZE < y.L / BLOCK_SIZE || (x.L / BLOCK_SIZE == y.L / BLOCK_SIZE && x.R < y.R));
+            });
+    int cur_L = 0, cur_R = 0;
+    cnt[0] = 1;
+    for (int i = 1; i <= m; i++){
+        while (cur_L > q[i].L) add(--cur_L);
+        while (cur_R < q[i].R) add(++cur_R);
+        while (cur_L < q[i].L) remove(cur_L++);
+        while (cur_R > q[i].R) remove(cur_R--);
+        ans[q[i].id] = get_answer;
+    }
+    for (int i = 1; i <= m; i++) cout << ans[i] << "\n";
 }
-void del(int i) {
-    int x = p[i];
-    --cnt[x];
-    ret -= (cnt[k ^ x]);
-}
 
-
-signed main() {
+signed main(){
     cin.tie(0) -> sync_with_stdio(0);
-    
-    cin >> n >> q >> k;
-    for (int i = 1; i <= n; ++i) cin >> a[i];
-    for (int i = 1; i <= n; ++i) p[i] = p[i - 1] ^ a[i];
 
-    for (int i = 1; i <= q; ++i) {
-        int lx, rx; cin >> lx >> rx;
-        --lx;
-        qs[i] = {lx, rx, i};
+    int Test = 1;
+//    cin >> Test;
+    FOR(i, 1, Test){
+
+        run_case();
     }
-    
-    sort(qs + 1, qs + 1 + q);
-    l = 1, r = 0;
-    for (int i = 1; i <= q; ++i) {
-        auto [L, R, id] = qs[i];
-        while (l > L) add(--l);
-        while (r < R) add(++r);
-        while (l < L) del(l++);
-        while (r > R) del(r--);
-        ans[id] = ret;
-    }
-    for (int i = 1; i <= q; ++i)
-        cout << ans[i] << "\n";
 }
+
 
 

@@ -12,22 +12,22 @@ using ll = long long;
 signed main() {
     cin.tie(0) -> sync_with_stdio(0);
     
-    ifstream data("outWrong");
-    int n, m;
-    vector <pair <int, int>> bad;
-    while (data >> n >> m) {
-    	bad.push_back({n, m});
+    ifstream data("bad");
+    int n;
+    vector <int> bad;
+    while (data >> n) {
+    	bad.push_back(n);
     }
-    // debug(bad);
-    ifstream data2("outSlow");
-    vector <pair <int, int>> good;
-    while (data2 >> n >> m) {
-    	good.push_back({n, m});
+    debug(bad);
+    ifstream data2("good");
+    vector <int> good;
+    while (data2 >> n) {
+    	good.push_back(n);
     }
-    // debug(good);
+    debug(good);
     for (int i = 0; i < (int) bad.size(); ++i) {
     	if (bad[i] != good[i]) {
-    		cout << i + 1 << "\n";
+    		cout << i << "\n";
     		break;
     	}
     }

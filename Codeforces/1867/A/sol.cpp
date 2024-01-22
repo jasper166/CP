@@ -19,11 +19,11 @@ const int INF = 1e9;
 const int MOD = 1e9 + 7;
 const int MAX = 1e5 + 5;
 
-string s;
-int n;
 void run_case() {
-    cin >> n >> s;
     
+    cout << "Hello World!\n";
+    // for 
+
 }
 
 signed main() {
@@ -33,7 +33,7 @@ signed main() {
     #endif
 
     int Test = 1;
-    cin >> Test;
+    // cin >> Test;
     for (int test = 1; test <= Test; test++){
 
         run_case();

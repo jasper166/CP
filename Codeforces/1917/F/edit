@@ -1,0 +1,9 @@
+Sort l[]
++ Nếu tồn tại 1 subset tổng = d, chứa l(n) -> Yes (Vì đã chứa cạnh lớn nhất -> d là max)
++ Nếu tồn tại 1 subset tổng = d, ko chứa l(n):
+dp(x, y) : is it possible to construct if dis(a1, aj) = x, dis(ak, aj) = y;
+j is the vertex we connect the longest edge to
+dis(a1, aj) + l(n) < d and dis(ak, aj) + l(n) < d;
+a[] is subset of the diameter
+
++ l(n) + l(n - 1) > d -> No

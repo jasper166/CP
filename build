@@ -1,0 +1,6 @@
+{
+    "cmd": ["g++.exe", "-DJASPER2 -std=c++17 -Wall -Wextra -Wshadow -fsanitize=address", "-o",
+     "$file_base_name", "$file", "&&", "start", "cmd", "/c", "$file_base_name & echo. & echo. & pause"],
+    "shell": true,
+    "selector": "source.c++"
+}

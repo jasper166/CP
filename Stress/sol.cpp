@@ -9,115 +9,91 @@ using ll = long long;
 #define debug(...) 166
 #endif
 
-const int N = 2e5 + 5;
-const int K = 20;
+const int BLOCK = 331;
+const int N = 1e5 + 5;
 
-int n, m, q;
+// Mo's update
+struct Query {
+    int l, r, id;
+    bool operator < (const Query ot) const {
+        if (l / BLOCK != ot.l / BLOCK) return l < ot.l;
+        if (r / BLOCK != ot.r / BLOCK) return r < ot.r;
+        return id < ot.id;
+    } 
+};
+
+int n, q, k;
 int a[N];
-vector <int> adj[N];
-// Euler-tour LCA
-int tin[N], dep[N], tree[N << 1], lg[N << 1];
-pair <int, int> up[K][N << 1];
-int timer = 0;
+int ans[N];
+int cnt[N], f[N];
+int prv[N], pt[N], px[N], py[N];
 
-void dfs(int u, int p) {
-    tree[++timer] = u;
-    tin[u] = timer;
-    for (int v : adj[u]) {
-        if (v ^ p) {
-            dep[v] = dep[u] + 1;
-            dfs(v, u);
-            tree[++timer] = u;
-        }
-    }
+void add(int x) {
+    f[cnt[x]]--;
+    cnt[x]++;
+    f[cnt[x]]++;
 }
-void prepare() {
-    dfs(1, 0);
-
-    lg[1] = 0;
-    for (int i = 2; i <= timer; ++i) lg[i] = lg[i / 2] + 1;
-    for (int i = 1; i <= timer; ++i)
-        up[0][i] = {dep[tree[i]], tree[i]};
-    for (int k = 1; k < K; ++k) {
-        int step = 1 << (k - 1);
-        for (int i = 1; i + step <= timer; ++i)
-            up[k][i] = min(up[k - 1][i], up[k - 1][i + step]);
-    }
+void del(int x) {
+    f[cnt[x]]--;
+    cnt[x]--;
+    f[cnt[x]]++;
 }
-int lca(int u, int v) {
-    int l = tin[u], r = tin[v];
-    if (l > r) swap(l, r);
-    int k = lg[r - l + 1];
-    return min(up[k][l], up[k][r - (1 << k) + 1]).second;
-}
-// End of LCA
-
-set <int> same[N], diff[N];
 signed main() {
     cin.tie(0) -> sync_with_stdio(0);
     
-    cin >> n >> m >> q;
-    for (int i = 1; i < n; ++i) {
-        int u, v;
-        cin >> u >> v;
-        adj[u].push_back(v);
-        adj[v].push_back(u);
-    }
-    prepare();
-    for (int i = 1; i <= m; ++i) cin >> a[i]; 
+    #ifdef JASPER
+        freopen("in1", "r", stdin);
+    #endif
 
-    for (int i = 1; i <= m; ++i)
-        same[a[i]].insert(i);
-    for (int i = 1; i < m; ++i) {
-        int p = lca(a[i], a[i + 1]);
-        diff[p].insert(i);
+    cin >> n >> q >> k;
+    for (int i = 1; i <= n; ++i) cin >> a[i];
+    
+    vector <Query> queries;
+    vector <int> upds;
+    for (int i = 1; i <= q; ++i) {
+        cin >> pt[i] >> px[i] >> py[i];
+        if (pt[i] == 2) queries.push_back({px[i], py[i], i});
+        else upds.push_back(i);
     }
 
-    for (int _q = 1; _q <= q; ++_q) {
-        int cmd, x, y, u;
-        cin >> cmd >> x >> y;
+    sort(queries.begin(), queries.end());
+    int l = 1, r = 0, t = -1;
+    for (auto [L, R, id] : queries) {
+        while (l > L) add(a[--l]);
+        while (r < R) add(a[++r]);
+        while (l < L) del(a[l++]);
+        while (r > R) del(a[r--]);
 
-        // debug(cmd, x, y);
-        if (cmd == 1) {
-            same[a[x]].erase(x);
-            if (2 <= x) {
-                int p = lca(a[x], a[x - 1]);
-                diff[p].erase(x - 1);
+        while (t + 1 < (int) upds.size() && upds[t + 1] < id) {
+            ++t;
+            int j = px[upds[t]];
+            int nxt_val = py[upds[t]];
+            debug(j, a[j], nxt_val);
+            if (L <= j && j <= R) {
+                del(a[j]);
+                add(nxt_val);
             }
-            if (x < m) {
-                int p = lca(a[x], a[x + 1]);
-                diff[p].erase(x);
-            }
-            
-            a[x] = y;
+            prv[t] = a[j];
+            a[j] = nxt_val;
+        }
 
-            same[a[x]].insert(x);
-            if (2 <= x) {
-                int p = lca(a[x], a[x - 1]);
-                diff[p].insert(x - 1);
+        while (t >= 0 && upds[t] > id) {
+            int j = px[upds[t]];
+            int lst_val = prv[t];
+            if (L <= j && j <= R) {
+                del(a[j]);
+                add(lst_val);
             }
-            if (x < m) {
-                int p = lca(a[x], a[x + 1]);
-                diff[p].insert(x);
-            }
+            a[j] = prv[t];
+            --t;
         }
-        else {
-            cin >> u;   
-            // debug(u, ":", same[u], ":", diff[u]);
-            pair <int, int> ans = {-1, -1};
-            // On the same branch
-            auto it_s = same[u].lower_bound(x);
-            // On two separated branch
-            auto it_d = diff[u].lower_bound(x);
-            if (it_s != same[u].end() && *it_s <= y) {
-                ans = make_pair(*it_s, *it_s);
-            }
-            else if (it_d != diff[u].end() && *it_d + 1 <= y) {
-                ans = make_pair(*it_d, *it_d + 1);
-            }
-            cout << ans.first << " " << ans.second << "\n";
-        }
-    }  
+        
+        // debug(cnt);
+        // debug(f);
+        ans[id] = f[k];
+    }
+    for (int i = 1; i <= q; ++i)
+        if (pt[i] == 2)
+            cout << ans[i] << "\n";
 }
-
 

@@ -9,100 +9,152 @@ using ll = long long;
 #define debug(...) 166
 #endif
 
+// const int BLOCK = 331;
+const int B = 331;
 const int N = 1e5 + 5;
-const int BLOCK = 331;
+const int K = 18;
 
 int n, q;
-ll blk[BLOCK][BLOCK];
-ll lzy[BLOCK];
-ll a[N];
+vector <int> adj[N];
+int pa[N];
+// Euler-tour LCA
+int st[N], dep[N], lg[N << 1];
+int tree[N << 1];
+pair <int, int> up[K][N << 1];
+int timer = 0;
 
+void dfs(int u, int p) {
+	tree[++timer] = u;
+	st[u] = timer;
+	pa[u] = p;
+	for (int v : adj[u]) {
+		if (v ^ p) {
+			dep[v] = dep[u] + 1;
+			dfs(v, u);
+			tree[++timer] = u;
+		}
+	}
+}
+void build() {
+	lg[1] = 0;
+	for (int i = 2; i <= timer; ++i) lg[i] = lg[i / 2] + 1;
+	for (int i = 1; i <= timer; ++i)
+		up[0][i] = {dep[tree[i]], tree[i]};
+	for (int k = 1; k < K; ++k) {
+		int step = 1 << (k - 1);
+		for (int i = 1; i + step <= timer; ++i)
+			up[k][i] = min(up[k - 1][i], up[k - 1][i + step]);
+	}
+}
+int lca(int u, int v) {
+	int l = st[u], r = st[v];
+	if (l > r) swap(l, r);
+	int k = lg[r - l + 1];
+	return min(up[k][l], up[k][r - (1 << k) + 1]).second;
+}
+int dis(int u, int v) { return dep[u] + dep[v] - 2 * dep[lca(u, v)]; }
+// 
+int BLOCK;
+int f[B][N]; // counting color x frequency on path(1, u);
+int c[N];
+int id = 0;
+int cVal[B];
+map <int, int> cPos;
+// color, compressed color
+bool hvy[N];
 
+void cal(int u, int p) {
+	int x = cPos[c[u]];
+	if (hvy[u]) ++f[x][u];
+	for (int v : adj[u]) {
+		if (v ^ p) {
+			for (int i = 0; i < id; ++i)
+				f[i][v] += f[i][u];
+			cal(v, u);
+		}
+	}
+}
+//Brute for O(sqrt(N))
+int brute(int u, int v) {
+	int p = lca(u, v);
+	int k = dis(u, v);
+	vector <int> vex;
+	map <int, int> cnt;
+	while (u != p) {
+		cnt[c[u]]++;
+		vex.push_back(c[u]);
+		u = pa[u];
+	}
+	while (v != p) {
+		cnt[c[v]]++;
+		vex.push_back(c[v]);
+		v = pa[v];
+	}
+	cnt[c[p]]++;
+	vex.push_back(c[p]);
+	// debug(u, v, p, cnt, (k + 1) / 2 + 1);
+	for (int x : vex) {
+		if (cnt[x] >= (k + 1) / 2 + 1) {
+			return x;
+		}
+	}
+	return -1;
+}
 signed main() {
     cin.tie(0) -> sync_with_stdio(0);
     
-    cin >> n >> q;
-    for (int i = 1; i <= n; ++i) cin >> a[i];
+    #ifdef JASPER
+        freopen("in1", "r", stdin);
+    #endif
 
-    for (int i = 1; i <= n; ++i)
-        blk[i / BLOCK][i % BLOCK] = a[i];
-    for (int i = 0; i <= n / BLOCK; ++i)
-        sort(blk[i], blk[i] + BLOCK);
+   	cin >> n >> q;
+   	for (int i = 1; i <= n; ++i) cin >> c[i];
+   	for (int i = 1; i < n; ++i) {
+   		int u, v;
+   		cin >> u >> v;
+   		adj[u].push_back(v);
+   		adj[v].push_back(u);
+   	}   	
 
-    for (int _i = 1; _i <= q; ++_i) {
-        int cmd, l, r, x;
-        cin >> cmd;
-        if (cmd == 1) {
-            cin >> l >> r >> x;
-            int L = l / BLOCK, R = r / BLOCK;
-            if (L == R) {
-                for (int i = l; i <= r; ++i)
-                    a[i] += x;
-                for (int i = L * BLOCK; i < (L + 1) * BLOCK; ++i)
-                    blk[L][i % BLOCK] = a[i];
-                sort(blk[L], blk[L] + BLOCK);
-            } 
-            else {
-                for (int i = l; i < (L + 1) * BLOCK; ++i)
-                    a[i] += x;
-                for (int i = L * BLOCK; i < (L + 1) * BLOCK; ++i)
-                    blk[L][i % BLOCK] = a[i];
-                sort(blk[L], blk[L] + BLOCK);
+   	BLOCK = sqrt(n);
 
-                for (int i = R * BLOCK; i <= r; ++i)
-                    a[i] += x;
-                for (int i = R * BLOCK; i < (R + 1) * BLOCK; ++i)
-                    blk[R][i % BLOCK] = a[i];
-                sort(blk[R], blk[R] + BLOCK);
+   	map <int, int> cnt;
+   	for (int i = 1; i <= n; ++i)
+   		cnt[c[i]]++;
+   	for (int i = 1; i <= n; ++i)
+   		if (cnt[c[i]] >= BLOCK)
+   			hvy[i] = 1;
+   	for (auto [x, cx] : cnt) {
+   		// debug(x, cx);
+   		if (cx >= BLOCK) {
+   			cPos[x] = id;
+   			cVal[id] = x;
+   			++id;
+   		}
+   	}
 
-                for (int i = L + 1; i < R; ++i)
-                    lzy[i] += x;
-            }
-        }
-        else {
+   	
+   	dfs(1, 0);
+   	build();
+   	cal(1, 0);
 
-            cin >> x;
-            int L = -1, R = -1;
-            for (int i = 0; i <= n / BLOCK; ++i) {
-                if (binary_search(blk[i], blk[i] + BLOCK, x - lzy[i])) {
-                    L = i;
-                    break;
-                }
-            }
-
-            for (int i = n / BLOCK; i >= 0; --i) {
-                if (binary_search(blk[i], blk[i] + BLOCK, x - lzy[i])) {
-                    R = i;
-                    break;
-                }
-            }
-
-            if (L == -1 || R == -1) {
-                cout << "-1\n";
-                continue;
-            }
-
-            for (int i = max(1, L * BLOCK); i <= min(n, (L + 1) * BLOCK - 1); ++i) {
-                // debug(i, a[i]);
-                if (a[i] + lzy[L] == x) {
-                    l = i;
-                    break;
-                }
-            }
-
-            for (int i = min(n, (R + 1) * BLOCK - 1); i >= max(1, R * BLOCK); --i) {
-                if (a[i] + lzy[R] == x) {
-                    r = i;
-                    break;
-                }
-            }
-            // debug(l, r, L, R);
-            // for (int i = 1; i <= n; ++i) {
-            //     debug(a[i]);
-            // }
-            cout << (r - l) << "\n";
-        }
-    }
+   	for (int _q = 1; _q <= q; ++_q) {
+   		int u, v; cin >> u >> v;
+   		int p = lca(u, v);
+   		int k = dis(u, v);
+   		int ans = -1;
+   		if (k >= BLOCK) {
+   			// debug(u, v, k, p);
+   			for (int x = 0; x < id; ++x) {
+   				int cur = f[x][u] + f[x][v] - 2 * f[x][p] + (c[p] == cVal[x]);
+   				if (cur >= (k + 1) / 2 + 1) {
+   					ans = cVal[x];
+   				}
+   			}
+   		}
+   		else
+   			ans = brute(u, v);
+   		cout << ans << "\n";
+   	}
 }
-
 
