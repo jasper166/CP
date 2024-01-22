@@ -1,2 +1,2 @@
 # my-CP-Library
-CP Storage
+This is where I store all codes through my CP career.
