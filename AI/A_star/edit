@@ -1,0 +1,52 @@
+A* algorithm for path finding in 8-puzzle game
+
+Heuristic function using Manhattan distance
+
+1. Initial State: Given by user
+
+by inputing an array of 9 element representing the matrix from top to bottom, from right to left
+each cell value is a number written on it
+1. 0 means empty cell (there's only a 0-cell)
+2. other cell values must be distinct (starting from 1 -> 8)
+
+2. Goal State: Given by game rule
+All cells would be sorted in order from top to bottom, from right to left and the last cell is empty
+
+
+Heuristic function is the sum of all Manhattan distance 
+(for each value, take Manhattan distance between initial cell and goal cell having that value)
+
+I.E: 
+	
+	Initial: 8 1 6 3 2 0 5 7 4
+	Goal   : 1 2 3 4 5 6 7 8 0
+
+	H(x) : 3 + 1 + 1 + 3 + 1 + 1 + 2 + 1 + 3
+
+-> All states form a Tree
+
+*State
+Each combination of cells is unique.
+Each state represents a Node of the Tree 
+
+*Graph
+
+Create a graph for the problem
+From current state, we traversal according to the empty cell
+Move from empty cell to its neighbors
+
+!!!! : 
+Using index of the array instead
+Using adjacent list to represent the neighbors of current index
+
+adj[0]: {1, 3};
+adj[1]: {0, 2, 4};
+adj[2]: {1, 5};
+adj[3]: {4, 0, 6};
+adj[4]: {3, 5, 1, 7};
+adj[5]: {4, 2, 8};
+adj[6]: {7, 3};
+adj[7]: {6, 8, 4};
+adj[8]: {7, 5};
+
+

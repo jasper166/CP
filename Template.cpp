@@ -9,6 +9,8 @@ using ll = long long;
 #define debug(...) 166
 #endif
 
+const int N = 5e5 + 5;
+int a[N];
 signed main() {
     cin.tie(0) -> sync_with_stdio(0);
     
@@ -16,18 +18,29 @@ signed main() {
         freopen("in1", "r", stdin);
     #endif
 
-    int T; cin >> T;
-    while (T--) {
-        int n, m; cin >> n >> m;
+    int n, k, d;
+    cin >> n >> k >> d;
 
-        vector <vector <int>> adj(n + 5, vector <int> (m + 5, 0));
-        for (int i = 1; i <= m; ++i) {
-            int u, v; cin >> u >> v;
-            
+    for (int i = 1; i <= n; ++i) cin >> a[i];
+
+    sort(a + 1, a + 1 + n);    
+    vector <bool> dp(n + 1, false);
+    dp[0] = true;
+
+    int j = 1;
+    for (int i = 0; i <= n; ++i) {
+        if (dp[i] == true) {
+            j = max(j, i + k);
+            while (j <= n && a[j] - a[i + 1] <= d) {
+                dp[j] = true;
+                debug(i, j);
+                ++j;
+            }
         }
-        auto dfs = [&] (int u, int p) -> void {
+    }
 
-        };
-    }    
+    cout << (dp[n]? "YES\n" : "NO\n");
+    
+    return 0;
 }
 

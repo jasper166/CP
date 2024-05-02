@@ -1,0 +1,15 @@
+1
+4 3 2
+2 2 4 1
+
+
+
+Lại là một bài toán khác thầy giáo giao cho \bf{Per}:
+
+Cho $3$ số nguyên dương $x$, $y$, $z$. Số $XYZ(k)$ là số nguyên dương nhỏ nhất có $k$ chữ số chia hết cho cả $x$, $y$, và $z$.  Trong trường hợp không tồn tại thì $XYZ(k)$ = $-1$
+
+Với số $n$ cho trước, hãy tính  $$F(n) = {\sum_{k = 1}^n XYZ(k)}$$
+
+Vì đáp án có thể rất lớn nên hãy chia dư cho $10^9 + 7$.
+
+Tính toán rất nhanh nên \bf{Per} đã có đáp án nhưng cần các bạn học viên kiểm tra giúp xem có chính xác hay không. Các bạn hãy thử sức nhé!.

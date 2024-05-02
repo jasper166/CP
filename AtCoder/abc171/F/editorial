@@ -1,0 +1,19 @@
+
+Gọi N là độ dài của xâu Strix X:
+
+N = K + |S|
+Z = 26
+
+-> Có tất cả Z^N xâu X
+
+Vì đếm trực tiếp khó (trùng lặp nhiều) -> Đếm số xâu X ko chứa S là subsequences
+
+Nếu cố định từng prefix của S và điền các kí tự vào thì ta có độ dài của prefix = M
+
+Chọn M vị trí từ xâu X : C(N, M)
+Để M cố định thì (N - M) kí tự còn lại phải khác kí tự bất kì của S -> (Z - 1) cách
+
+->  ans = Z^N - (sum(M: 1->|S - 1|) C(N, M) * (Z - 1) ^ (N - M))
+
+
+``\texttt{YES}''

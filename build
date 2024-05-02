@@ -1,6 +1,15 @@
 {
-    "cmd": ["g++.exe", "-DJASPER2 -std=c++17 -Wall -Wextra -Wshadow -fsanitize=address", "-o",
-     "$file_base_name", "$file", "&&", "start", "cmd", "/c", "$file_base_name & echo. & echo. & pause"],
-    "shell": true,
-    "selector": "source.c++"
+    "encoding": "utf-8",
+    "working_dir": "$file_path",
+    "shell_cmd": "g++ -std=c++17 -O2 -Wall -Wextra -Wshadow -Wfloat-equal -Wduplicated-cond -Wlogical-op  \"${file}\" -o \"${file_path}/${file_base_name}\"",
+    "file_regex": "^(..[^:]*):([0-9]+):?([0-9]+)?:? (.*)$",
+    "selector": "source.cpp,source.c",
+
+    "variants":
+    [
+        {   
+            "name": "Run",
+            "shell_cmd": "g++ -DJASPER -std=c++17 -O2 -Wall -Wextra -Wshadow -Wfloat-equal -Wduplicated-cond -Wlogical-op \"${file}\" -o \"${file_base_name}\" && start cmd /c \"\"${file_path}/${file_base_name}\" & echo. &echo ------------------------------ & echo Compiled successfully  & pause\""
+        }
+    ]
 }
